@@ -1,0 +1,389 @@
+:root {
+    /* Variables de color */
+    --color-success: #138f41; /* Verde profundo */
+    --color-danger: #e74c3c;
+    --color-warning: #f3c50f; /* Amarillo para alertas */
+    --color-bg-light: #f7f7f7; /* Fondo gris claro */
+    --color-bg-white: #ffffff; /* Blanco */
+    --color-black: #333333; /* Gris oscuro para texto */
+    --color-success-hover: #107033; /* Verde más claro para hover */
+    --color-warning-hover: #e6b600; /* Amarillo más oscuro al hacer hover */
+    --color-danger-hover: #c0392b; /* Rojo más oscuro al hacer hover */
+    --color-primary: #007bff; /* Azul profesional */
+    --color-accent: #ffa726; /* Naranja claro */
+}
+
+/* Estilos Generales */
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: var(--color-bg-light);
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Títulos */
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-black);
+}
+
+h1 {
+    font-weight: 600; /* Audaz (Semibold) */
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-weight: 600; /* Audaz (Semibold) */
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+h3 {
+    font-weight: 400; /* Normal */
+    font-size: 1.75rem;
+    margin: 0.5rem 0;
+}
+
+h4, h5, h6 {
+    font-weight: 300; /* Ligero */
+}
+
+/* Ocultar la flecha del dropdown */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Estilos personalizados para el menú desplegable */
+.dropdown-menu {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: #f8f9fa; /* Color de fondo suave */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Animación suave */
+}
+
+.dropdown-menu:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el mouse */
+    transform: translateY(-2px); /* Desplazamiento sutil hacia arriba */
+}
+
+/* Estilos para el hover del dropdown */
+.dropdown-item {
+    padding: 12px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover con verde opaco */
+.dropdown-item:hover {
+    background-color: rgba(19, 143, 65, 0.7); /* Verde más opaco (70% de opacidad) */
+    color: white; /* Texto blanco para buen contraste */
+    border-radius: 5px; /* Redondeo de bordes */
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+}
+
+/* Icono de perfil con fondo circular y centrado */
+.profile-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary); /* Azul */
+    background-color: var(--color-bg-white); /* Blanco */
+    border-radius: 50%;
+    padding: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el fondo y el color */
+}
+
+/* Asegura que el menú se despliegue hacia abajo en dispositivos móviles */
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+/* Estilos generales del menú (navbar) */
+.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil alrededor del menú */
+    border-radius: 8px; /* Opcional, para bordes redondeados */
+}
+
+/* Efecto hover del menú (cuando el ratón pasa sobre el menú) */
+.navbar:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el mouse */
+}
+
+/* Contenedor para logo y menú */
+.navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Alinear los items del navbar */
+.navbar-nav {
+    display: flex;
+    flex-direction: row; /* Alinea los items horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Asegura que los items se alineen bien en el lado derecho */
+.navbar-nav.ms-auto {
+    margin-left: auto;
+}
+
+/* Espaciado entre los items */
+.nav-item {
+    margin-left: 15px;
+}
+
+/* Efecto hover en los enlaces */
+.nav-link {
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.nav-link:hover {
+    color: var(--color-primary); /* Azul en el hover */
+    background-color: rgba(0, 123, 255, 0.1); /* Fondo azul claro al hacer hover */
+    border-radius: 5px;
+}
+
+/* Alineación del logo y hamburguesa */
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+.navbar-brand {
+    flex-shrink: 0;
+}
+
+/* Estilo para botones primarios */
+.btn-primary {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: var(--color-bg-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-success-hover);
+    border-color: var(--color-success-hover);
+}
+
+/* Estilo para botones secundarios */
+.btn-secondary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-white);
+}
+
+.btn-secondary:hover {
+    background-color: #ffa000; /* Naranja más oscuro */
+    border-color: #ffa000;
+}
+
+/* Fondo para secciones secundarias */
+.section-secondary {
+    background-color: var(--color-bg-light); /* Gris claro */
+    padding: 30px;
+    border-radius: 8px;
+}
+
+/* Fondo de tarjetas */
+.card {
+    background-color: var(--color-bg-white);
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto de sombra y hover para las tarjetas */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Indicadores de estado con iconos */
+.task-status {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-status.completed {
+    color: var(--color-success);
+}
+
+.task-status.pending {
+    color: var(--color-warning);
+}
+
+.task-status.overdue {
+    color: var(--color-danger);
+}
+
+/* Alertas */
+.alert-warning {
+    background-color: var(--color-warning);
+    color: var(--color-black);
+}
+
+.alert-warning:hover {
+    background-color: #e6b600; /* Amarillo más oscuro */
+}
+
+/* Links importantes (por ejemplo, en el footer o secciones especiales) */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-accent); /* Naranja claro al pasar el ratón */
+}
+
+/* Contenedor de gráfico para hacerlo responsivo */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* Limita el ancho máximo para pantallas grandes */
+    height: 400px; /* Tamaño inicial adecuado */
+    margin: 0 auto; /* Centra el gráfico horizontalmente */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 767px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav.ms-auto {
+        margin-left: 0;
+    }
+
+    .nav-item {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Hacer que los títulos sean más pequeños en pantallas pequeñas */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+}
+
+/* Tarjetas de Tareas */
+.card-task {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para el área de la tarea */
+.card-task .card-body {
+    padding: 20px;
+    flex-grow: 1; /* Para que las tarjetas crezcan proporcionalmente */
+}
+
+/* Estilo para el título de la tarea */
+.card-task h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para los botones dentro de las tarjetas */
+.card-task .btn {
+    font-size: 0.875rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Estilo de los iconos de estado en las tareas */
+.card-task .task-status span {
+    font-size: 1.5rem;
+}
+
+/* Estilo para tareas completadas */
+.card-task.completed .task-status span {
+    color: var(--color-success);
+}
+
+/* Estilo para tareas pendientes */
+.card-task.pending .task-status span {
+    color: var(--color-warning);
+}
+
+/* Estilo para tareas vencidas */
+.card-task.overdue .task-status span {
+    color: var(--color-danger);
+}
+
+/* Alineación de los iconos */
+.card-task .task-status i {
+    margin-right: 10px;
+}
+
+/* Asegurar una altura mínima consistente para las tarjetas de tareas */
+.card-task {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-task .card-body {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px; /* Reducir altura en pantallas pequeñas */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Ajustar tamaño de texto para pantallas pequeñas */
+    }
+}
+
+@media (min-width: 1200px) {
+    /* En pantallas más grandes, ajustamos el tamaño máximo */
+    .chart-container {
+        max-width: 800px; /* Limitar un poco más el ancho en pantallas de escritorio grandes */
+        height: 500px; /* Ajustamos la altura para pantallas más grandes */
+    }
+}
+
+/* Mejorar la legibilidad del título */
+h2.text-primary {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Asegura que el gráfico sea adaptable al contenedor */
+canvas {
+    max-width: 100%;
+    height: auto;
+}
