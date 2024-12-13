@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container-fluid mt-4">
+<div class="container my-">
     <h1 class="mb-4 text-center text-primary">Panel de Administración</h1>
 
     <!-- Tabla de Usuarios -->
@@ -38,8 +38,8 @@
         <table class="table table-bordered table-hover">
             <thead class="table-primary">
                 <tr>
-                    <th scope="col">Nombre del Área</th>
-                    <th scope="col">Número de Tareas</th>
+                    <th scope="col">Nombre del área</th>
+                    <th scope="col">Número de tareas</th>
                 </tr>
             </thead>
             <tbody>

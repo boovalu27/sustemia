@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="container mt-4">
-    <h1 class="text-center mb-4">Detalles de la Tarea</h1>
+    <h1 class="text-center mb-4">Detalles de la tarea</h1>
 
     <div class="card card-custom">
       <div class="card-header text-center">
@@ -45,22 +45,20 @@
 
       <div class="card-footer d-flex justify-content-between">
         <div>
-          <!-- Mostrar el botón de Editar solo para Admin y Editor -->
-          @if (Auth::user()->role?->name === 'admin' || Auth::user()->role?->name === 'editor' || Auth::user()->can('edit_tasks'))
+          <!-- Mostrar el botón de Editar solo para Admin, Editor o permisos de edición -->
+          @can('edit_tasks')
             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning me-2">Editar Tarea</a>
-          @endif
+          @endcan
 
-          <!-- Mostrar el botón de Eliminar solo para Admin -->
-          @if (Auth::user()->role?->name === 'admin')
-            @can('delete_tasks')
-              <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger"
-                        onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">Eliminar Tarea</button>
-              </form>
-            @endcan
-          @endif
+          <!-- Mostrar el botón de Eliminar solo si el usuario tiene el permiso de eliminación -->
+          @can('delete_tasks')
+            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger"
+                      onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">Eliminar Tarea</button>
+            </form>
+          @endcan
         </div>
 
         <!-- Botón para volver a la lista de tareas o al dashboard -->

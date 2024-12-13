@@ -46,7 +46,7 @@
                     @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboards.index') }}">
-                            <i class="bi bi-grid-1x2-fill"></i> Panel
+                            <i class="bi bi-grid-1x2-fill text-primary"></i> Panel
                         </a>
                     </li>
 
@@ -54,7 +54,7 @@
                     @if(auth()->user()->getRoleNames()->contains('admin'))
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.index') }}">
-                            <i class="bi bi-gear"></i> Configuración
+                            <i class="bi bi-gear-fill text-secondary"></i> Configuración
                         </a>
                     </li>
                     @endif
@@ -62,7 +62,7 @@
                     <!-- Reportes -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('reports.index') }}" aria-label="Ir a reportes">
-                            <i class="bi bi-bar-chart-line"></i> Reportes
+                            <i class="bi bi-bar-chart-fill text-success"></i> Reportes
                         </a>
                     </li>
 
@@ -134,6 +134,12 @@
         </main>
 
     </div>
+    <!-- Footer -->
+    <footer class="footer py-2 text-center text-white">
+        <div class="container">
+            <p>&copy; 2024 Sustemia - Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

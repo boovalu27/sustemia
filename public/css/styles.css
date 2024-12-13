@@ -53,6 +53,18 @@ h4, h5, h6 {
     font-weight: 300; /* Ligero */
 }
 
+/* Estilo para el footer */
+.footer {
+    background-color: #28a745; /* Verde */
+    color: #f9e000; /* Amarillo */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
 /* Ocultar la flecha del dropdown */
 .dropdown-toggle::after {
     display: none !important;

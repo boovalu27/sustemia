@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container my-3">
-    <h1 class="mb-4 text-start">Panel de Control de seguridad e higiene</h1>
+    <h1 class="mb-4 text-start text-success">Panel de control de seguridad e higiene</h1>
     <p class="text-start my-2">Bienvenido a tu espacio de gestión.</p>
     <p class="text-start py-2">Aquí podrás crear, editar y supervisar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
 
@@ -176,7 +176,7 @@
         @foreach ($tasks as $task)
 <!-- Tarea Card -->
 <div class="col">
-    <div class="card border-0
+    <div class="card h-100 border-0
         {{
             $task->due_date < now() ? 'shadow-lg text-black' :
             ($task->status == 'Completada' ? 'shadow-success' : 'shadow-warning text-dark')
@@ -190,11 +190,13 @@
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="taskOptionsDropdown{{ $task->id }}">
+                        @can('edit_task')
                         <li>
                             <a class="dropdown-item" href="{{ route('tasks.edit', $task->id) }}">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
                         </li>
+                        @endcan
                         <li>
                             <a class="dropdown-item" href="{{ route('tasks.show', $task->id) }}">
                                 <i class="bi bi-eye"></i> Ver Tarea

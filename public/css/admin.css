@@ -297,3 +297,14 @@ canvas {
     max-width: 100%;
     height: auto;
 }
+
+/* Estilo para el footer */
+.footer {
+    background-color: #28a745; /* Verde */
+    color: #f9e000; /* Amarillo */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
