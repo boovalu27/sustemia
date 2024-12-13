@@ -12,7 +12,7 @@
                 <div class="card shadow-lg border-primary h-100">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
-                            <h2 class="card-title text-primary">Total de Usuarios</h2>
+                            <h2 class="card-title text-primary">Total de usuarios</h2>
                             <i class="fas fa-users fa-3x text-primary"></i>
                         </div>
                         <p class="card-text h1 mt-3">{{ $totalUsersCount }}</p>
@@ -27,16 +27,10 @@
                 <div class="card shadow-lg border-danger h-100">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
-                            <h2 class="card-title text-danger">Total de Áreas</h2>
+                            <h2 class="card-title text-danger">Total de áreas</h2>
                             <i class="fas fa-cogs fa-3x text-danger"></i>
                         </div>
                         <p class="card-text h1 mt-3">{{ $totalAreasCount }}</p>
-                        <div class="progress mt-3">
-                            <div class="progress-bar bg-danger" role="progressbar"
-                                 style="width: {{ $totalAreasCount > 0 ? ($totalAreasCount / 10) * 10 : 0 }}%"
-                                 aria-valuenow="{{ $totalAreasCount }}" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
                     </div>
                 </div>
             </a>
@@ -48,7 +42,7 @@
                 <div class="card shadow-lg border-warning h-100">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
-                            <h2 class="card-title text-warning">Tareas Creadas</h2>
+                            <h2 class="card-title text-warning">Tareas creadas</h2>
                             <i class="fas fa-tasks fa-3x text-warning"></i>
                         </div>
                         <p class="card-text h1 mt-3">{{ $totalTasksCount }}</p>
@@ -221,7 +215,7 @@
     </div>
 <!-- Estadísticas de Tareas por Área -->
 <div class="col-md-12 mb-4">
-    <h2 class="mb-4 text-start">Tareas por Área</h2>
+    <h2 class="mb-4 text-start">Tareas por área</h2>
     <div class="row">
         @foreach ($tasksByArea as $area)
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
