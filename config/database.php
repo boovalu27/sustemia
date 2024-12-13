@@ -42,25 +42,26 @@ return [
             'synchronous' => null,
         ],
 
-        'mysql' => [
-            'driver' => 'mysql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => env('DB_CHARSET', 'utf8mb4'),
-            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
+'mysql' => [
+    'driver' => 'mysql',
+    'url' => env('DB_URL', null),  // Si tienes un URL completo de la base de datos (no es necesario en este caso).
+    'host' => env('DB_HOST', 'mysql-g_xk.railway.internal'),  // Usamos el host interno proporcionado por Railway
+    'port' => env('DB_PORT', '3306'),  // Usamos el puerto predeterminado para MySQL, que es 3306
+    'database' => env('DB_DATABASE', 'railway'),  // El nombre de la base de datos proporcionado
+    'username' => env('DB_USERNAME', 'root'),  // El usuario proporcionado, generalmente 'root'
+    'password' => env('DB_PASSWORD', ''),  // La contraseña proporcionada por Railway
+    'unix_socket' => env('DB_SOCKET', ''),  // Usualmente no es necesario para Railway, lo dejamos vacío
+    'charset' => env('DB_CHARSET', 'utf8mb4'),  // Configuración por defecto, UTF-8 es común
+    'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),  // Configuración por defecto
+    'prefix' => '',
+    'prefix_indexes' => true,
+    'strict' => true,
+    'engine' => null,
+    'options' => extension_loaded('pdo_mysql') ? array_filter([
+        PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),  // Si usas SSL, agrega el certificado
+    ]) : [],
+],
+
 
         'mariadb' => [
             'driver' => 'mariadb',
