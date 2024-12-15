@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h1 class="my-4">Editar Usuario</h1>
+<div class="container mt-5">
+    <h1 class="my-4 text-success">Editar Usuario</h1>
     <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -32,7 +32,7 @@
             <div class="form-text">Selecciona el rol del usuario.</div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 </div>
 @endsection

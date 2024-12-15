@@ -1,6 +1,7 @@
-@extends('layouts.main')
+@extends(auth()->user()->hasRole('admin') ? 'layouts.admin' : 'layouts.main')
 
 @section('content')
+@section('title', 'Mi perfil')
   <div class="container py-5">
     <!-- Tarjeta de Información del Usuario -->
     <div class="row justify-content-center">

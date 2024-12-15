@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">Editar tarea</h1>
+    <h1 class="text-start text-success px-4">Editar tarea</h1>
 
     <!-- Mostramos los errores de validación -->
     @if ($errors->any())
@@ -56,26 +56,30 @@
             </select>
         </div>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between border-top py-2">
+            <div>
             <!-- Botón para actualizar con ícono -->
-            <button type="submit" class="btn btn-warning d-flex align-items-center">
-                <i class="bi bi-save me-2"></i> Actualizar
+            <button type="submit" class="btn btn-warning mx-2">
+                <i class="bi-arrow-repeat"></i>
             </button>
-            <!-- Botón para cancelar con ícono -->
-            <a href="{{ auth()->check() && auth()->user()->role->name === 'editor' ? route('dashboards.index') : route('tasks.index') }}" class="btn btn-secondary d-flex align-items-center">
-                <i class="bi bi-x-circle me-2"></i> Cancelar
-            </a>
 
             <!-- Botón Eliminar solo visible para admin -->
             @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta tarea?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger d-flex align-items-center">
-                        <i class="bi bi-trash me-2"></i> Eliminar
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
                     </button>
                 </form>
             @endif
+            </div>
+            <!-- Botón para cancelar con ícono -->
+            <a href="{{ route('dashboards.index')}}" class="btn btn-secondary mx-2">
+                <i class="bi-arrow-return-left"></i>
+            </a>
+
+
         </div>
     </form>
 </div>

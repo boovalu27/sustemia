@@ -73,34 +73,34 @@
     </div>
 
     <div class="mb-3">
-        <div class="alert alert-white shadow-lg p-3 mb-5 rounded p-3 mb-5 bg-body d-flex align-items-center">
+        <div class="alert alert-white shadow-lg rounded p-3 my-4 bg-body d-flex align-items-center">
             <div class="d-flex flex-wrap w-100 justify-content-between">
                 <!-- Tarea Vencida -->
-                <div class="d-flex align-items-center me-2 me-md-3 mb-2">
+                <div class="d-flex align-items-center me-2">
                     <i class="bi bi-calendar-x text-danger fs-5 me-2" title="Tarea vencida"></i>
                     <span>Tarea Vencida</span>
                 </div>
 
                 <!-- Tarea Pendiente -->
-                <div class="d-flex align-items-center me-2 me-md-3 mb-2">
+                <div class="d-flex align-items-center me-2">
                     <i class="bi bi-hourglass-split text-warning fs-5 me-2" title="Tarea pendiente"></i>
                     <span>Tarea Pendiente</span>
                 </div>
 
                 <!-- Tarea Completada -->
-                <div class="d-flex align-items-center me-2 me-md-3 mb-2">
+                <div class="d-flex align-items-center me-2 ">
                     <i class="bi bi-check-circle text-success fs-5 me-2" title="Tarea completada"></i>
                     <span>Tarea Completada</span>
                 </div>
 
-<!-- Botón para abrir el modal de crear tarea -->
-@can('create_tasks')
-<div class="d-flex align-items-center mb-2 ms-auto">
-    <button type="button" class="btn btn-success rounded-circle" data-bs-toggle="modal" data-bs-target="#createTaskModal" aria-label="Crear Nueva Tarea">
-        <i class="bi bi-window-plus fs-4"></i>
-    </button>
-</div>
-@endcan
+                <!-- Botón para abrir el modal de crear tarea -->
+                @can('create_tasks')
+                <div class="d-flex align-items-center me-2 ms-auto">
+                    <button type="button" class="btn btn-success rounded-circle" data-bs-toggle="modal" data-bs-target="#createTaskModal" aria-label="Crear Nueva Tarea">
+                        <i class="bi bi-window-plus fs-4"></i>
+                    </button>
+                </div>
+                @endcan
 
             </div>
         </div>
@@ -114,25 +114,25 @@
 <div class="col">
     <div class="card h-100 border-0
         {{
-            $task->due_date < now() ? 'shadow-lg text-black' :
+            $task->due_date < now() ? 'text-black' :
             ($task->status == 'Completada' ? 'shadow-success' : 'shadow-warning text-dark')
         }}">
 
-        <div class="card-body d-flex flex-column border border-dark rounded">
+        <div class="card-body d-flex flex-column shadow-lg rounded">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <!-- Menú de Puntitos (Dropdown) -->
-                <div class="dropdown px-2">
+                <div class="dropdown">
                     <button class="btn btn-link p-0 dropdown-toggle" type="button" id="taskOptionsDropdown{{ $task->id }}" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="taskOptionsDropdown{{ $task->id }}">
-                        @can('edit_task')
                         <li>
+                            @can('edit_tasks')
                             <a class="dropdown-item" href="{{ route('tasks.edit', $task->id) }}">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
+                            @endcan
                         </li>
-                        @endcan
                         <li>
                             <a class="dropdown-item" href="{{ route('tasks.show', $task->id) }}">
                                 <i class="bi bi-eye"></i> Ver Tarea
@@ -142,7 +142,7 @@
                 </div>
 
                 <!-- Título de la tarea -->
-                <p class="card-title mb-0 border-bottom border-black pb-2 text-start">{{ $task->title }}</p>
+                <p class="card-title mb-0 py-2 text-truncate border-bottom border-black text-start">{{ $task->title }}</p>
 
                 <!-- Estado de la tarea -->
                 <div class="task-status text-start">

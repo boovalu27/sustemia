@@ -44,23 +44,14 @@
                         @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboards.index') }}">
-                                <i class="bi bi-grid-1x2-fill"></i> Panel
+                                <i class="bi bi-ui-checks-grid text-primary"></i> Panel
                             </a>
                         </li>
-
-                        <!-- Configuración -->
-                        @if(auth()->user()->getRoleNames()->contains('admin'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">
-                                <i class="bi bi-gear-fill"></i> Configuración
-                            </a>
-                        </li>
-                        @endif
 
                         <!-- Reportes -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reports.index') }}" aria-label="Ir a reportes">
-                                <i class="bi bi-bar-chart-fill"></i> Reportes
+                                <i class="bi bi-bar-chart-fill text-success"></i> Reportes
                             </a>
                         </li>
 
@@ -85,7 +76,7 @@
                                 <li>
                                     <form action="{{ route('auth.logout') }}" method="post">
                                         @csrf
-                                        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button>
+                                        <button type="submit" class="dropdown-item"><i class="bi bi-power-fill"></i> Cerrar sesión</button>
                                     </form>
                                 </li>
                             </ul>
@@ -95,7 +86,7 @@
                         <!-- Iniciar sesión -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('auth.login') }}">Iniciar sesión</a>
+                            <a class="nav-link" href="{{ route('auth.login') }}"><i class="bi bi-arrow-right-circle-fill text-success" aria-label="iniciar sesion"></i></a>
                         </li>
                         @endguest
                     </ul>
@@ -135,11 +126,18 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer py-2 text-center text-white">
-        <div class="container">
-            <p>&copy; 2024 Sustemia - Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 my-4 border-top border-warning">
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="text-success">© SUSTEMIA</span>
+          </div>
+
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/company/sustemia-llc"><i class="bi bi-linkedin text-primary"></i></a></li>
+            <li class="ms-3"><a class="text-muted" href="mailto:info@sustemia.com"><i class="bi-envelope-fill text-secondary"></i></a></li>
+          </ul>
+        </footer>
+      </div>
 
     <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

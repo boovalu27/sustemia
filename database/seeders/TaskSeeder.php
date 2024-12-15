@@ -63,7 +63,7 @@ class TaskSeeder extends Seeder
         Task::create([
             'user_id' => $users->last()->id,
             'area_id' => 4,
-            'title' => 'Programa On Boarding SHE',
+            'title' => 'Programa on boarding SHE',
             'description' => '',
             'due_date' => now()->addDays(15),
             'status' => 'Pendiente',
@@ -87,7 +87,7 @@ class TaskSeeder extends Seeder
         Task::create([
             'user_id' => $users->last()->id,
             'area_id' => 5,
-            'title' => 'Día Mundial del Agua',
+            'title' => 'Día mundial del agua',
             'description' => '',
             'due_date' => now()->addDays(15),
             'status' => 'Pendiente',

@@ -20,23 +20,15 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Verificamos si el usuario tiene un rol asignado
-        if (!$user->hasRole('admin') && !$user->hasRole('editor') && !$user->hasRole('viewer')) {
+        // Verificar si el usuario tiene alguno de los roles permitidos
+        if (!$user->hasAnyRole(['admin', 'editor', 'viewer'])) {
             return redirect()->route('home')->with('error', 'No tienes permisos para acceder a esta página.');
         }
 
-        // Redirigir a los dashboards correspondientes según el rol
-        if ($user->hasRole('admin')) {
-            return $this->adminDashboard();
-        }
-
-        if ($user->hasRole('editor') || $user->hasRole('viewer')) {
-            return $this->indexDashboard($request);
-        }
-
-        // En caso de no tener un rol válido
-        return redirect()->route('home')->with('error', 'Rol no reconocido. No tienes permisos para acceder a esta página.');
+        // Si tiene un rol válido, mostramos el dashboard
+        return $this->indexDashboard($request);
     }
+
 
 
     public function adminDashboard()
@@ -78,65 +70,6 @@ class DashboardController extends Controller
         $areas = Area::all();
 
         return view('dashboards.index', compact('tasks', 'areas'));
-    }
-
-    public function viewerDashboard(Request $request)
-    {
-        // Obtener todas las áreas (suponiendo que tienes un modelo Area)
-        $areas = Area::all();  // Asegúrate de importar el modelo Area
-
-        // Filtrado de tareas para el viewer
-        $tasks = Task::with('area');
-
-        if ($request->filled('area')) {
-            $tasks->where('area_id', $request->area);
-        }
-
-        if ($request->filled('month')) {
-            $tasks->whereMonth('due_date', $request->month);
-        }
-
-        if ($request->filled('year')) {
-            $tasks->whereYear('due_date', $request->year);
-        }
-
-        if ($request->filled('overdue') && $request->overdue == '1') {
-            $tasks->where('due_date', '<', now());
-        }
-
-        $tasks = $tasks->orderBy('created_at', 'desc')->get();
-        $groupedTasks = $this->groupTasksByYearAndArea($tasks);
-        $tasksByStatus = $this->countTasksByStatus($tasks);
-
-        // Pasar $areas a la vista
-        return view('dashboards.index', compact('groupedTasks', 'tasksByStatus', 'tasks', 'areas'));
-    }
-
-
-    private function groupTasksByYearAndArea($tasks)
-    {
-        $groupedTasks = [];
-        foreach ($tasks as $task) {
-            $year = $task->due_date->format('Y');
-            $area = $task->area->name;
-            $month = Carbon::parse($task->due_date)->translatedFormat('F');
-
-            if (!isset($groupedTasks[$year][$area][$month])) {
-                $groupedTasks[$year][$area][$month] = [];
-            }
-
-            $groupedTasks[$year][$area][$month][] = $task;
-        }
-        return $groupedTasks;
-    }
-
-    private function countTasksByStatus($tasks)
-    {
-        return [
-            'Pendiente' => $tasks->where('status', 'Pendiente')->count(),
-            'Completada' => $tasks->where('status', 'Completada')->count(),
-            'Retrasada' => $tasks->where('due_date', '<', now())->count(),
-        ];
     }
 
     public function reportsDashboard()

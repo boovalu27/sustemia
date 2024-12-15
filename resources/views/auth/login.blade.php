@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Iniciar Sesión')
+@section('title', 'Iniciar sesión')
 
 @section('content')
 
@@ -9,24 +9,15 @@
     <div class="row justify-content-center w-100">
       <div class="col-12 col-md-8 col-lg-6">
         <!-- Tarjeta de login centrada -->
-        <div class="card shadow-lg rounded-3 border-0">
-          <div class="card-body p-4 p-lg-5 text-start">
-
+        <div class="card shadow-lg rounded-5">
+          <div class="card-body p-4 p-lg-5">
             <!-- Sección Logo y texto -->
-            <div class="row align-items-center mb-4">
-              <!-- Columna del logo -->
-              <div class="col-12 col-md-4 text-left text-md-start">
-                <img src="{{ url('css/imgs/resource/icono.png') }}" alt="Logo de Sustemia" class="img-fluid" style="max-width: 150px;">
+              <div class="card-header text-center">
+                <img src="{{ url('css/imgs/resource/icono.png') }}" alt="Logo de Sustemia" class="img-fluid" style="max-width: 65px;">
+
+                <h5 class="fs-5 py-2">Ingresá tus datos para continuar</h5>
               </div>
 
-              <!-- Columna del texto -->
-              <div class="col-12 col-md-8 text-left text-md-start">
-                <h1 class="fw-normal mb-3" style="color: var(--color-success);">¡Hola de nuevo!</h1>
-                <p style="color: var(--color-success);">Te damos la bienvenida a nuestra plataforma.</p>
-                <p style="color: var(--color-success);">Ingresá tus datos para continuar.</p>
-                <i class="bi bi-helmet-safety" style="font-size: 3rem; color: var(--color-success);"></i>
-              </div>
-            </div>
 
             <!-- Formulario de inicio de sesión -->
             <form action="{{ route('auth.login.process') }}" method="post" aria-labelledby="login-form" class="mt-4">
@@ -34,12 +25,12 @@
 
               <!-- Campo de correo electrónico -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="email"><i class="bi bi-envelope-fill"></i> Correo Electrónico</label>
+                <label class="form-label text-muted" for="email"> correo electrónico</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  class="form-control form-control-lg"
+                  class="form-control"
                   placeholder="ejemplo@email.com"
                   value="{{ old('email') }}"
                   required
@@ -52,13 +43,13 @@
 
               <!-- Campo de contraseña -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="password"><i class="bi bi-lock-fill"></i> Contraseña</label>
+                <label class="form-label text-muted" for="password"> contraseña</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  class="form-control form-control-lg"
-                  placeholder="xxxx"
+                  class="form-control"
+                  placeholder="xxxxxxxxxx"
                   required
                   aria-required="true"
                 >
@@ -68,14 +59,14 @@
               </div>
 
               <!-- Botón de iniciar sesión -->
-              <div class="pt-1 mb-4">
-                <button class="btn btn-success btn-block" type="submit">
-                  <i class="bi bi-arrow-right-circle"></i> Iniciar Sesión
+              <div class="pt-1">
+                <button class="btn btn-secondary rounded-4" type="submit">
+                  <i class="bi bi-arrow-right-circle"></i> Ingresar
                 </button>
               </div>
 
             </form>
-          </div>
+
         </div>
       </div>
     </div>

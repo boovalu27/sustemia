@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') :: PANEL DE ADMINISTRACIÓN</title>
+    <title>@yield('title') Administración</title>
     <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}">
     <link rel="icon" type="image/png" href="{{ url('css/imgs/favicon-32x32.png') }}">
     <link rel="stylesheet" href="{{ url('css/admin.css') }}"> <!-- Estilos específicos para el admin -->
@@ -30,7 +30,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="{{ url('/') }}" aria-label="Ir a la página principal">
-                <img id="sidebarLogo"class="bg-white border-none" src="{{ url('css/imgs/resource/sustemia_oficial.png') }}" alt="Logo de Sustemia" height="50">
+                <img id="sidebarLogo"class="rounded mx-auto" src="{{ url('css/imgs/resource/sustemia_oficial.png') }}" alt="Logo de Sustemia" height="50">
             </a>
 
             <!-- Botón para móvil -->
@@ -46,7 +46,7 @@
                     @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboards.index') }}">
-                            <i class="bi bi-grid-1x2-fill text-primary"></i> Panel
+                            <i class="bi bi-ui-checks-grid text-primary"></i> Panel
                         </a>
                     </li>
 
@@ -80,14 +80,14 @@
                             <li><hr class="dropdown-divider"></li>
 
                             <!-- Opciones del menú -->
-                            <li><a class="dropdown-item" href="{{ route('profile.view') }}"><i class="bi bi-person"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.view') }}"><i class="bi bi-person-fill"></i> Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <!-- Cerrar sesión -->
                             <li>
                                 <form action="{{ route('auth.logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button>
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-power"></i> Cerrar sesión</button>
                                 </form>
                             </li>
                         </ul>
@@ -135,12 +135,18 @@
 
     </div>
     <!-- Footer -->
-    <footer class="footer py-2 text-center text-white">
-        <div class="container">
-            <p>&copy; 2024 Sustemia - Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 my-4 border-top border-warning">
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="text-success">© SUSTEMIA</span>
+          </div>
 
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/company/sustemia-llc"><i class="bi bi-linkedin text-primary"></i></a></li>
+            <li class="ms-3"><a class="text-muted" href="mailto:info@sustemia.com"><i class="bi-envelope-fill text-secondary"></i></a></li>
+          </ul>
+        </footer>
+      </div>
     <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

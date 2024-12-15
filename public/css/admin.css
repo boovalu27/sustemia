@@ -38,7 +38,7 @@ h1 {
 }
 
 h2 {
-    font-weight: 600; /* Audaz (Semibold) */
+    font-weight: 400; /* Audaz (Semibold) */
     font-size: 2rem;
     margin: 0.5rem 0;
 }
@@ -80,6 +80,9 @@ h4, h5, h6 {
     align-items: center; /* Centra verticalmente */
 }
 
+nav.navbar.navbar-expand-lg.navbar-light {
+    background-color: #FFFDE7;
+}
 /* Asegura que los items se alineen bien en el lado derecho */
 .navbar-nav.ms-auto {
     margin-left: auto;
@@ -101,6 +104,43 @@ h4, h5, h6 {
     border-radius: 5px;
 }
 
+
+/* Ocultar la flecha del dropdown */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Estilos personalizados para el menú desplegable */
+.dropdown-menu {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: #f8f9fa; /* Color de fondo suave */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Animación suave */
+}
+
+.dropdown-menu:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el mouse */
+    transform: translateY(-2px); /* Desplazamiento sutil hacia arriba */
+}
+
+/* Estilos para el hover del dropdown */
+.dropdown-item {
+    padding: 12px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover con verde opaco */
+.dropdown-item:hover {
+    background-color: rgba(19, 143, 65, 0.7); /* Verde más opaco (70% de opacidad) */
+    color: white; /* Texto blanco para buen contraste */
+    border-radius: 5px; /* Redondeo de bordes */
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+}
+
+
 /* Efecto hover en el icono de perfil */
 .profile-icon:hover {
     background-color: var(--color-primary); /* Fondo azul en el hover */
@@ -118,10 +158,92 @@ h4, h5, h6 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el mouse */
 }
 
+.card {
+    position: relative;
+}
+
+/* Efecto de sombra y hover para las tarjetas */
+.card:hover {
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Tarjetas de Tareas */
+.card-task {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para el área de la tarea */
+.card-task .card-body {
+    padding: 20px;
+    flex-grow: 1; /* Para que las tarjetas crezcan proporcionalmente */
+}
+
+/* Estilo para el título de la tarea */
+.card-task h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para los botones dentro de las tarjetas */
+.card-task .btn {
+    font-size: 0.875rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Estilo de los iconos de estado en las tareas */
+.card-task .task-status span {
+    font-size: 1.5rem;
+}
+
+/* Estilo para tareas completadas */
+.card-task.completed .task-status span {
+    color: var(--color-success);
+}
+
+/* Estilo para tareas pendientes */
+.card-task.pending .task-status span {
+    color: var(--color-warning);
+}
+
+/* Estilo para tareas vencidas */
+.card-task.overdue .task-status span {
+    color: var(--color-danger);
+}
+
+/* Alineación de los iconos */
+.card-task .task-status i {
+    margin-right: 10px;
+}
+
+/* Asegurar una altura mínima consistente para las tarjetas de tareas */
+.card-task {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-task .card-body {
+    overflow: hidden;
+}
+
+
+
 /* Media Queries para responsividad */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .navbar-nav {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row; /* Alinea los items horizontalmente */
         align-items: flex-start;
     }
 
@@ -140,11 +262,11 @@ h4, h5, h6 {
     }
 
     h2 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 }
 
@@ -159,7 +281,7 @@ h4, h5, h6 {
 .admin-dashboard h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 /* Estilo para los botones de acción del admin */
@@ -276,18 +398,19 @@ a:hover {
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     /* En pantallas más grandes, ajustamos el tamaño máximo */
     .chart-container {
         max-width: 800px; /* Limitar un poco más el ancho en pantallas de escritorio grandes */
         height: 500px; /* Ajustamos la altura para pantallas más grandes */
     }
+
 }
 
 /* Mejorar la legibilidad del título */
 h2.text-primary {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -298,13 +421,6 @@ canvas {
     height: auto;
 }
 
-/* Estilo para el footer */
-.footer {
-    background-color: #28a745; /* Verde */
-    color: #f9e000; /* Amarillo */
-}
-
 .footer p {
     margin: 0;
-    font-size: 14px;
 }

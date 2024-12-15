@@ -45,6 +45,6 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Crear Tarea</button>
+        <button type="submit" class="btn btn-primary">Crear tarea</button>
     </form>
 @endsection
