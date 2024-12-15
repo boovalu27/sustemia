@@ -26,7 +26,7 @@ body {
 }
 
 /* Títulos */
-h1, h2 {
+h1 {
     font-family: 'Playfair Display', serif;
     color: var(--color-black);
 }
@@ -381,8 +381,7 @@ a:hover {
 /* Mejorar la legibilidad del título */
 h2.text-primary {
     font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 

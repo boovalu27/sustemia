@@ -78,12 +78,12 @@
 
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3 g-5">
         <div class="col">
-            <div class="card h-100 shadow-lg border-light rounded-4">
+            <ul class="card h-100 shadow-lg border-light rounded-4">
             <!-- Header con alineación -->
                 <div class="card-body d-flex flex-column">
                     <!-- Título y Dropdown alineados correctamente -->
 
-                        <h2 class="card-title text-primary py-2"> Básico</h2>
+                        <h3 class="card-title text-primary py-2"> Básico</h3>
                         <p class="card-title fs-4 fw-bold">
                             US$ 500
                         </p>
@@ -98,10 +98,10 @@
                             <i class="bi bi-check-circle-fill text-black"></i> <strong> Soporte limitado:</strong> Acceso a soporte por correo electrónico o chat con tiempos de respuesta estándar
                         </p>
                 </div>
-            </div>
+            </ul>
         </div>
         <div class="col">
-            <div class="card h-100 shadow-lg border-light rounded-4">
+            <ul class="card h-100 shadow-lg border-light rounded-4">
             <!-- Header con alineación -->
                 <div class="card-body d-flex flex-column">
                     <!-- Título y Dropdown alineados correctamente -->
@@ -125,15 +125,15 @@
                         </p>
 
                 </div>
-            </div>
+            </ul>
         </div>
         <div class="col">
-            <div class="card h-100 shadow-lg border-light rounded-4">
+            <ul class="card h-100 shadow-lg border-light rounded-4">
             <!-- Header con alineación -->
                 <div class="card-body d-flex flex-column">
                     <!-- Título y Dropdown alineados correctamente -->
 
-                        <h3 class="card-title text-primary py-2"> Premium </h3>
+                        <h2 class="card-title text-primary py-2"> Premium </h2>
                         <p class="card-title fs-4 fw-bold">
                             US$  1500
                         </p>
@@ -154,16 +154,16 @@
                             <i class="bi bi-check-circle-fill text-black"></i> <strong> Soporte 24/7: </strong> A través de diferentes canales (chat, teléfono, correo)
                         </p>
                 </div>
-            </div>
+            </ul>
         </div>
 
     </div>
                 <!-- Plan Freemium (sin destacar visualmente) -->
             <div class="row">
                 <div class="col-12">
-                    <div class="card shadow-sm border-light rounded-4 my-3 p-2">
+                    <div class="card shadow-sm border-light rounded-4 my-3 py-2">
                         <div class="card-body">
-                            <h3 class="card-title text-start">FREEMIUM</h3>
+                            <h2 class="card-title text-start">FREEMIUM</h2>
                             <span class="card-title fs-5 fw-bold">Gratis</span>
                             <p class="card-text mb-0 text-start">
                                 <i class="bi bi-check-circle-fill text-black"></i> Demo para atraer a nuevos clientes que luego puedan actualizar a un plan de pago.
