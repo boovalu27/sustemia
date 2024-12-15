@@ -101,12 +101,12 @@
             </ul>
         </div>
         <div class="col">
-            <ul class="card h-100 shadow-lg border-light rounded-4">
+            <div class="card h-100 shadow-lg border-light rounded-4">
             <!-- Header con alineación -->
                 <div class="card-body d-flex flex-column">
                     <!-- Título y Dropdown alineados correctamente -->
 
-                        <h3 class="card-title text-primary py-2"> Intermedio</h3>
+                        <h2 class="card-title text-primary py-2"> Intermedio</h2>
                         <p class="card-title fs-4 fw-bold">
                             US$ 1000
                         </p>
@@ -176,7 +176,7 @@
 </section>
     <!-- Sección de contacto -->
     <section class="my-5">
-        <h3 class="text-start mb-4">Contáctanos</h3>
+        <h2 class="text-start mb-4">Contáctanos</h2>
         <p class="text-start">¿Tienes preguntas o deseas más información sobre nuestros servicios? <a href="mailto:info@sustemia.com">Contáctanos aquí</a> para obtener más detalles y comenzar a trabajar juntos.</p>
     </section>
 </div>

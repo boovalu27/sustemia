@@ -123,7 +123,7 @@ h4, h5, h6 {
 /* Contenedor para logo y menú */
 .navbar-header {
     display: flex;
-    align-items: center;
+/*    align-items: center; */
     justify-content: space-between;
     width: 100%;
 }
@@ -132,7 +132,7 @@ h4, h5, h6 {
 .navbar-nav {
     display: flex;
     flex-direction: row; /* Alinea los items horizontalmente */
-    align-items: center; /* Centra verticalmente */
+/*    align-items: center;  Centra verticalmente */
 }
 
 /* Asegura que los items se alineen bien en el lado derecho */
@@ -214,7 +214,7 @@ h4, h5, h6 {
 .task-status {
     font-size: 1.25rem;
     display: flex;
-    align-items: center;
+/*    align-items: center; */
     gap: 8px;
 }
 
