@@ -13,7 +13,7 @@
           <div class="card-body p-4 p-lg-5">
             <!-- Sección Logo y texto -->
               <div class="card-header text-center">
-                <img src="{{ url('css/imgs/resource/icono.png') }}" alt="Logo de Sustemia" class="img-fluid" style="max-width: 65px;">
+                <img src="{{ asset('css/imgs/resource/icono.png') }}" alt="Logo de Sustemia" class="img-fluid" style="max-width: 65px;">
 
                 <h5 class="fs-5 py-2">Ingresá tus datos para continuar</h5>
               </div>
