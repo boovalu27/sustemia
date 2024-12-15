@@ -4,7 +4,7 @@
   <div class="container my-3">
     <h1 class="mb-4 text-start text-success">Panel de control de seguridad e higiene</h1>
     <p class="text-start my-2">Bienvenido a tu espacio de gestión.</p>
-    <p class="text-start py-2">Aquí podrás crear, editar y supervisar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
+    <p class="text-start py-2">Aquí podrás gestionar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
 
     <!-- Modal para Crear Nueva Tarea -->
     <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
