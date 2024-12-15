@@ -3,8 +3,8 @@
 @section('content')
 @section('title', 'Reportes')
 <div class="container my-4">
-    <h1 class="text-start text-success mb-4">Panel de Reportes</h1>
-
+    <h1 class="text-start text-success mb-2">Panel de Reportes</h1>
+    <p> Aquí podrás ver una visión general del estado de las tareas. Así como visualizar gráficos interactivos sobre el estado de las tareas y su distribución por área. Además, se muestran las tareas vencidas y las próximas a vencer, proporcionando información importante para el seguimiento y gestión eficiente de las actividades.</p>
     @if(auth()->user()->hasRole('admin'))
 
 
@@ -30,11 +30,11 @@
         <!-- Total de Usuarios -->
         <div class="col-md-6 col-xl-3">
             <a href="{{ route('users.index') }}" class="text-decoration-none">
-            <div class="card bg-warning text-secondary m-2">
+            <div class="card bg-warning text-black m-2">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class=" m-0">{{ $totalUsersCount }} +</h3>
+                            <h2 class=" m-0">{{ $totalUsersCount }} +</h2>
                             <p class="mb-0">Total de Usuarios</p>
                         </div>
                         <div class="col-4 text-end">
@@ -86,11 +86,33 @@
     </div>
     @endif
 
-
-    <div class="row m-4">
+    <!-- Estadísticas de Tareas por Área -->
+    <div class="col-md-12 mb-4">
+        <h2 class="mb-4 text-start">Tareas por área</h2>
+        <div class="row">
+            @foreach ($tasksByArea as $area)
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card shadow rounded-3">
+                        <div class="card-body d-flex flex-column justify-content-between p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title text-secondary mb-0">{{ $area->area_name }}</h3> <!-- Nombre del Área -->
+                                <span class="badge bg-black text-white rounded-pill">{{ $area->total }} tareas</span>
+                            </div>
+                            <div class="my-3">
+                                <p class="card-text"> <i class="bi bi-hourglass-split text-warning" title="Tarea Pendiente"></i> Pendientes: {{ $area->pending }} / {{ $area->total }}</p>
+                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i> Completadas: {{ $area->completed }} / {{ $area->total }}</p>
+                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i> <i class="bi bi-calendar-x-fill text-danger" title="Tarea Vencida"></i> Completadas con Retraso: {{ $area->completed_with_delay }} / {{ $area->total }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="row my-2 text-center">
         <!-- Gráfico de Estado de Tareas (Gráfico de Barras) -->
         <div class="col-md-6 col-sm-12 p-2">
-            <h2 class="text-center py-2">Porcentaje de tareas por estado</h2>
+            <h2 class=" py-2">Porcentaje de tareas por estado</h2>
             <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
                 <canvas id="tasksStatusChart" aria-label="Gráfico de Estado de Tareas" role="img"></canvas>
             </div>
@@ -98,7 +120,7 @@
 
         <!-- Gráfico de Tareas por Área (Gráfico de Tarta) -->
         <div class="col-md-6 col-sm-12 p-2">
-            <h2 class="text-center py-2">Distribución de tareas por área</h2>
+            <h2 class="py-2">Distribución de tareas por área</h2>
             <div class="chart-container d-flex justify-content-center align-items-center" style="position: relative; height: 400px; width: 100%;">
                 <canvas id="tasksByAreaChart" aria-label="Gráfico de Tareas por Área" role="img"></canvas>
             </div>
@@ -124,22 +146,19 @@
                         label: 'Completadas',
                         data: [completedPercentage],
                         backgroundColor: '#28a745',
-                        borderColor: '#1e7e34',
-                        borderWidth: 2
+                        borderColor: '#1e7e34'
                     },
                     {
                         label: 'Pendientes',
                         data: [pendingPercentage],
                         backgroundColor: '#ffc107',
-                        borderColor: '#d39e00',
-                        borderWidth: 2
+                        borderColor: '#d39e00'
                     },
                     {
                         label: 'Vencidas',
                         data: [overduePercentage],
                         backgroundColor: '#dc3545',
-                        borderColor: '#c82333',
-                        borderWidth: 2
+                        borderColor: '#c82333'
                     }
                 ]
             },
@@ -159,11 +178,18 @@
                     legend: {
                         position: 'top',
                         labels: {
-                            usePointStyle: true
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            radius: 7,
+                            padding: 10,
+                            font: {
+                            size: 12,
+                            }
                         }
                     }
                 }
             }
+
         });
 
         const tasksByAreaChart = new Chart(document.getElementById('tasksByAreaChart').getContext('2d'), {
@@ -174,8 +200,7 @@
                     label: 'Tareas por Área',
                     data: tasksByAreaData,
                     backgroundColor: ['#3c4239', '#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6f42c1'],
-                    borderColor: '#fff',
-                    borderWidth: 2
+                    borderColor: '#fff'
                 }]
             },
             options: {
@@ -184,7 +209,10 @@
                     legend: {
                         position: 'top',
                         labels: {
-                            usePointStyle: true
+                            usePointStyle: true,
+                            pointStyle: 'circle', // Establece los círculos
+                            radius: 7, // Ajusta el tamaño del círculo
+                            padding: 10, // Ajusta el espaciado entre los círculos
                         }
                     }
                 }
@@ -246,33 +274,6 @@
             </div>
         @endif
     </div>
-<!-- Estadísticas de Tareas por Área -->
-<div class="col-md-12 mb-4">
-    <h2 class="mb-4 text-start">Tareas por área</h2>
-    <div class="row">
-        @foreach ($tasksByArea as $area)
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card shadow rounded-3">
-                    <div class="card-body d-flex flex-column justify-content-between p-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="card-title text-secondary mb-0">{{ $area->area_name }}</h3> <!-- Nombre del Área -->
-                            <span class="badge bg-black text-white rounded-pill">{{ $area->total }} tareas</span>
-                        </div>
-                        <div class="my-3">
-                            <p class="card-text">Completadas: {{ $area->completed }} / {{ $area->total }}</p>
-                            <p class="card-text">Pendientes: {{ $area->pending }} / {{ $area->total }}</p>
-                            <p class="card-text">Completadas con Retraso: {{ $area->completed_with_delay }} / {{ $area->total }}</p> <!-- Nueva sección -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
-
-
-
-
 
 </div>
 @endsection

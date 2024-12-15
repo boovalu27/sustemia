@@ -85,7 +85,7 @@
                         <!-- Iniciar sesión -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('auth.login') }}"><i class="bi bi-arrow-right-circle-fill text-success" aria-label="iniciar sesion"></i></a>
+                            <a class="nav-link" href="{{ route('auth.login') }}"> Iniciar sesion <i class="bi bi-arrow-right-circle-fill text-success" aria-label="iniciar sesion"></i></a>
                         </li>
                         @endguest
                     </ul>
