@@ -108,6 +108,8 @@
             @endforeach
         </div>
     </div>
+
+
     <div class="row my-2 text-center">
         <!-- Gráfico de Estado de Tareas (Gráfico de Barras) -->
         <div class="col-md-6 col-sm-12">
@@ -131,8 +133,6 @@
     </div>
 
     <script>
-        // Código de inicialización de gráficos
-
         const completedPercentage = @json($completedPercentage);
         const pendingPercentage = @json($pendingPercentage);
         const overduePercentage = @json($overduePercentage);
@@ -192,7 +192,6 @@
                     }
                 }
             }
-
         });
 
         const tasksByAreaChart = new Chart(document.getElementById('tasksByAreaChart').getContext('2d'), {
@@ -226,7 +225,7 @@
     <!-- Tareas Vencidas y Próximas a Vencer -->
     <!-- Tareas Vencidas -->
     <div class="col-lg-12 col-md-12 mb-4">
-        <h2 class="text-danger mb-4">Tareas vencidas</h2>
+        <h2 class="text-danger my-4">Tareas vencidas</h2>
         @if($overdueTasks->isEmpty())
             <p class="text-center p-3 shadow-sm mb-3">No hay tareas vencidas.</p>
         @else
@@ -253,7 +252,7 @@
 
     <!-- Tareas Próximas a Vencer -->
     <div class="col-lg-12 col-md-12 mb-4">
-        <h2 class="text-warning mb-4">Tareas próximas a vencer este mes</h2>
+        <h2 class="text-warning my-4">Tareas próximas a vencer este mes</h2>
         @if($upcomingTasks->isEmpty())
             <p class="text-center p-3 shadow-sm mb-3">No hay tareas próximas a vencer este mes</p>
         @else

@@ -86,7 +86,7 @@
                             <li>
                                 <form action="{{ route('auth.logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-power"></i> Cerrar sesión</button>
+                                    <button type="submit" class="dropdown-item"><i class="bi-arrow-left-circle-fill"></i> Cerrar sesión</button>
                                 </form>
                             </li>
                         </ul>
@@ -96,7 +96,7 @@
                     <!-- Iniciar sesión -->
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.login') }}">Iniciar sesión</a>
+                        <a class="nav-link" href="{{ route('auth.login') }}"> Ingresar <i class="bi bi-arrow-right-circle-fill" aria-label="iniciar sesion"></i></a>
                     </li>
                     @endguest
                 </ul>
