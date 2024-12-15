@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider; // Asegúrate de importar esta clase
 use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,13 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Asegúrate de que este locale esté disponible en tu servidor
-        setlocale(LC_TIME, 'es_ES.UTF-8');
+        setlocale(LC_TIME, 'es_ES.UTF-8'); // Asegúrate de que este locale esté disponible en tu servidor
         Carbon::setLocale('es');
 
         // Forzar el uso de HTTPS en entornos de producción
         if (env('APP_ENV') === 'production') {
-            URL::forceScheme('https');
+            \Illuminate\Support\Facades\URL::forceScheme('https');
         }
     }
 }
