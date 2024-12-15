@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') Administración</title>
-    <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}">
-    <link rel="icon" type="image/png" href="{{ url('css/imgs/favicon-32x32.png') }}">
-    <link rel="stylesheet" href="{{ url('css/admin.css') }}"> <!-- Estilos específicos para el admin -->
+    <link rel="icon" type="image/png" href="{{ asset('css/imgs/favicon-32x32.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> <!-- Estilos específicos para el admin -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
