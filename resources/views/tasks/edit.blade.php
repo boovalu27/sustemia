@@ -60,7 +60,7 @@
             <div>
             <!-- Botón para actualizar con ícono -->
             <button type="submit" class="btn btn-warning mx-2">
-                <i class="bi-arrow-repeat"></i>
+                <i class="bi-pencil-fill"></i>
             </button>
 
             <!-- Botón Eliminar solo visible para admin -->

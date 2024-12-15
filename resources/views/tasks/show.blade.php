@@ -46,7 +46,7 @@
           <!-- Mostrar el botón de Editar solo para Admin, Editor o permisos de edición -->
           @can('edit_tasks')
             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning me-2">
-                <i class="bi-arrow-repeat"></i>
+                <i class="bi-pencil-fill"></i>
             </a>
           @endcan
 
