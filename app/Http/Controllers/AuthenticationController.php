@@ -41,10 +41,15 @@ class AuthenticationController extends Controller
 
    */
 
-    public function login()
-    {
-        return view('auth.login');
-    }
+   public function login()
+   {
+       if (Auth::check()) {
+           return redirect()->route('dashboards.index'); // O la ruta adecuada
+       }
+
+       return view('auth.login');
+   }
+
 
     public function processLogin(Request $request)
     {

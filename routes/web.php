@@ -35,12 +35,7 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard general
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboards.index');
-
-    // Dashboards específicos por rol
-/*    Route::middleware('role:admin')->get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboards.admin');
-    Route::middleware('role:editor')->get('/editor/dashboard', [DashboardController::class, 'editorDashboard'])->name('dashboards.editor');
-    Route::middleware('role:viewer')->get('/viewer/dashboard', [DashboardController::class, 'viewerDashboard'])->name('dashboards.viewer');
-  */  Route::get('/reports', [DashboardController::class, 'reportsDashboard'])->name('reports.index');
+    Route::get('/reports', [DashboardController::class, 'reportsDashboard'])->name('reports.index');
 
     // Ruta para ver detalles de una tarea (accesible para cualquier usuario autenticado)
     Route::get('tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
