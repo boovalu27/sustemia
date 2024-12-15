@@ -13,7 +13,7 @@
       <div class="carousel-item active">
         <div class="d-flex justify-content-center align-items-center" style="height: 80vh; position: relative;">
           <!-- Contenedor de imagen con opacidad -->
-          <img src="{{ url('css/imgs/resource/banner_home.png') }}" class="d-block w-100 h-100" alt="Banner de Bienvenida" style="object-fit: cover;">
+          <img src="{{ asset('css/imgs/resource/banner_home.png') }}" class="d-block w-100 h-100" alt="Banner de Bienvenida" style="object-fit: cover;">
           <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div> <!-- Capa de opacidad -->
           <div class="carousel-caption d-flex justify-content-center align-items-center text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; padding: 20px; border-radius: 10px; width: 90%;">
             <div>
@@ -28,7 +28,7 @@
       <div class="carousel-item">
         <div class="d-flex justify-content-center align-items-center" style="height: 80vh; position: relative;">
           <!-- Contenedor de imagen con opacidad -->
-          <img src="{{ url('css/imgs/resource/seguridadlaboralcapacitacion.jpg') }}" class="d-block w-100 h-100" alt="Imagen 2" style="object-fit: cover;">
+          <img src="{{ asset('css/imgs/resource/seguridadlaboralcapacitacion.jpg') }}" class="d-block w-100 h-100" alt="Imagen 2" style="object-fit: cover;">
           <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div> <!-- Capa de opacidad -->
           <div class="carousel-caption d-flex justify-content-center align-items-center text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; padding: 20px; border-radius: 10px; width: 90%;">
             <div>
@@ -43,7 +43,7 @@
       <div class="carousel-item">
         <div class="d-flex justify-content-center align-items-center" style="height: 80vh; position: relative;">
           <!-- Contenedor de imagen con opacidad -->
-          <img src="{{ url('css/imgs/resource/support.jpg') }}" class="d-block w-100 h-100" alt="Imagen 3" style="object-fit: cover;">
+          <img src="{{ asset('css/imgs/resource/support.jpg') }}" class="d-block w-100 h-100" alt="Imagen 3" style="object-fit: cover;">
           <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div> <!-- Capa de opacidad -->
           <div class="carousel-caption d-flex justify-content-center align-items-center text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; padding: 20px; border-radius: 10px; width: 90%;">
             <div>

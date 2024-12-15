@@ -26,8 +26,8 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand" href="{{ url('/') }}" aria-label="Ir a la página principal">
-                    <img id="sidebarLogo"class="bg-white border-none" src="{{ url('css/imgs/resource/sustemia_oficial.png') }}" alt="Logo de Sustemia" height="50">
+                <a class="navbar-brand" href="{{ asset('/') }}" aria-label="Ir a la página principal">
+                    <img id="sidebarLogo"class="bg-white border-none" src="{{ asset('css/imgs/resource/sustemia_oficial.png') }}" alt="Logo de Sustemia" height="50">
                 </a>
 
                 <!-- Botón para móvil -->
