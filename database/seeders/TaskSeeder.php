@@ -46,7 +46,7 @@ class TaskSeeder extends Seeder
             'area_id' => 6,
             'title' => 'Plan de marketing',
             'description' => 'Crear un plan de marketing para el próximo trimestre.',
-            'due_date' => now()->subDays(30),
+            'due_date' => now()->addDays(30),
             'completed_at' => now()->addDays(30),
             'status' => 'Completada',
         ]);

@@ -106,8 +106,6 @@ public function edit(Task $task)
     ]);
 }
 
-
-
 public function update(Request $request, Task $task)
 {
     // Verificar si el usuario tiene permiso para actualizar
@@ -129,65 +127,40 @@ public function update(Request $request, Task $task)
         'description' => 'required|string',
     ]);
 
-    // Si el estado es "Completada" y no tiene fecha de cierre, asignamos la fecha actual
     if ($request->status === 'Completada') {
-        if (!$task->completed_at) {
-            $task->completed_at = Carbon::now();
-        }
-
-        // Verificar si la tarea está vencida (si la fecha de vencimiento ya pasó)
-        $isOverdue = Carbon::parse($task->due_date)->isPast();
-
-        // Si está vencida, asignar el estado "Completada con retraso"
-        if ($isOverdue) {
-            $task->status = 'Completada con retraso';
-        } else {
-            // Si no está vencida, asignar el estado "Completada"
-            $task->status = 'Completada';
-        }
+        $task->completed_at = Carbon::now();
+        $task->status = Carbon::parse($task->due_date)->isPast() ? 'Completada con retraso' : 'Completada';
     } else {
-        // Si el estado es "Pendiente", eliminamos la fecha de cierre
         $task->completed_at = null;
         $task->status = 'Pendiente';
     }
 
-    // Actualizar la tarea con los nuevos valores
+    // Actualizar tarea
     $task->update($request->only('title', 'description', 'area_id', 'due_date', 'status'));
 
-    // Comprobar si la tarea está vencida para el mensaje
-    $isOverdue = Carbon::parse($task->due_date)->isPast();
+    // Redireccionar con mensaje de éxito
+    $message = Carbon::parse($task->due_date)->isPast() ?
+        "La tarea <strong>{$task->title}</strong> fue actualizada, pero la <i>fecha de vencimiento</i> ya expiró." :
+        "Tarea <strong>{$task->title}</strong> actualizada con éxito.";
 
-    // Mensaje de éxito dependiendo de si la tarea está vencida o no
-    if ($isOverdue) {
-        $message = 'La tarea <strong>' . $task->title . '</strong> fue actualizada, pero la <i>fecha de vencimiento</i> ya expiró.';
-    } else {
-        $message = 'Tarea <strong>' . $task->title . '</strong> actualizada con éxito.';
-    }
-
-    // Redireccionar según el rol del usuario
     return redirect()->route(auth()->user()->role->name === 'editor' ? 'dashboards.index' : 'tasks.index')
         ->with('success', $message);
 }
 
+    // Método para eliminar tarea
     public function destroy(Task $task)
     {
-    // Verificar si el usuario tiene permiso para eliminar
-    if (!auth()->user()->can('delete_tasks') || auth()->user()->role?->name !== 'admin') {
-        abort(403, 'No tienes permisos para eliminar esta tarea.');
-    }
-
-        $task->delete();
-
-        // Redireccionar según el rol del usuario
-        $user = auth()->user();
-        if ($user->role->name === 'editor') {
-            return redirect()->route('dashboards.index')->with('success', 'Tarea eliminada con éxito.');
-        } elseif ($user->role->name === 'admin') {
-            return redirect()->route('dashboards.index')->with('success', 'Tarea eliminada con éxito.');
+        // Verificar permisos de eliminación
+        if (!auth()->user()->can('delete_tasks') || auth()->user()->role?->name !== 'admin') {
+            abort(403, 'No tienes permisos para eliminar esta tarea.');
         }
 
-        // Redirección por defecto si no se encuentra el rol
-        return redirect()->route('home')->with('error', 'No tienes permisos para acceder a esta página.');
+        // Eliminar tarea
+        $task->delete();
+
+        // Redireccionar con mensaje de éxito
+        return redirect()->route(auth()->user()->role->name === 'admin' ? 'tasks.index' : 'dashboards.index')
+            ->with('success', 'Tarea eliminada con éxito.');
     }
 
 }

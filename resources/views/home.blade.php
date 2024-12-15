@@ -82,7 +82,7 @@
             <div class="col">
                 <div class="card h-100 shadow-lg border-light rounded-4 p-2">
                     <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-primary"> Básico</h3>
+                        <h3 class="card-title text-success"> Básico</h3>
                         <p class="card-title fs-4 fw-bold">US$ 500</p>
                         <p class="card-text mb-0 text-start">
                             <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
@@ -99,7 +99,7 @@
             <div class="col">
                 <div class="card h-100 shadow-lg border-light rounded-4 p-2">
                     <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-primary"> Intermedio</h3>
+                        <h3 class="card-title text-success"> Intermedio</h3>
                         <p class="card-title fs-4 fw-bold">US$ 1000</p>
                         <p class="card-text mb-0 text-start">
                             <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
@@ -119,7 +119,7 @@
             <div class="col">
                 <div class="card h-100 shadow-lg border-light rounded-4 p-2">
                     <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-primary"> Premium </h3>
+                        <h3 class="card-title text-success"> Premium </h3>
                         <p class="card-title fs-4 fw-bold">US$ 1500</p>
                         <p class="card-text mb-0 text-start">
                             <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
@@ -139,7 +139,7 @@
             <div class="col">
                 <div class="card h-100 shadow-lg border-light rounded-4 p-2">
                     <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-primary"> Freemium </h3>
+                        <h3 class="card-title text-secondary"> Freemium </h3>
                         <p class="card-title fs-4 fw-bold">US$ 0</p>
                         <p class="card-text mb-0 text-start">
                             <i class="bi bi-check-circle-fill text-black"></i>  Demo para atraer a nuevos clientes que luego puedan actualizar a un plan de pago.

@@ -17,6 +17,7 @@
         </div>
     @endif
 
+    <!-- Formulario de actualización de tarea -->
     <form action="{{ route('tasks.update', $task->id) }}" method="POST" class="bg-light p-4 rounded shadow">
         @csrf
         @method('PUT')
@@ -56,31 +57,33 @@
             </select>
         </div>
 
-        <div class="d-flex justify-content-between border-top py-2">
-            <div>
-            <!-- Botón para actualizar con ícono -->
-            <button type="submit" class="btn btn-warning mx-2">
-                <i class="bi-pencil-fill"></i>
-            </button>
-
-            <!-- Botón Eliminar solo visible para admin -->
-            @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
-                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta tarea?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </form>
-            @endif
+        <!-- Botones de acción (Actualizar y Cancelar) -->
+        <div class="d-flex justify-content-start border-top pt-3">
+            <div class="d-flex">
+                <!-- Botón para actualizar con ícono -->
+                <button type="submit" class="btn btn-warning mx-2">
+                    <i class="bi-pencil-fill"></i> Actualizar tarea
+                </button>
             </div>
+
             <!-- Botón para cancelar con ícono -->
-            <a href="{{ route('dashboards.index')}}" class="btn btn-secondary mx-2">
-                <i class="bi-arrow-return-left"></i>
+            <a href="{{ route('dashboards.index') }}" class="btn btn-secondary mx-2">
+                <i class="bi-arrow-return-left"></i> Cancelar
             </a>
-
-
         </div>
     </form>
+
+    <!-- Formulario para eliminar tarea, solo visible para admin -->
+    @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
+        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta tarea?');">
+            @csrf
+            @method('DELETE')
+            <div class="d-flex justify-content-start pt-3">
+                <button type="submit" class="btn btn-danger mx-2">
+                    <i class="bi bi-trash"></i> Eliminar tarea
+                </button>
+            </div>
+        </form>
+    @endif
 </div>
 @endsection

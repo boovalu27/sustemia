@@ -157,7 +157,7 @@
         </div>
     </div>
 
- <!-- Tareas -->
+<!-- Tareas -->
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-4">
     @foreach ($tasks as $task)
     <div class="col">
@@ -171,17 +171,20 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <!-- Estado de la tarea -->
                     <div class="pe-2 d-flex align-items-center gap-2">
-                        @if ($task->due_date < now() && $task->status == 'Completada con retraso')
+                        @if ($task->completed_at && $task->completed_at < $task->due_date) <!-- Comprobación de fecha de cierre mayor que la de vencimiento -->
+                            <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i>
+                        @elseif ($task->due_date < now() && $task->status == 'Completada con retraso') <!-- Tarea completada con retraso -->
                             <i class="bi bi-calendar-x-fill text-danger" title="Tarea Vencida"></i>
                             <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i>
-                        @elseif ($task->due_date < now())
+                        @elseif ($task->due_date < now()) <!-- Tarea vencida sin completar -->
                             <i class="bi bi-calendar-x-fill text-danger" title="Tarea Vencida"></i>
-                        @elseif ($task->status == 'Pendiente')
+                        @elseif ($task->status == 'Pendiente') <!-- Tarea pendiente -->
                             <i class="bi bi-hourglass-split text-warning" title="Tarea Pendiente"></i>
-                        @elseif ($task->status == 'Completada')
+                        @elseif ($task->status == 'Completada') <!-- Tarea completada dentro del plazo -->
                             <i class="bi bi-check-circle text-success" title="Tarea Completada"></i>
                         @endif
                     </div>
+
                     <!-- Título con `flex-grow-1` -->
                     <h5 class="card-title mb-0 flex-grow-1 text-truncate text-start">
                         {{ $task->title }}
@@ -211,6 +214,10 @@
 
                 <!-- Descripción y detalles -->
                 <p class="card-text text-start">{{ Str::limit($task->description, 100) }}</p>
+                <!-- Mostrar el nombre del creador si es admin -->
+                @if(auth()->user()->hasRole('admin'))
+                    <p class="card-text text-start"><strong>Creador:</strong> {{ $task->user->name }}</p>
+                @endif
                 <p class="card-text text-start"><strong>Área:</strong> {{ $task->area->name ?? 'Sin área' }}</p>
                 <p class="card-text text-start"><strong>Fecha de vencimiento:</strong> {{ $task->due_date ? $task->due_date->format('d/m/Y') : 'Sin fecha' }}</p>
                 <p class="card-text text-start"><strong>Fecha de cierre:</strong> {{ $task->completed_at ? $task->completed_at->format('d/m/Y') : '' }}</p>
@@ -219,7 +226,7 @@
                 <p class="card-text text-start">
                     <strong>Estado:</strong>
                     <span class="badge
-                        @if ($task->status == 'Pendiente' && $task->due_date < now()) bg-success
+                        @if ($task->status == 'Pendiente' && $task->due_date < now()) bg-danger
                         @elseif ($task->status == 'Pendiente') bg-warning text-dark
                         @elseif ($task->status == 'Completada') bg-success
                         @elseif ($task->status == 'Completada con retraso') bg-success text-white
@@ -230,12 +237,12 @@
                         {{ $task->status }}
                     </span>
                 </p>
+
             </div>
         </div>
     </div>
     @endforeach
 </div>
-
 
 
   <script>
