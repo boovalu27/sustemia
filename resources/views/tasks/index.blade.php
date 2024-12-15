@@ -10,6 +10,7 @@
         <a href="{{ route('tasks.create') }}" class="btn btn-success mb-3" aria-label="Agregar nueva tarea">
             <i class="bi bi-person-plus-fill"></i> Agregar
         </a>
+
     </div>
 
     @if ($tasks->isEmpty())

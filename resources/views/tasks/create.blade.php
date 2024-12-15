@@ -1,9 +1,10 @@
-@extends('layouts.admin')
-@section('content')
-    <h1>Crear nueva tarea</h1>
-    <form action="{{ route('tasks.store') }}" method="POST">
-        @csrf
+@extends(auth()->user()->role->name === 'admin' ? 'layouts.admin' : 'layouts.main')
 
+@section('content')
+  <div class="container mt-5">
+    <h1 class="mb-4 text-start text-success">Crear nueva tarea</h1>
+    <form action="{{ route('tasks.store') }}" method="POST" class="bg-light p-4 rounded shadow">
+        @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Título</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
@@ -19,6 +20,7 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+
 
         <div class="mb-3">
             <label for="area_id" class="form-label">Área</label>
@@ -45,4 +47,4 @@
 
         <button type="submit" class="btn btn-primary">Crear tarea</button>
     </form>
-@endsection
+  </div>@endsection

@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {
-
     // Dashboard general
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboards.index');
     Route::get('/reports', [DashboardController::class, 'reportsDashboard'])->name('reports.index');
@@ -43,7 +42,7 @@ Route::middleware('auth')->group(function () {
     // Rutas de administración para tareas (solo accesibles por editores y administradores)
     Route::middleware('role:editor|admin')->prefix('tasks')->name('tasks.')->group(function () {
         Route::get('/', [TaskController::class, 'index'])->name('index');
-        Route::get('/create', [TaskController::class, 'create'])->name('create');
+        Route::get('/tasks/create', [TaskController::class, 'create'])->name('create');
         Route::post('/', [TaskController::class, 'store'])->name('store');
         Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
         Route::put('/{task}', [TaskController::class, 'update'])->name('update');

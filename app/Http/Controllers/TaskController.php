@@ -27,9 +27,15 @@ class TaskController extends Controller
 
     public function create()
     {
+        if (!auth()->check()) {
+            return redirect()->route('auth.login');
+        }
+
+    //    dd(auth()->user());  // Verifica el usuario autenticado
         $areas = Area::all();  // Cargar todas las áreas
         return view('tasks.create', compact('areas'));
     }
+
 
 
     public function store(Request $request)
