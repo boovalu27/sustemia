@@ -5,9 +5,8 @@
 <div class="container my-4">
     <h1 class="text-start text-success mb-2">Panel de Reportes</h1>
     <p> Aquí podrás ver una visión general del estado de las tareas. Así como visualizar gráficos interactivos sobre el estado de las tareas y su distribución por área. Además, se muestran las tareas vencidas y las próximas a vencer, proporcionando información importante para el seguimiento y gestión eficiente de las actividades.</p>
+
     @if(auth()->user()->hasRole('admin'))
-
-
     <div class="row text-start my-4">
         <!-- Total de áreas -->
         <div class="col-md-6 col-xl-3">
@@ -16,7 +15,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class=" m-0">{{ $totalAreasCount }} +</h3>
+                            <h2 class="m-0">{{ $totalAreasCount }} +</h2>
                             <p class="mb-0 ">Total de áreas</p>
                         </div>
                         <div class="col-4 text-end">
@@ -52,7 +51,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="m-0">{{ $totalTasksCount }} +</h3>
+                            <h2 class="m-0">{{ $totalTasksCount }} +</h2>
                             <p class="mb-0">Total de tareas</p>
                         </div>
                         <div class="col-4 text-end">
@@ -71,7 +70,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="text-white m-0">{{ $totalTasksCount }} +</h3>
+                            <h2 class="text-white m-0">{{ $totalTasksCount }} +</h2>
                             <p class="mb-0 text-white">Total de tareas</p>
                         </div>
                         <div class="col-4 text-end">
@@ -92,7 +91,7 @@
         <div class="row">
             @foreach ($tasksByArea as $area)
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card shadow rounded-3">
+                    <div class="shadow rounded-3">
                         <div class="card-body d-flex flex-column justify-content-between p-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title text-secondary mb-0">{{ $area->area_name }}</h3> <!-- Nombre del Área -->
@@ -111,18 +110,22 @@
     </div>
     <div class="row my-2 text-center">
         <!-- Gráfico de Estado de Tareas (Gráfico de Barras) -->
-        <div class="col-md-6 col-sm-12 p-2">
+        <div class="col-md-6 col-sm-12">
+            <div class="shadow rounded-4 p-4">
             <h2 class=" py-2">Porcentaje de tareas por estado</h2>
-            <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-                <canvas id="tasksStatusChart" aria-label="Gráfico de Estado de Tareas" role="img"></canvas>
-            </div>
+                <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+                    <canvas id="tasksStatusChart" aria-label="Gráfico de Estado de Tareas" role="img"></canvas>
+                </div>
+        </div>
         </div>
 
         <!-- Gráfico de Tareas por Área (Gráfico de Tarta) -->
-        <div class="col-md-6 col-sm-12 p-2">
+        <div class="col-md-6 col-sm-12">
+            <div class="shadow rounded-4 p-4">
             <h2 class="py-2">Distribución de tareas por área</h2>
-            <div class="chart-container d-flex justify-content-center align-items-center" style="position: relative; height: 400px; width: 100%;">
-                <canvas id="tasksByAreaChart" aria-label="Gráfico de Tareas por Área" role="img"></canvas>
+                <div class="chart-container d-flex justify-content-center align-items-center" style="position: relative; height: 400px; width: 100%;">
+                    <canvas id="tasksByAreaChart" aria-label="Gráfico de Tareas por Área" role="img"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -230,9 +233,9 @@
             <div class="row">
                 @foreach ($overdueTasks as $task)
                     <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                        <div class="list-group-item d-flex flex-column justify-content-between p-3 border border-danger rounded shadow-sm">
+                        <div class="list-group-item d-flex flex-column justify-content-between p-3 rounded shadow h-100">
                             <div class="task-info mb-3 flex-grow-1">
-                                <h5 class="mb-1"><strong>{{ $task->title }}</strong></h5>
+                                <h3 class="mb-1"><strong>{{ $task->title }}</strong></h3>
                                 <p class="mb-1">Vence el {{ $task->due_date->format('d/m/Y') }}</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto w-100">
@@ -257,9 +260,9 @@
             <div class="row">
                 @foreach ($upcomingTasks as $task)
                     <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                        <div class="list-group-item d-flex flex-column justify-content-between p-3 border border-warning rounded shadow-sm h-100">
+                        <div class="list-group-item d-flex flex-column justify-content-between p-3 rounded shadow h-100">
                             <div class="task-info mb-3 flex-grow-1">
-                                <h5 class="mb-1"><strong>{{ $task->title }}</strong></h5>
+                                <h3 class="mb-1"><strong>{{ $task->title }}</strong></h3>
                                 <p class="mb-1">Vence el {{ $task->due_date->format('d/m/Y') }}</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto w-100">

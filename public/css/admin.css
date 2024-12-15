@@ -235,6 +235,103 @@ nav.navbar.navbar-expand-lg.navbar-light {
 }
 
 
+@media (max-width: 425px) {
+    /* Ajustar el tamaño de los títulos */
+    h1 {
+        font-size: 1.75rem; /* Reducir el tamaño del título principal */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* Reducir el tamaño de los subtítulos */
+    }
+
+    h3 {
+        font-size: 1rem; /* Reducir el tamaño de los subtítulos pequeños */
+    }
+
+    /* Ajustar márgenes para adaptarse a pantallas más pequeñas */
+    .navbar-nav {
+        flex-direction: column; /* Colocar los elementos en una columna */
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0;
+        margin-bottom: 10px; /* Añadir espacio entre los elementos */
+    }
+
+    .navbar-nav.ms-auto {
+        margin-left: 0;
+    }
+
+    /* Icono de perfil */
+    .profile-icon {
+        font-size: 1.25rem; /* Reducir el tamaño del icono */
+        padding: 8px; /* Ajustar el padding */
+    }
+
+    /* Ajustes en la tarjeta de tareas */
+    .card-task {
+        flex-direction: column;
+        padding: 10px; /* Reducir padding para ajustarse mejor en pantallas pequeñas */
+    }
+
+    .card-task h5 {
+        font-size: 1rem; /* Reducir el tamaño del título de la tarea */
+    }
+
+    /* Estilos de los botones dentro de las tarjetas */
+    .card-task .btn {
+        font-size: 0.75rem; /* Reducir el tamaño de los botones */
+        padding: 6px 10px;
+    }
+
+    /* Ajustar contenedor del gráfico */
+    .chart-container {
+        height: 250px; /* Reducir la altura del gráfico en pantallas pequeñas */
+    }
+
+    /* Ajustar los márgenes en el pie de página */
+    .footer p {
+        font-size: 0.875rem; /* Reducir el tamaño del texto en el pie de página */
+        margin: 10px 0;
+    }
+
+    /* Mejorar la visualización de las tablas */
+    .admin-table th, .admin-table td {
+        font-size: 0.875rem; /* Reducir el tamaño de la fuente en la tabla */
+        padding: 10px; /* Ajustar el padding de la tabla */
+    }
+
+    .admin-table th {
+        font-size: 1rem; /* Ajustar el tamaño del encabezado de la tabla */
+    }
+
+    .admin-panel {
+        padding: 15px; /* Reducir el padding en el panel */
+    }
+
+    .admin-dashboard {
+        padding: 20px; /* Reducir el padding del dashboard */
+    }
+
+    /* Mejorar el layout de los botones de administración */
+    .admin-button {
+        font-size: 0.875rem; /* Reducir el tamaño de los botones de administración */
+        padding: 8px 16px;
+    }
+
+    /* Ajustar las alertas de administración */
+    .alert-warning {
+        font-size: 0.875rem; /* Reducir el tamaño de la fuente en las alertas */
+    }
+
+    /* Reducir márgenes en los enlaces */
+    a {
+        font-size: 0.875rem; /* Ajustar tamaño de los enlaces */
+    }
+}
 
 /* Media Queries para responsividad */
 @media (max-width: 768px) {

@@ -357,6 +357,110 @@ a:hover {
     overflow: hidden;
 }
 
+/* Media Queries para dispositivos con un ancho máximo de 425px */
+@media (max-width: 425px) {
+    /* Estilos generales */
+    body {
+        font-size: 14px; /* Reduce el tamaño de fuente global */
+    }
+
+    /* Títulos */
+    h1 {
+        font-size: 1.75rem; /* Títulos más pequeños */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Reducir el tamaño del segundo título */
+    }
+
+    h3 {
+        font-size: 1.25rem; /* Reducir aún más el tamaño del tercer título */
+    }
+
+    /* Redimensionar el logo y navbar */
+    .navbar-header {
+        flex-direction: column; /* Alinea los elementos de la barra de navegación de forma vertical */
+        text-align: center;
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Alinea los elementos del menú en columna */
+        margin-top: 10px;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0; /* Elimina el margen izquierdo de los items del menú */
+        margin-bottom: 10px; /* Añadir espacio entre los elementos */
+    }
+
+    .navbar-nav.ms-auto {
+        margin-left: 0;
+    }
+
+    /* Botones y enlaces */
+    .btn-primary, .btn-secondary {
+        font-size: 0.875rem; /* Reduce el tamaño de los botones */
+        padding: 8px 12px; /* Ajustar el padding */
+    }
+
+    .nav-link {
+        font-size: 0.875rem; /* Reducir el tamaño de la fuente de los enlaces */
+        padding: 8px 12px;
+    }
+
+    /* Tarjetas */
+    .card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho en pantallas pequeñas */
+        margin-bottom: 15px; /* Añadir margen inferior para separación */
+    }
+
+    .card-task .card-body {
+        padding: 15px; /* Reducir el padding en las tarjetas */
+    }
+
+    .card-task h5 {
+        font-size: 1.125rem; /* Reducir tamaño del título de las tareas */
+    }
+
+    /* Contenedor de gráficos */
+    .chart-container {
+        width: 100%; /* Asegurar que el gráfico ocupe todo el ancho disponible */
+        height: 250px; /* Reducir la altura para que no ocupe demasiado espacio */
+    }
+
+    /* Asegurar que las imágenes dentro de las tarjetas no desborden */
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Iconos de perfil */
+    .profile-icon {
+        font-size: 1.25rem; /* Reducir el tamaño de los iconos */
+        padding: 8px;
+    }
+
+    /* Estilos para el área de tarea */
+    .task-status {
+        font-size: 1rem; /* Reducir el tamaño de los iconos de estado */
+    }
+
+    /* Mejorar el espacio entre los elementos del footer */
+    .footer p {
+        font-size: 12px; /* Reducir el tamaño de la fuente en el pie de página */
+    }
+
+    /* Mejorar la legibilidad de los enlaces */
+    a {
+        font-size: 0.875rem; /* Reducir el tamaño de los enlaces */
+    }
+
+    /* Ajustes en las alertas */
+    .alert-warning {
+        font-size: 14px; /* Reducir el tamaño de las alertas */
+    }
+}
+
 @media (max-width: 768px) {
     .chart-container {
         max-width: 100%;
