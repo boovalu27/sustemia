@@ -11,6 +11,6 @@
             <li class="list-group-item"><strong>Rol:</strong> {{ $user->role->name }}</li>
         </ul>
 
-        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mt-3">Volver a la lista de usuarios</a>
+        <a href="{{ route('users.index') }}" class="btn btn-secondary mt-3">Volver a la lista de usuarios</a>
     </div>
 @endsection

@@ -25,11 +25,9 @@ class TaskController extends Controller
         return view('tasks.show', compact('task', 'areas'));
     }
 
-
-
     public function create()
     {
-        $areas = Area::all();  // Carga todas las áreas
+        $areas = Area::all();  // Cargar todas las áreas
         return view('tasks.create', compact('areas'));
     }
 

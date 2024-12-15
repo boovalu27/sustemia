@@ -11,7 +11,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h5>
+            <h2 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h2>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
@@ -75,9 +75,9 @@
 
     <!-- Filtros para Tareas -->
     <div class="mb-4 p-4 border rounded shadow-lg">
-        <h5 class="mb-3 text-start">
+        <h2 class="mb-3 text-start">
             <i class="bi bi-filter-circle-fill"></i>
-            Filtrar tareas</h5>
+            Filtrar tareas</h2>
         <form method="GET" action="{{ route('dashboards.index') }}" aria-label="Filtrar tareas">
             <div class="row g-3 ">
                 <!-- Filtro de Búsqueda -->
@@ -186,9 +186,9 @@
                     </div>
 
                     <!-- Título con `flex-grow-1` -->
-                    <h5 class="card-title mb-0 flex-grow-1 text-truncate text-start">
+                    <h3 class="card-title mb-0 flex-grow-1 fs-5 text-truncate text-start">
                         {{ $task->title }}
-                    </h5>
+                    </h3>
 
                     <!-- Dropdown -->
                     <div class="dropdown">

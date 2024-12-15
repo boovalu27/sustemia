@@ -31,7 +31,7 @@
                 <div class="card-body d-flex flex-column">
                     <p>Administre las tareas creadas.</p>
                     <!-- Botón para ir a la gestión de tareas -->
-                    <a href="{{ route('dashboards.index') }}" class="btn btn-success mt-auto" aria-label="Ver Tareas">
+                    <a href="{{ route('tasks.index') }}" class="btn btn-success mt-auto" aria-label="Ver Tareas">
                         <i class="bi bi-check-circle-fill"></i> Ver tareas
                     </a>
                 </div>

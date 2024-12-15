@@ -1,5 +1,4 @@
-@extends(auth()->user()->role->name === 'admin' ? 'layouts.admin' : 'layouts.main')
-
+@extends('layouts.admin')
 @section('content')
     <h1>Crear nueva tarea</h1>
     <form action="{{ route('tasks.store') }}" method="POST">
@@ -20,7 +19,6 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-
 
         <div class="mb-3">
             <label for="area_id" class="form-label">Área</label>
