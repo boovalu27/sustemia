@@ -55,7 +55,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Rutas de administración de tareas (solo accesibles para admin)
     Route::prefix('tasks')->name('tasks.')->group(function () {
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('destroy');
-        Route::get('/{task}/confirm-delete', [TaskController::class, 'confirmDelete'])->name('confirmDelete');
     });
 
     // Dashboard de administrador
