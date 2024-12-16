@@ -4,7 +4,7 @@
 @section('title', 'Reportes')
 <div class="container my-4">
     <h1 class="text-start text-success mb-2">Panel de Reportes</h1>
-    <p> Aquí podrás ver una visión general del estado de las tareas. Así como visualizar gráficos interactivos sobre el estado de las tareas y su distribución por área. Además, se muestran las tareas vencidas y las próximas a vencer, proporcionando información importante para el seguimiento y gestión eficiente de las actividades.</p>
+    <p>Aquí podrás ver una visión general del estado de las tareas. Así como visualizar gráficos interactivos sobre el estado de las tareas y su distribución por área. Además, se muestran las tareas vencidas y las próximas a vencer, proporcionando información importante para el seguimiento y gestión eficiente de las actividades.</p>
 
     @if(auth()->user()->hasRole('admin'))
     <div class="row text-start my-4">
