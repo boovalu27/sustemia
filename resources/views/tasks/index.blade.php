@@ -3,9 +3,8 @@
 @section('content')
 
 <div class="container my-4">
-    <h1 class="text-start text-success mb-4">Panel de control de seguridad e higiene</h1>
-    <p class="text-start mb-4">Bienvenido a tu espacio de gestión.</p>
-    <p class="text-start mb-4">Aquí podrás crear, editar y supervisar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
+    <h1 class="text-start text-success mb-4">Lista de tareas</h1>
+    <p class="text-start mb-4">Administra y visualiza las tareas registradas en la plataforma.</p>
 
     <div class="d-flex justify-content-between mb-4">
         <a href="{{ route('tasks.create') }}" class="btn btn-success mb-3" aria-label="Agregar nueva tarea">
