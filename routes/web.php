@@ -18,6 +18,10 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticationController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthenticationController::class, 'processLogin'])->name('auth.login.process');
+    // Ruta para mostrar el formulario de cambio de contraseña
+    Route::get('password/change', [AuthenticationController::class, 'showChangePasswordForm'])->name('auth.password.change.form');
+    // Ruta para procesar el cambio de contraseña
+    Route::post('password/change', [AuthenticationController::class, 'changePassword'])->name('auth.password.change');
 });
 
 // Ruta para cerrar sesión (solo autenticados)

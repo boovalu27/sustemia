@@ -9,38 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
- /*   public function create()
-    {
-        return view('auth.register');
-    }
-
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'surname' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role_id' => 3, // Asignar rol 'viewer' por defecto
-        ]);
-
-        Auth::login($user);
-        return redirect()->route('home')->with('success', 'Usuario creado con éxito.');
-    }
-
-   */
-
    public function login()
    {
        if (Auth::check()) {
@@ -50,36 +18,46 @@ class AuthenticationController extends Controller
        return view('auth.login');
    }
 
+   public function processLogin(Request $request)
+   {
+       // Validación de los datos del formulario
+       $request->validate([
+           'email' => 'required|email', // Validar que el correo sea válido
+           'password' => 'required|string', // Validar que la contraseña no esté vacía
+       ], [
+           'email.required' => 'El correo electrónico es obligatorio.',
+           'email.email' => 'El correo electrónico debe tener un formato válido.',
+           'password.required' => 'La contraseña es obligatoria.',
+           'password.string' => 'La contraseña debe ser una cadena de texto.',
+       ]);
 
-    public function processLogin(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
+       $credentials = $request->only('email', 'password');
 
-        if (!Auth::attempt($credentials)) {
-            return redirect()->route('auth.login')
-            ->with('warning', 'Credenciales inválidas. Por favor, verifica tu correo electrónico y contraseña.')
-            ->withInput();
+       // Intentar autenticar al usuario con las credenciales proporcionadas
+       if (!Auth::attempt($credentials)) {
+           return redirect()->route('auth.login')
+               ->with('warning', 'Las credenciales son incorrectas. Por favor, revisa tu correo y contraseña.')
+               ->withInput(); // Permite que los campos ya llenados se mantengan al regresar al formulario
+       }
 
-        }
+       // Obtener el usuario autenticado
+       $user = Auth::user();
 
-        // Obtener el usuario autenticado
-        $user = Auth::user();
+       // Verificar si el usuario tiene un rol asignado
+       if (!$user->role) {
+           return redirect()->route('auth.login')
+               ->with('error', 'El usuario no tiene un rol asignado.')
+               ->withInput();
+       }
 
-    // Verificar si el usuario tiene un rol
-    if (!$user->role) {
-        return redirect()->route('auth.login')
-            ->with('error', 'El usuario no tiene un rol asignado.')
-            ->withInput();
-    }
+       // Redirigir según el rol del usuario
+       if ($user->role->name === 'admin') {
+           return redirect()->route('dashboards.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
+       }
 
-    // Redirigir según el rol del usuario
-    if ($user->role->name === 'admin') {
-        return redirect()->route('dashboards.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
-    }
-
-        // Aquí puedes manejar otros roles si es necesario
-        return redirect()->route('reports.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
-    }
+       // Aquí puedes manejar otros roles si es necesario
+       return redirect()->route('reports.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
+   }
 
 
 
@@ -88,5 +66,43 @@ class AuthenticationController extends Controller
         Auth::logout();
         return redirect('/')->with('success', 'Sesión cerrada con éxito.');
     }
+
+        // Mostrar el formulario de cambio de contraseña
+        public function showChangePasswordForm()
+        {
+            return view('auth.password.change');
+        }
+
+        // Cambiar la contraseña
+        public function changePassword(Request $request)
+        {
+            // Validar los datos del formulario
+            $request->validate([
+                'email' => 'required|email|exists:users,email',  // Asegurarse de que el correo esté registrado
+                'password' => 'required|string|min:8|confirmed', // Validar la nueva contraseña
+            ], [
+                'email.required' => 'El correo electrónico es obligatorio.',
+                'email.email' => 'El correo electrónico debe tener un formato válido.',
+                'email.exists' => 'Este correo electrónico no está registrado en nuestros registros.',
+                'password.required' => 'La contraseña es obligatoria.',
+                'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+                'password.confirmed' => 'Las contraseñas no coinciden.',
+            ]);
+
+            // Buscar al usuario por su correo electrónico
+            $user = User::where('email', $request->email)->first();
+
+            // Si no se encuentra el usuario, retornar un error
+            if (!$user) {
+                return back()->withErrors(['email' => 'El correo electrónico no está registrado.']);
+            }
+
+            // Cambiar la contraseña del usuario
+            $user->password = Hash::make($request->password);
+            $user->save();  // Guardar el cambio de contraseña
+
+            // Redirigir al usuario con un mensaje de éxito
+            return redirect()->route('auth.login')->with('status', 'Tu contraseña ha sido cambiada exitosamente.');
+        }
 
 }
