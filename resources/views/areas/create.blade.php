@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4">Crear Nueva Área</h1>
-    <form action="{{ route('areas.store') }}" method="POST">
+    <h1 class="mb-4 text-start text-success">Crear Nueva Área</h1>
+    <form action="{{ route('areas.store') }}" method="POST" class="bg-light p-4 rounded shadow">
         @csrf
 
         <div class="mb-3">

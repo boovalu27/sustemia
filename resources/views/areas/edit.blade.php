@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1 class="my-4 text-success">Editar área</h1>
-    <form action="{{ route('areas.update', $area->id) }}" method="POST">
+    <form action="{{ route('areas.update', $area->id) }}" method="POST" class="mb-4 text-start text-success">
         @csrf
         @method('PUT')
 

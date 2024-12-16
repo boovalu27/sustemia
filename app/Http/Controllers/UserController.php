@@ -30,63 +30,85 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Mostrar los datos para depurar
-  //      dd($request->all()); // Muestra todos los datos recibidos
-
+        // Validación de datos
         $request->validate([
             'name' => 'required|string|max:255',
+            'surname' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'nullable|string|min:8', // Asegurarse de que ambas contraseñas coincidan
-            'roles' => 'required|array|exists:roles,name',
+            'password' => 'required|string|min:8',
+            'roles' => 'required|array|exists:roles,name', // Roles obligatorios
+            'permissions' => 'nullable|array|exists:permissions,name', // Permisos opcionales
         ]);
 
-      //  dd($request->roles); // Verifica los roles que se están enviando
-
-
+        // Crear el usuario
         $user = User::create([
             'name' => $request->name,
+            'surname' => $request->surname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Asigna los roles (los permisos se asignarán automáticamente según el rol)
-        $user->syncRoles($request->roles);
+        // Asignar los roles al usuario
+        $user->syncRoles($request->roles); // Asignar los roles seleccionados
 
+        // Obtener todos los permisos asociados a los roles seleccionados
+        $rolePermissions = collect();
+        foreach ($request->roles as $roleName) {
+            $role = Role::where('name', $roleName)->first();
+            if ($role) {
+                // Obtener los permisos asociados a este rol
+                $rolePermissions = $rolePermissions->merge($role->permissions);
+            }
+        }
+
+        // Convertir los permisos del rol a un array de nombres
+        $rolePermissionsNames = $rolePermissions->pluck('name')->toArray();
+
+        // Combinar los permisos del rol con los permisos adicionales seleccionados
+        $allPermissions = array_merge($rolePermissionsNames, $request->permissions ?? []);
+
+        // Sincronizar los permisos (del rol + permisos adicionales seleccionados)
+        $user->syncPermissions($allPermissions);
+
+        // Redirigir después de la creación
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
-
 
 
     public function edit(User $user)
     {
         $roles = Role::all(); // Obtener todos los roles
         $permissions = Permission::all(); // Obtener todos los permisos
-        return view('users.edit', compact('user', 'roles', 'permissions'));
+        $userPermissions = $user->permissions->pluck('name')->toArray(); // Obtener permisos actuales del usuario
+        return view('users.edit', compact('user', 'roles', 'permissions', 'userPermissions'));
     }
 
     public function update(Request $request, User $user)
     {
+        // Validación de datos
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'nullable|string|min:8|confirmed',
-            'roles' => 'required|array', // Requiere un array de roles
-            'permissions' => 'required|array', // Requiere un array de permisos
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, // Validación única, pero excluyendo el ID actual
+            'password' => 'nullable|string|min:8|confirmed', // Contraseña opcional
+            'roles' => 'required|array|exists:roles,name', // Roles
+            'permissions' => 'nullable|array|exists:permissions,name', // Permisos
         ]);
 
+        // Actualizar los datos del usuario
         $user->name = $request->name;
         $user->email = $request->email;
 
-        // Actualizar la contraseña si se proporciona
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
 
         $user->save();
 
-        // Sincronizar roles y permisos
+        // Sincronizar los roles y permisos
         $user->syncRoles($request->roles);
-        $user->syncPermissions($request->permissions);
+        if ($request->permissions) {
+            $user->syncPermissions($request->permissions);
+        }
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');
     }
@@ -100,5 +122,4 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
-
 }
