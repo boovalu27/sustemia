@@ -9,12 +9,12 @@ class AreaSeeder extends Seeder
 {
     public function run()
     {
-        // Crear áreas de ejemplo
-        Area::create(['name' => 'Seguridad']);
-        Area::create(['name' => 'Higiene']);
-        Area::create(['name' => 'Salud']);
-        Area::create(['name' => 'Capacitación']);
-        Area::create(['name' => 'Medio Ambiente']);
-        Area::create(['name' => 'Innovación']);
+        // Crear áreas de ejemplo utilizando firstOrCreate para evitar duplicados
+        Area::firstOrCreate(['name' => 'Seguridad']);
+        Area::firstOrCreate(['name' => 'Higiene']);
+        Area::firstOrCreate(['name' => 'Salud']);
+        Area::firstOrCreate(['name' => 'Capacitación']);
+        Area::firstOrCreate(['name' => 'Medio Ambiente']);
+        Area::firstOrCreate(['name' => 'Innovación']);
     }
 }
