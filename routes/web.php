@@ -43,23 +43,31 @@ Route::middleware('auth')->group(function () {
     // Ruta para ver detalles de una tarea (accesible para cualquier usuario autenticado)
     Route::get('tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
 
-    // Rutas de administración para tareas (solo accesibles por editores y administradores)
-    Route::middleware('role:editor|admin')->prefix('tasks')->name('tasks.')->group(function () {
+    // Rutas de administración para tareas
+    Route::prefix('tasks')->name('tasks.')->middleware('permission:view_tasks')->group(function () {
         Route::get('/', [TaskController::class, 'index'])->name('index');
-        Route::get('/tasks/create', [TaskController::class, 'create'])->name('create');
-        Route::post('/', [TaskController::class, 'store'])->name('store');
-        Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
-        Route::put('/{task}', [TaskController::class, 'update'])->name('update');
     });
+    Route::prefix('tasks')->name('tasks.')->middleware('permission:create_tasks')->group(function () {
+    Route::get('/', [TaskController::class, 'index'])->name('index');
+    Route::get('/tasks/create', [TaskController::class, 'create'])->name('create');
+    Route::post('/', [TaskController::class, 'store'])->name('store');
+});
+
+// Rutas de administración de tareas (requiere el permiso de editar tareas)
+Route::prefix('tasks')->name('tasks.')->middleware('permission:edit_tasks')->group(function () {
+    Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
+    Route::put('/{task}', [TaskController::class, 'update'])->name('update');
+});
+
+// Rutas de administración de tareas (requiere el permiso de eliminar tareas)
+Route::prefix('tasks')->name('tasks.')->middleware('permission:delete_tasks')->group(function () {
+    Route::delete('/{task}', [TaskController::class, 'destroy'])->name('destroy');
+});
+
 });
 
 // Rutas específicas para administradores
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
-    // Rutas de administración de tareas (solo accesibles para admin)
-    Route::prefix('tasks')->name('tasks.')->group(function () {
-        Route::delete('/{task}', [TaskController::class, 'destroy'])->name('destroy');
-    });
 
     // Dashboard de administrador
     Route::get('/settings', [AdminController::class, 'index'])->name('admin.index');

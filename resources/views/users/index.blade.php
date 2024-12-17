@@ -23,6 +23,7 @@
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Rol</th>
+                        <th>Permisos</th> <!-- Nueva columna para mostrar permisos -->
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -34,6 +35,20 @@
                             <td>{{ $user->surname }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->getRoleNames()->implode(', ') ?: 'Sin rol' }}</td>
+
+                            <!-- Mostrar permisos del usuario -->
+                            <td>
+                                @if($user->getAllPermissions()->isNotEmpty())
+                                    <ul>
+                                        @foreach($user->getAllPermissions() as $permission)
+                                            <li>{{ $permission->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span>Sin permisos asignados</span>
+                                @endif
+                            </td>
+
                             <td>
                                 <div class="d-flex justify-content-start gap-2">
                                     <!-- Botón Editar -->

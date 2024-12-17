@@ -51,7 +51,7 @@ class AuthenticationController extends Controller
        }
 
        // Redirigir según el rol del usuario
-       if ($user->role->name === 'admin') {
+       if ($user->hasRole('admin')) {
            return redirect()->route('dashboards.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
        }
 
@@ -102,7 +102,9 @@ class AuthenticationController extends Controller
             $user->save();  // Guardar el cambio de contraseña
 
             // Redirigir al usuario con un mensaje de éxito
-            return redirect()->route('auth.login')->with('status', 'Tu contraseña ha sido cambiada exitosamente.');
+            session()->flash('success', 'Contraseña cambiada exitosamente. Por favor, ingrese nuevamente.');
+            return redirect()->route('auth.login');
+
         }
 
 }

@@ -60,19 +60,23 @@
                             <td>
                                 <div class="d-flex justify-content-start gap-2">
                                     <!-- Botón Editar -->
+                                    @can('edit_tasks')
                                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm rounded-3" aria-label="Editar Tarea">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
-
+                                    @endcan
                                     <!-- Botón Eliminar (abre el modal de confirmación) -->
+                                    @can('delete_tasks')
                                     <button class="btn btn-danger btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-task-id="{{ $task->id }}" data-task-title="{{ $task->title }}" aria-label="Eliminar Tarea">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
-
+                                    @endcan
                                     <!-- Botón Ver Detalles -->
+                                    @can('view_tasks')
                                     <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info btn-sm rounded-3" aria-label="Ver detalles de tarea">
                                         <i class="bi bi-info-circle-fill"></i>
                                     </a>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

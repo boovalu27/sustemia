@@ -17,12 +17,18 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'areas'));
     }
 
-    // Método para mostrar los detalles de una tarea
-    public function show(Task $task)
-    {
-        $areas = Area::all(); // Carga todas las áreas
-        return view('tasks.show', compact('task', 'areas'));
+// Método para mostrar los detalles de una tarea
+public function show(Task $task)
+{
+    // Verificar si el usuario tiene permiso para ver tareas
+    if (!auth()->user()->can('view_tasks')) {
+        return redirect()->route('tasks.index')->with('error', 'Lo siento, no tienes permisos suficientes para ver los detalles de la tarea.');
     }
+
+    $areas = Area::all(); // Carga todas las áreas
+    return view('tasks.show', compact('task', 'areas'));
+}
+
 
     // Método para mostrar el formulario de creación
     public function create()
@@ -56,7 +62,7 @@ class TaskController extends Controller
 
         // Verificar si el usuario tiene permiso para crear tareas
         if (!auth()->user()->can('create_tasks')) {
-            abort(403, 'No tienes permisos para crear una tarea.');
+            return redirect()->route('tasks.index')->with('error', 'Lo siento, no tienes permisos suficientes para crear tareas.');
         }
 
         // Si la validación pasa, crear la tarea
@@ -71,10 +77,9 @@ class TaskController extends Controller
 
         // Redireccionar a la página anterior después de crear la tarea
         $previousUrl = url()->previous();  // Obtener la URL anterior
-
-        // Redirigir según el rol del usuario
         return redirect($previousUrl)->with('success', 'Tarea "' . $task->title . '" creada con éxito.');
     }
+
 
     // Método común para verificar si la tarea está completada y redirigir
     private function checkTaskCompletion(Task $task)
@@ -93,8 +98,8 @@ class TaskController extends Controller
         $user = auth()->user();
 
         // Comprobar que el usuario tiene el permiso y el rol adecuado
-        if (!$user->can('edit_tasks') || !in_array($user->role?->name, ['admin', 'editor'])) {
-            abort(403, 'No tienes permisos para editar esta tarea.');
+        if (!$user->can('edit_tasks')) {
+            return redirect()->route('tasks.index')->with('error', 'Lo siento, no tienes permisos suficientes para editar tareas.');
         }
 
         // Verificar si la tarea está completada
@@ -104,12 +109,13 @@ class TaskController extends Controller
         ]);
     }
 
+
     // Método para actualizar una tarea
     public function update(Request $request, Task $task)
     {
         // Verificar si el usuario tiene permiso para actualizar
-        if (!auth()->user()->can('edit_tasks') || (auth()->user()->role?->name !== 'admin' && auth()->user()->role?->name !== 'editor')) {
-            abort(403, 'No tienes permisos para actualizar esta tarea.');
+        if (!auth()->user()->can('edit_tasks')) {
+            return redirect()->route('tasks.index')->with('error', 'Lo siento, no tienes permisos suficientes para actualizar esta tarea.');
         }
 
         // Verificar si la tarea está completada
@@ -146,12 +152,13 @@ class TaskController extends Controller
         return redirect(url()->previous())->with('success', $message);
     }
 
+
     // Método para eliminar tarea
     public function destroy(Task $task)
     {
         // Verificar permisos de eliminación
-        if (!auth()->user()->can('delete_tasks') || auth()->user()->role?->name !== 'admin') {
-            abort(403, 'No tienes permisos para eliminar esta tarea.');
+        if (!auth()->user()->can('delete_tasks')) {
+            return redirect()->route('tasks.index')->with('error', 'Lo siento, no tienes permisos suficientes para eliminar tareas.');
         }
 
         // Eliminar tarea
@@ -160,4 +167,5 @@ class TaskController extends Controller
         // Redireccionar a la página previa con mensaje de éxito
         return redirect(url()->previous())->with('success', 'Tarea "' . $task->title . '" eliminada con éxito.');
     }
+
 }

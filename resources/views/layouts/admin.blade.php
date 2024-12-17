@@ -50,7 +50,7 @@
                     </li>
 
                     <!-- Configuración -->
-                    @if(auth()->user()->getRoleNames()->contains('admin'))
+                    @if(auth()->user()->hasAnyRole(['admin']))
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.index') }}">
                             <i class="bi bi-gear-fill text-secondary"></i> Configuración

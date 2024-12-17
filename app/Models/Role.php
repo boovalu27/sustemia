@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-
+use Spatie\Permission\Models\Permission;
 /**
  *
  *
@@ -31,10 +31,9 @@ class Role extends Model
     protected $fillable = ['name'];
 
 // En el modelo Role
-/*
-public function users()
+public function permissions()
 {
-    return $this->morphedByMany(User::class, 'model', 'model_has_roles', 'role_id', 'model_id');
+    return $this->belongsToMany(Permission::class, 'role_has_permissions');
 }
-*/
+
 }

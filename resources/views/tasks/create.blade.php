@@ -1,4 +1,6 @@
-@extends(auth()->user()->role->name === 'admin' ? 'layouts.admin' : 'layouts.main')
+@extends(auth()->check() && auth()->user()->hasRole('admin')
+    ? 'layouts.admin'
+    : 'layouts.main')
 
 @section('content')
   <div class="container mt-5">

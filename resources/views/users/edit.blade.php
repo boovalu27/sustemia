@@ -44,7 +44,10 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+        <!-- Botón para actualizar -->
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+        </div>
     </form>
 </div>
 @endsection

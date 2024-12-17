@@ -1,5 +1,5 @@
-@extends(auth()->check() && auth()->user()->role
-    ? (auth()->user()->role->name === 'admin' ? 'layouts.admin' : 'layouts.main')
+@extends(auth()->check() && auth()->user()->hasRole('admin')
+    ? 'layouts.admin'
     : 'layouts.main')
 
 @section('content')

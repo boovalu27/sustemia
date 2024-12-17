@@ -32,9 +32,9 @@
         <!-- Roles -->
         <div class="mb-3">
             <label for="roles" class="form-label">Rol</label>
-            <select name="roles[]" id="roles" class="form-select" multiple required>
+            <select name="roles" id="roles" class="form-select" required>
                 @foreach ($roles as $role)
-                    <option value="{{ $role->name }}" {{ in_array($role->name, old('roles', [])) ? 'selected' : '' }}>
+                    <option value="{{ $role->name }}" {{ old('roles') == $role->name ? 'selected' : '' }}>
                         {{ $role->name }}
                     </option>
                 @endforeach

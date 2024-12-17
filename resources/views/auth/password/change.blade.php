@@ -27,22 +27,33 @@
                     @enderror
                 </div>
 
+                <!-- Nueva contraseña -->
                 <div class="form-outline mb-4">
                     <label for="password" class="form-label text-muted">Nueva contraseña</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" class="form-control" required>
+                        <button type="button" class="btn btn-outline-secondary" id="toggle-password" style="cursor: pointer;">
+                            <i class="bi bi-eye-slash" id="toggle-icon"></i>
+                        </button>
+                    </div>
                     @error('password')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
+                <!-- Confirmar nueva contraseña -->
                 <div class="form-outline mb-4">
                     <label for="password_confirmation" class="form-label text-muted">Confirmar nueva contraseña</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                    <div class="input-group">
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                        <button type="button" class="btn btn-outline-secondary" id="toggle-confirmation-password" style="cursor: pointer;">
+                            <i class="bi bi-eye-slash" id="toggle-confirmation-icon"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-secondary rounded-4">Cambiar contraseña</button>
             </form>
-
 
             @if(session('status'))
               <div class="alert alert-success mt-3">

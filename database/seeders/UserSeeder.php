@@ -34,11 +34,10 @@ class UserSeeder extends Seeder
             'surname' => 'Piñero',
             'email' => 'gerardop@sustemia.com.ar',
             'password' => Hash::make('password123'),
-            'role_id' => $adminRole->id,  // Asignar rol 'admin' directamente en la columna role_id
         ]);
-        // Asignar el rol 'admin' y permisos
+        // Asignar el rol 'admin' y los permisos directamente
         $admin->assignRole($adminRole);
-        $admin->syncPermissions($permissions);
+        $admin->givePermissionTo($permissions); // Asignamos todos los permisos al admin
 
         // Crear un usuario editor
         $editor = User::create([
@@ -46,16 +45,12 @@ class UserSeeder extends Seeder
             'surname' => 'Parikh',
             'email' => 'sofiap@sustemia.com.ar',
             'password' => Hash::make('password123'),
-            'role_id' => $editorRole->id,  // Asignar rol 'editor' directamente en la columna role_id
         ]);
-        // Asignar el rol 'editor' y permisos
+        // Asignar el rol 'editor' y los permisos
         $editor->assignRole($editorRole);
-        $editor->syncPermissions([
-            'create_tasks',
-            'edit_tasks',
-            'view_tasks',
-            'view_reports',
-        ]);
+        $editor->givePermissionTo([
+            'create_tasks', 'edit_tasks', 'view_tasks', 'view_reports'
+        ]); // Asignar permisos específicos al editor
 
         // Crear un usuario visualizador
         $viewer = User::create([
@@ -63,13 +58,11 @@ class UserSeeder extends Seeder
             'surname' => 'Underwood',
             'email' => 'francisu@sustemia.com.ar',
             'password' => Hash::make('password123'),
-            'role_id' => $viewerRole->id,  // Asignar rol 'viewer' directamente en la columna role_id
         ]);
-        // Asignar el rol 'viewer' y permisos
+        // Asignar el rol 'viewer' y los permisos
         $viewer->assignRole($viewerRole);
-        $viewer->syncPermissions([
-            'view_tasks',
-            'view_reports',
-        ]);
+        $viewer->givePermissionTo([
+            'view_tasks', 'view_reports'
+        ]); // Asignar permisos específicos al viewer
     }
 }

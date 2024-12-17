@@ -7,6 +7,8 @@
     <title>@yield('title')</title>
     <link rel="icon" type="image/png" href="{{ asset('css/imgs/favicon-32x32.png') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <script src="{{ asset('js/login.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Bootstrap 5 CSS -->
@@ -48,12 +50,13 @@
                         </li>
 
                         <!-- Reportes -->
+                        @can('view_reports')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reports.index') }}" aria-label="Ir a reportes">
                                 <i class="bi bi-bar-chart-fill text-success"></i> Reportes
                             </a>
                         </li>
-
+                        @endcan
                         <!-- Perfil -->
                         <li class="nav-item dropdown">
                             <!-- Ícono de perfil -->
@@ -110,7 +113,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
                         @elseif(Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                             {!! Session::get('error') !!}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>

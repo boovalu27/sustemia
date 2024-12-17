@@ -1,4 +1,7 @@
-@extends(auth()->user()->hasRole('admin') ? 'layouts.admin' : 'layouts.main')
+@extends(auth()->check() && auth()->user()->hasRole('admin')
+    ? 'layouts.admin'
+    : 'layouts.main')
+
 
 @section('content')
   <div class="container my-3">
@@ -226,17 +229,21 @@
                                     </a>
                                 </li>
                                 @endcan
+                                @can('view_tasks')
                                 <li>
                                     <a class="dropdown-item" href="{{ route('tasks.show', $task->id) }}">
                                         <i class="bi bi-eye"></i> Ver Tarea
                                     </a>
                                 </li>
+                                @endcan
+                                @can('delete_tasks')
                                 <li>
                                     <!-- Botón para eliminar tarea -->
                                     <a class="dropdown-item" href="#" onclick="setDeleteTaskUrl('{{ route('tasks.destroy', $task->id) }}')" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
                                         <i class="bi bi-trash"></i> Eliminar
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </div>
                     </div>
