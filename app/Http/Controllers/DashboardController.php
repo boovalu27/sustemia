@@ -20,14 +20,15 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Verificar si el usuario tiene alguno de los roles permitidos
-        if (!$user->hasAnyRole(['admin', 'editor', 'viewer'])) {
+        // Verificar si el usuario tiene el permiso 'view_reports'
+        if (!$user->can('view_reports')) {
             return redirect()->route('home')->with('error', 'No tienes permisos para acceder a esta página.');
         }
 
-        // Si tiene un rol válido, mostramos el dashboard
+        // Si tiene el permiso 'view_reports', mostramos el dashboard
         return $this->indexDashboard($request);
     }
+
 
 
 
@@ -76,8 +77,8 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Verificar si el usuario tiene un rol asignado
-        if (!$user || (!$user->hasRole('admin') && !$user->hasRole('editor') && !$user->hasRole('viewer'))) {
+        // Verificar si el usuario tiene el permiso 'view_reports'
+        if (!$user->can('view_reports')) {
             return redirect()->route('home')->with('error', 'No tienes permisos para acceder a esta página.');
         }
 
@@ -138,16 +139,16 @@ class DashboardController extends Controller
             $totalRolesCount = \DB::table('roles')->count();
             $totalAreasCount = Area::count();
 
-            // Contar los usuarios por rol
-            $adminCount = User::whereHas('role', function($query) {
+            // Contar los usuarios por rol, sin excluir al usuario actual
+            $adminCount = User::whereHas('roles', function($query) {
                 $query->where('name', 'admin');
             })->count();
 
-            $editorCount = User::whereHas('role', function($query) {
+            $editorCount = User::whereHas('roles', function($query) {
                 $query->where('name', 'editor');
             })->count();
 
-            $viewerCount = User::whereHas('role', function($query) {
+            $viewerCount = User::whereHas('roles', function($query) {
                 $query->where('name', 'viewer');
             })->count();
 
@@ -160,19 +161,19 @@ class DashboardController extends Controller
                 'editorCount',
                 'viewerCount',
                 'totalRolesCount',
-                'totalTasksCount', // Pasar siempre el total de tareas
+                'totalTasksCount',
                 'totalAreasCount',
                 'taskStatusData',
                 'completedTasksCount',
                 'pendingTasksCount',
                 'overdueTasksCount',
-                'completedWithDelayCount', // Pasar el nuevo dato
+                'completedWithDelayCount',
                 'completedPercentage',
                 'pendingPercentage',
                 'overduePercentage',
-                'completedWithDelayPercentage', // Pasar el nuevo porcentaje
-                'tasksByArea', // Pasar datos de tareas por área
-                'completedTasksThisMonth' // Pasar tareas completadas este mes
+                'completedWithDelayPercentage',
+                'tasksByArea',
+                'completedTasksThisMonth'
             ));
         }
 
@@ -184,14 +185,14 @@ class DashboardController extends Controller
             'completedTasksCount',
             'pendingTasksCount',
             'overdueTasksCount',
-            'completedWithDelayCount', // Pasar el nuevo dato
+            'completedWithDelayCount',
             'completedPercentage',
             'pendingPercentage',
             'overduePercentage',
-            'completedWithDelayPercentage', // Pasar el nuevo porcentaje
-            'tasksByArea', // Pasar datos de tareas por área
-            'completedTasksThisMonth', // Pasar tareas completadas este mes
-            'totalTasksCount' // Asegurarse de que también esté disponible para roles no admin
+            'completedWithDelayPercentage',
+            'tasksByArea',
+            'completedTasksThisMonth',
+            'totalTasksCount'
         ));
     }
 

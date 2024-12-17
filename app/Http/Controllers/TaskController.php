@@ -80,17 +80,22 @@ public function show(Task $task)
         return redirect($previousUrl)->with('success', 'Tarea "' . $task->title . '" creada con éxito.');
     }
 
+// Método común para verificar si la tarea está completada y redirigir
+private function checkTaskCompletion(Task $task)
+{
+    if ($task->status === 'Completada') {
+        $user = auth()->user();
 
-    // Método común para verificar si la tarea está completada y redirigir
-    private function checkTaskCompletion(Task $task)
-    {
-        if ($task->status === 'Completada') {
-            $user = auth()->user();
-            $route = $user->role->name === 'editor' ? 'dashboards.index' : 'tasks.index';
-            $message = 'No se puede editar una tarea completada.';
-            return redirect()->route($route)->with('error', $message);
+        // Verificar si el usuario tiene el permiso 'edit_tasks'
+        if (!$user->can('edit_tasks')) {
+            // Redirigir a la página anterior (por ejemplo, la vista de detalles de la tarea)
+            $previousUrl = url()->previous();
+            $message = 'No tienes permisos suficientes para editar una tarea completada.';
+            return redirect($previousUrl)->with('error', $message);
         }
     }
+}
+
 
     // Método para mostrar el formulario de edición de tarea
     public function edit(Task $task)

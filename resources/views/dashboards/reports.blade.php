@@ -242,7 +242,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto w-100">
                                 <span class="badge bg-danger text-white rounded-pill">Vencida</span>
-                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-danger btn-sm">
+                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-danger btn-sm" aria-label="Ver detalles de la tarea {{ $task->title }}">
                                     <i class="bi bi-eye"></i>
                                 </a>
                             </div>

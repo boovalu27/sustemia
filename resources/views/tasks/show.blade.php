@@ -50,15 +50,6 @@
             </a>
           @endcan
 
-          <!-- Mostrar el botón de Eliminar solo si el usuario tiene el permiso de eliminación -->
-          @can('delete_tasks')
-            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger"
-                      onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')"><i class="bi bi-trash-fill"></i></button>
-            </form>
-          @endcan
         </div>
 
         <!-- Botón para volver a la lista de tareas o al dashboard -->

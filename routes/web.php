@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     // Dashboard general
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboards.index');
-    Route::get('/reports', [DashboardController::class, 'reportsDashboard'])->name('reports.index');
+    Route::get('/reports', [DashboardController::class, 'reportsDashboard'])->middleware('permission:view_reports')->name('reports.index');
 
     // Ruta para ver detalles de una tarea (accesible para cualquier usuario autenticado)
     Route::get('tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
@@ -66,32 +66,32 @@ Route::prefix('tasks')->name('tasks.')->middleware('permission:delete_tasks')->g
 
 });
 
-// Rutas específicas para administradores
-Route::middleware(['auth', 'role:admin'])->group(function () {
+
+Route::middleware(['auth'])->group(function () {
 
     // Dashboard de administrador
     Route::get('/settings', [AdminController::class, 'index'])->name('admin.index');
 
     // Rutas de administración de usuarios (solo accesibles para admin)
-    Route::prefix('users')->name('users.')->group(function () {
+    Route::prefix('users')->name('users.')->middleware('permission:view_areas')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::get('/create', [UserController::class, 'create'])->middleware('permission:create_users')->name('create');
         Route::post('/', [UserController::class, 'store'])->name('store');
-        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->middleware('permission:edit_users')->name('edit');
         Route::put('/{user}', [UserController::class, 'update'])->name('update');
-        Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
-        Route::get('/{user}', [UserController::class, 'show'])->name('show');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->middleware('permission:delete_users')->name('destroy');
+        Route::get('/{user}', [UserController::class, 'show'])->middleware('permission:view_users')->name('show');
         Route::post('/{user}/toggle', [UserController::class, 'toggleActive'])->name('toggle');
     });
 
     // Rutas de administración de áreas (solo accesibles para admin)
     Route::prefix('areas')->name('areas.')->group(function () {
-        Route::get('/', [AreaController::class, 'index'])->name('index');
+        Route::get('/', [AreaController::class, 'index'])->middleware('permission:view_areas')->name('index');
         Route::get('/create', [AreaController::class, 'create'])->name('create');
         Route::post('/', [AreaController::class, 'store'])->name('store');
-        Route::get('/{area}', [AreaController::class, 'show'])->name('show');
-        Route::get('/{area}/edit', [AreaController::class, 'edit'])->name('edit');
+        Route::get('/{area}', [AreaController::class, 'show'])->middleware('permission:view_areas')->name('show');
+        Route::get('/{area}/edit', [AreaController::class, 'edit'])->middleware('permission:edit_areas')->name('edit');
         Route::put('/{area}', [AreaController::class, 'update'])->name('update');
-        Route::delete('/{area}', [AreaController::class, 'destroy'])->name('destroy');
+        Route::delete('/{area}', [AreaController::class, 'destroy'])->middleware('permission:delete_areas')->name('destroy');
     });
 });

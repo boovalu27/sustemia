@@ -44,28 +44,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /**
-     * Relación con los permisos del usuario
-     */
-/*    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
-*/
-    /**
-     * Método para verificar si un usuario tiene un rol específico
-     * (esto también se hace con el método hasRole() del trait HasRoles)
-     */
-    public function hasCustomRole($role)
-    {
-        return $this->roles->contains('name', $role);
-    }
-
     public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'model_has_permissions', 'model_id', 'permission_id');
