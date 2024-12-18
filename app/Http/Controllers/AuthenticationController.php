@@ -10,13 +10,24 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
-    public function __construct()
-    {
-        // Aplica el middleware 'auth' para todas las rutas, exceptuando login, logout, y las rutas de cambio de contraseña
-        $this->middleware('auth')->except(['login', 'processLogin', 'logout', 'showChangePasswordForm', 'resetPassword']);
-    }
+  /**
+   * Crea una nueva instancia del controlador y aplica el middleware de autenticación.
+   *
+   * El middleware 'auth' se aplica a todas las rutas, excepto para login, logout,
+   * y las rutas relacionadas con el cambio de contraseña.
+   */
+  public function __construct()
+  {
+    $this->middleware('auth')->except(['login', 'processLogin', 'logout', 'showChangePasswordForm', 'resetPassword']);
+  }
 
-
+  /**
+   * Muestra el formulario de inicio de sesión.
+   *
+   * Si el usuario ya está autenticado, redirige a la página principal del panel.
+   *
+   * @return \Illuminate\View\View
+   */
   public function login()
   {
     if (Auth::check()) {
@@ -26,6 +37,15 @@ class AuthenticationController extends Controller
     return view('auth.login');
   }
 
+  /**
+   * Procesa los datos de inicio de sesión enviados por el formulario.
+   *
+   * Valida las credenciales del usuario y, si son correctas, inicia sesión y lo redirige al panel.
+   * Si las credenciales son incorrectas, se vuelve a mostrar el formulario con un mensaje de error.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function processLogin(Request $request)
   {
     // Validación de los datos del formulario
@@ -62,18 +82,40 @@ class AuthenticationController extends Controller
     return redirect()->route('reports.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
   }
 
+  /**
+   * Cierra la sesión del usuario autenticado.
+   *
+   * Después de cerrar la sesión, el usuario es redirigido a la página principal.
+   *
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function logout()
   {
     Auth::logout();
     return redirect('/')->with('success', 'Sesión cerrada con éxito.');
   }
 
-  // Mostrar el formulario de cambio de contraseña
+  /**
+   * Muestra el formulario para restablecer la contraseña.
+   *
+   * Este formulario permite a los usuarios cambiar su contraseña si es necesario.
+   *
+   * @return \Illuminate\View\View
+   */
   public function showChangePasswordForm()
   {
     return view('auth.password.reset');
   }
 
+  /**
+   * Procesa el restablecimiento de la contraseña.
+   *
+   * Valida los datos de la solicitud, verifica que el correo esté registrado, y actualiza la contraseña del usuario.
+   * Si el correo no está registrado, se muestra un mensaje de error.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function resetPassword(Request $request)
   {
     // Validación de los datos del formulario
