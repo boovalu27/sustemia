@@ -57,11 +57,17 @@
 
             <div class="mb-3">
                 <label for="status" class="form-label">Estado</label>
-                <select name="status" id="status" class="form-select" required {{ $isCompleted ? 'disabled' : '' }}>
-                    <option value="Pendiente" {{ old('status', $task->status) == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
-                    <option value="Completada" {{ old('status', $task->status) == 'Completada' ? 'selected' : '' }}>Completada</option>
-                </select>
+                @if($task->status === 'Completada con retraso')
+                    <!-- Si el estado es "Completada con retraso", mostramos este valor pero lo deshabilitamos -->
+                    <input type="text" class="form-control" value="Completada con retraso" disabled>
+                @else
+                    <select name="status" id="status" class="form-select" required {{ $isCompleted ? 'disabled' : '' }}>
+                        <option value="Pendiente" {{ old('status', $task->status) == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="Completada" {{ old('status', $task->status) == 'Completada' ? 'selected' : '' }}>Completada</option>
+                    </select>
+                @endif
             </div>
+
 
             <!-- Botones de acción (Actualizar y Cancelar) -->
             <div class="d-flex flex-column flex-md-row align-items-start justify-content-between border-top pt-3">
