@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticationController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthenticationController::class, 'processLogin'])->name('auth.login.process');
     // Ruta para mostrar el formulario de cambio de contraseña
-    Route::get('password/rest', [AuthenticationController::class, 'showChangePasswordForm'])->name('auth.password.reset.form');
+    Route::get('password/reset', [AuthenticationController::class, 'showChangePasswordForm'])->name('auth.password.reset.form');
     // Ruta para procesar el cambio de contraseña
     Route::post('password/reset', [AuthenticationController::class, 'resetPassword'])->name('auth.reset.change');
 });

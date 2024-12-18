@@ -41,11 +41,11 @@
 
 <!-- Campo de contraseña -->
 <div class="form-outline mb-4">
-    <label class="form-label text-muted" for="password">Contraseña</label>
+    <label class="form-label text-muted" for="password-login">Contraseña</label>
     <div class="input-group">
       <input
         type="password"
-        id="password"
+        id="password-login"
         name="password"
         class="form-control"
         placeholder="**********"

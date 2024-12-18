@@ -234,10 +234,6 @@ h4, h5, h6 {
     color: var(--color-black);
 }
 
-.alert-warning:hover {
-    background-color: #e6b600; /* Amarillo más oscuro */
-}
-
 /* Links importantes (por ejemplo, en el footer o secciones especiales) */
 a {
     color: var(--color-primary);

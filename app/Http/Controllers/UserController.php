@@ -122,10 +122,33 @@ class UserController extends Controller
         // Validación de los datos
         $request->validate([
             'name' => 'required|string|max:255',
+            'surname' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'roles' => 'required|exists:roles,name',
             'permissions' => 'nullable|array|exists:permissions,name', // Permisos pueden ser un array
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no puede tener más de 255 caracteres.',
+
+            'surname.string' => 'El apellido debe ser una cadena de texto.',
+            'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.max' => 'El correo electrónico no puede tener más de 255 caracteres.',
+            'email.unique' => 'Ya existe un usuario registrado con ese correo electrónico.',
+
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+
+            'roles.required' => 'El rol es obligatorio.',
+            'roles.exists' => 'El rol seleccionado no es válido.',
+
+            'permissions.array' => 'Los permisos deben ser un arreglo de valores.',
+            'permissions.exists' => 'Uno o más de los permisos seleccionados no son válidos.',
         ]);
 
         // Actualizamos los datos básicos del usuario
@@ -136,6 +159,9 @@ class UserController extends Controller
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
+
+        // Actualizamos el apellido si se proporciona
+        $user->surname = $request->surname;
 
         // Guardamos los datos del usuario
         $user->save();
@@ -151,8 +177,6 @@ class UserController extends Controller
             // Si no se seleccionan permisos, eliminamos todos los permisos del usuario
             $user->syncPermissions([]);
         }
-
-
 
         // Redirigir a la lista de usuarios con un mensaje de éxito
         return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');

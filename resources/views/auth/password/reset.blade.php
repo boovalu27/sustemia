@@ -29,6 +29,7 @@
                   id="email"
                   name="email"
                   class="form-control"
+                  placeholder="Escribe el correo electrónico"
                   value="{{ old('email') }}"
                   required
                   aria-required="true"
@@ -40,13 +41,14 @@
 
 <!-- Campo de nueva contraseña -->
 <div class="form-outline mb-4">
-    <label class="form-label text-muted" for="password">Nueva contraseña</label>
+    <label class="form-label text-muted" for="password-reset">Nueva contraseña</label>
     <div class="input-group">
       <input
         type="password"
-        id="password"
+        id="password-reset"
         name="password"
         class="form-control"
+        placeholder="Escribe la nueva contraseña"
         required
         aria-required="true"
       >
@@ -68,6 +70,7 @@
         id="password_confirmation"
         name="password_confirmation"
         class="form-control"
+        placeholder="Repite la contraseña"
         required
         aria-required="true"
       >

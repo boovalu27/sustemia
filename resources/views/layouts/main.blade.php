@@ -10,6 +10,7 @@
     <script src="{{ asset('js/login.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/tooltips.js') }}"></script> <!-- <-- Incluye este archivo aquí -->
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -96,34 +97,40 @@
             </div>
         </nav>
 
-        <!-- Contenido principal -->
-        <main class="content py-4">
-            <div class="content" role="main">
-                <section class="col-md-12">
-                    @if(Session::has('success') || Session::has('warning') || Session::has('error'))
-                    <div class="alert-container">
-                        @if(Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
-                            {!! Session::get('success') !!}
+<!-- Contenido principal -->
+<main class="container py-4">
+    <div class="content" role="main">
+        <section class="row">
+            <!-- Mensajes de alerta -->
+            @if(Session::has('success') || Session::has('warning') || Session::has('error'))
+                <div class="col-12">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi-check-circle"></i> {!! Session::get('success') !!}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
-                        @elseif(Session::has('warning'))
-                        <div class="alert alert-warning alert-dismissible fade show m-3" role="alert">
-                            {!! Session::get('warning') !!}
+                    @elseif(Session::has('warning'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="bi-exclamation-circle"></i> {!! Session::get('warning') !!}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
-                        @elseif(Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-                            {!! Session::get('error') !!}
+                    @elseif(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi-exclamation-circle"></i> {!! Session::get('error') !!}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
-                        @endif
-                    </div>
                     @endif
-                    @yield('content')
-                </section>
+                </div>
+            @endif
+
+            <!-- Contenido dinámico (Página actual) -->
+            <div class="col-12">
+                @yield('content')
             </div>
-        </main>
+        </section>
+    </div>
+</main>
+
 
     </div>
 

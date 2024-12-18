@@ -68,8 +68,7 @@
 
         <!-- Total de  -->
         <div class="col-md-6 col-xl-3">
-            <a href="{{ route('tasks.index') }}" class="text-decoration-none">
-            <div class="card bg-danger m-2">
+            <div class="card bg-success m-2">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -82,7 +81,6 @@
                     </div>
                 </div>
             </div>
-            </a>
         </div>
 
     </div>
@@ -117,7 +115,7 @@
         <!-- Gráfico de Estado de Tareas (Gráfico de Barras) -->
         <div class="col-md-6 col-sm-12">
             <div class="shadow rounded-4 p-4">
-            <h2 class=" py-2">Porcentaje de tareas por estado</h2>
+            <h2 class=" py-2">% Porcentaje de tareas por estado</h2>
                 <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
                     <canvas id="tasksStatusChart" aria-label="Gráfico de Estado de Tareas" role="img"></canvas>
                 </div>
