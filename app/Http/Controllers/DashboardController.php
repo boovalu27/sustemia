@@ -29,9 +29,6 @@ class DashboardController extends Controller
         return $this->indexDashboard($request);
     }
 
-
-
-
     public function adminDashboard()
     {
         $users = User::all();

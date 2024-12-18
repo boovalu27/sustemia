@@ -189,7 +189,7 @@
                             radius: 7,
                             padding: 10,
                             font: {
-                            size: 12,
+                            size: 10,
                             }
                         }
                     }
@@ -218,6 +218,9 @@
                             pointStyle: 'circle', // Establece los círculos
                             radius: 7, // Ajusta el tamaño del círculo
                             padding: 10, // Ajusta el espaciado entre los círculos
+                            font: {
+                            size: 12,
+                            }
                         }
                     }
                 }

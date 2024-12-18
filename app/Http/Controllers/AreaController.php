@@ -17,7 +17,7 @@ class AreaController extends Controller
     {
         return view('areas.show', compact('area'));
     }
-    
+
     public function create()
     {
         return view('areas.create');
@@ -31,7 +31,7 @@ class AreaController extends Controller
 
         Area::create($request->only('name'));
 
-        return redirect()->route('areas.index')->with('success', 'Área creada con éxito.');
+        return redirect()->route('areas.index')->with('success', 'Área "' . $area->name . '"  creada con éxito.');
 
     }
 
@@ -48,13 +48,13 @@ class AreaController extends Controller
 
         $area->update($request->only('name'));
 
-        return redirect()->route('areas.index')->with('success', 'Área actualizada con éxito.');
+        return redirect()->route('areas.index')->with('success', 'Área "' . $area->name . '" actualizada con éxito.');
     }
 
     public function destroy(Area $area)
     {
         $area->delete();
-        return redirect()->route('areas.index')->with('success', 'Área eliminada con éxito.');
+        return redirect()->route('areas.index')->with('success', 'Área "' . $area->name . '" eliminada con éxito.');
     }
-    
+
 }

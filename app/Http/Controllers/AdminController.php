@@ -18,7 +18,7 @@ class AdminController extends Controller
 
         // Verificar si el usuario es administrador
         if (!$user->hasRole('admin')) {
-            return redirect()->route('home')->with('error', 'No tienes permisos para acceder a esta página.');
+            return redirect()->route('reports')->with('error', 'No tienes permisos para acceder a esta página.');
         }
 
         // Si es administrador, continuar a la vista del panel

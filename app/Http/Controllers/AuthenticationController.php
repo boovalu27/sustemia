@@ -12,7 +12,7 @@ class AuthenticationController extends Controller
    public function login()
    {
        if (Auth::check()) {
-           return redirect()->route('dashboards.index'); // O la ruta adecuada
+           return redirect()->route('dashboards.index');
        }
 
        return view('auth.login');
@@ -50,11 +50,6 @@ class AuthenticationController extends Controller
                ->withInput();
        }
 
-       // Redirigir según el rol del usuario
-       if ($user->hasRole('admin')) {
-           return redirect()->route('dashboards.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
-       }
-
        // Aquí puedes manejar otros roles si es necesario
        return redirect()->route('reports.index')->with('success', '¡Hola ' . $user->name . '! Has iniciado sesión con éxito.');
    }
@@ -70,13 +65,12 @@ class AuthenticationController extends Controller
         // Mostrar el formulario de cambio de contraseña
         public function showChangePasswordForm()
         {
-            return view('auth.password.change');
+            return view('auth.password.reset');
         }
 
-        // Cambiar la contraseña
-        public function changePassword(Request $request)
+        public function resetPassword(Request $request)
         {
-            // Validar los datos del formulario
+            // Validación de los datos del formulario
             $request->validate([
                 'email' => 'required|email|exists:users,email',  // Asegurarse de que el correo esté registrado
                 'password' => 'required|string|min:8|confirmed', // Validar la nueva contraseña
@@ -99,12 +93,10 @@ class AuthenticationController extends Controller
 
             // Cambiar la contraseña del usuario
             $user->password = Hash::make($request->password);
-            $user->save();  // Guardar el cambio de contraseña
+            $user->save(); // Guardar el cambio de contraseña
 
             // Redirigir al usuario con un mensaje de éxito
-            session()->flash('success', 'Contraseña cambiada exitosamente. Por favor, ingrese nuevamente.');
+            session()->flash('success', 'Contraseña restablecida exitosamente. Por favor, ingresa nuevamente.');
             return redirect()->route('auth.login');
-
         }
-
 }

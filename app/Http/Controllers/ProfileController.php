@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
@@ -51,5 +50,4 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.view')->with('success', 'Perfil actualizado con éxito.');
     }
-
 }

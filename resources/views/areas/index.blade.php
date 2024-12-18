@@ -7,8 +7,7 @@
 
     <a href="{{ route('areas.create') }}" class="btn btn-success mb-3">
         <i class="bi bi-plus-circle"> </i> Agregar
-
-        </a>
+    </a>
 
     <div class="table-responsive border rounded-2 p-3">
         <table class="table table-striped table-hover">
@@ -26,15 +25,15 @@
                         <td>{{ $area->name }}</td>
                         <td>
                             <div class="d-flex justify-content-start gap-2">
-                            <a href="{{ route('areas.show', $area->id) }}" class="btn btn-info btn-sm rounded-3" aria-label="Ver detalles del área {{ $area->name }}">
-                                <i class="bi bi-info-circle-fill"></i>
-                            </a>
-                            <a href="{{ route('areas.edit', $area->id) }}" class="btn btn-warning btn-sm" aria-label="Editar área {{ $area->name }}">
-                                <i class="bi bi-pencil-fill"></i>
-                            </a>
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $area->id }}" aria-label="Eliminar área {{ $area->name }}">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
+                                <a href="{{ route('areas.show', $area->id) }}" class="btn btn-info btn-sm rounded-3" aria-label="Ver detalles del área {{ $area->name }}">
+                                    <i class="bi bi-info-circle-fill"></i>
+                                </a>
+                                <a href="{{ route('areas.edit', $area->id) }}" class="btn btn-warning btn-sm" aria-label="Editar área {{ $area->name }}">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $area->id }}" aria-label="Eliminar área {{ $area->name }}">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>

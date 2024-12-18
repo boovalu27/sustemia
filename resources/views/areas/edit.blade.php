@@ -1,20 +1,35 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h1 class="my-4 text-success">Editar área</h1>
-    <form action="{{ route('areas.update', $area->id) }}" method="POST" class="mb-4 text-start text-success">
-        @csrf
-        @method('PUT')
+<div class="container mt-5">
+    <h1 class="text-start text-success px-4">Editar Área</h1>
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre del área</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $area->name) }}" required aria-describedby="nameHelp">
-            <div id="nameHelp" class="form-text">Actualiza el nombre del área.</div>
-        </div>
+    <div class="bg-light p-4 rounded shadow">
+        <!-- Formulario de actualización de área -->
+        <form action="{{ route('areas.update', $area->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-        <button type="submit" class="btn btn-primary">Actualizar área</button>
-        <a href="{{ route('areas.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre del área</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $area->name) }}" required aria-describedby="nameHelp">
+                <div id="nameHelp" class="form-text">Actualiza el nombre del área.</div>
+            </div>
+
+            <!-- Botones de acción (Actualizar y Cancelar) -->
+            <div class="d-flex flex-column flex-md-row align-items-start justify-content-between border-top pt-3">
+                <!-- Botón para actualizar -->
+                <button type="submit" class="btn btn-warning btn-sm mb-2 mb-md-0">
+                    <i class="bi-pencil-fill"></i> Actualizar Área
+                </button>
+
+                <!-- Botón para cancelar -->
+                <a href="{{ route('areas.index') }}" class="btn btn-secondary btn-sm mb-2 mb-md-0">
+                    <i class="bi-arrow-return-left"></i>
+                </a>
+            </div>
+
+        </form>
+    </div>
 </div>
 @endsection

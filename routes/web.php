@@ -19,9 +19,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticationController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthenticationController::class, 'processLogin'])->name('auth.login.process');
     // Ruta para mostrar el formulario de cambio de contraseña
-    Route::get('password/change', [AuthenticationController::class, 'showChangePasswordForm'])->name('auth.password.change.form');
+    Route::get('password/rest', [AuthenticationController::class, 'showChangePasswordForm'])->name('auth.password.reset.form');
     // Ruta para procesar el cambio de contraseña
-    Route::post('password/change', [AuthenticationController::class, 'changePassword'])->name('auth.password.change');
+    Route::post('password/reset', [AuthenticationController::class, 'resetPassword'])->name('auth.reset.change');
 });
 
 // Ruta para cerrar sesión (solo autenticados)
@@ -29,9 +29,10 @@ Route::post('/logout', [AuthenticationController::class, 'logout'])->name('auth.
 
 // Rutas de perfil de usuario (solo autenticados)
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/view', [ProfileController::class, 'show'])->name('profile.view');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/profile/view', [ProfileController::class, 'show'])->name('profile.view');
+
 });
 
 // Rutas protegidas por autenticación
@@ -65,7 +66,6 @@ Route::prefix('tasks')->name('tasks.')->middleware('permission:delete_tasks')->g
 });
 
 });
-
 
 Route::middleware(['auth'])->group(function () {
 

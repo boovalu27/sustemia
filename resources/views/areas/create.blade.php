@@ -11,10 +11,11 @@
             <input type="text" name="name" id="name" class="form-control" required aria-describedby="nameHelp">
             <div id="nameHelp" class="form-text">Introduce el nombre de la nueva área.</div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Crear Área</button>
-        <a href="{{ route('admin.areas.index') }}" class="btn btn-secondary">Cancelar</a>
-
+      <!-- Botones de acción -->
+        <div class="d-flex justify-content-between border-top py-2">
+        <button type="submit" class="btn btn-success">Crear área</button>
+        <a href="{{ route('areas.index') }}" class="btn btn-secondary"> <i class="bi-arrow-return-left"></i> </a>
+        </div>
     </form>
 </div>
 @endsection

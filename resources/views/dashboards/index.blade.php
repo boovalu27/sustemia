@@ -2,78 +2,90 @@
     ? 'layouts.admin'
     : 'layouts.main')
 
-
 @section('content')
   <div class="container my-3">
     <h1 class="mb-4 text-start text-success">Panel de control de seguridad e higiene</h1>
     <p class="text-start my-2">Bienvenido a tu espacio de gestión.</p>
     <p class="text-start py-2">Aquí podrás gestionar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
 
-    <!-- Modal para Crear Nueva Tarea -->
-    <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Formulario de Creación de Tarea -->
-            <form id="createTaskForm" method="POST" action="{{ route('tasks.store') }}" novalidate>
-              @csrf
+      <!-- Modal para Crear Nueva Tarea -->
+      <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Formulario de Creación de Tarea -->
+              <form id="createTaskForm" method="POST" action="{{ route('tasks.store') }}" novalidate>
+                @csrf
 
-              <!-- Título -->
-              <div class="mb-3">
-                <label for="title" class="form-label">Título</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
-                @error('title')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <div id="titleHelp" class="form-text">Introduce un título descriptivo para la tarea.</div>
-              </div>
+                <!-- Título -->
+                <div class="mb-3">
+                  <label for="title" class="form-label">Título</label>
+                  <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+                  @error('title')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                  <div id="titleHelp" class="form-text">Introduce un título descriptivo para la tarea.</div>
+                </div>
 
-              <!-- Descripción -->
-              <div class="mb-3">
-                <label for="description" class="form-label">Descripción</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description') }}</textarea>
-                @error('description')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+                <!-- Descripción -->
+                <div class="mb-3">
+                  <label for="description" class="form-label">Descripción</label>
+                  <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                  @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
 
-              <!-- Fecha de Vencimiento -->
-              <div class="mb-3">
-                <label for="due_date" class="form-label">Fecha de Vencimiento</label>
-                <input type="date" class="form-control @error('due_date') is-invalid @enderror" id="due_date" name="due_date" value="{{ old('due_date') }}" required>
-                @error('due_date')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+                <!-- Fecha de Vencimiento -->
+                <div class="mb-3">
+                  <label for="due_date" class="form-label">Fecha de Vencimiento</label>
+                  <input type="date" class="form-control @error('due_date') is-invalid @enderror" id="due_date" name="due_date" value="{{ old('due_date') }}" required>
+                  @error('due_date')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
 
-              <!-- Área -->
-              <div class="mb-3">
-                <label for="area" class="form-label">Área</label>
-                <select id="area" name="area_id" class="form-select @error('area_id') is-invalid @enderror" required>
-                  <option value="">Seleccionar área</option>
-                  @foreach ($areas as $area)
-                    <option value="{{ $area->id }}" {{ old('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
-                  @endforeach
-                </select>
-                @error('area_id')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <small class="form-text text-muted mt-1">Si no encuentras el área, solicita al administrador que la cree.</small>
-              </div>
+                <!-- Área -->
+                <div class="mb-3">
+                  <label for="area" class="form-label">Área</label>
+                  <select id="area" name="area_id" class="form-select @error('area_id') is-invalid @enderror" required>
+                    <option value="">Seleccionar área</option>
+                    @foreach ($areas as $area)
+                      <option value="{{ $area->id }}" {{ old('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
+                    @endforeach
+                  </select>
+                  @error('area_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                  <small class="form-text text-muted mt-1">Si no encuentras el área, puedes <a href="javascript:void(0);" id="requestNewAreaLink" class="link-primary" onclick="toggleNewAreaField()">solicitar una nueva</a>.</small>
+                </div>
 
-              <!-- Botón de Crear Tarea -->
-              <div class="d-flex justify-content-between mt-4">
-                <button type="submit" class="btn btn-success">Crear tarea</button>
-              </div>
-            </form>
+                <!-- Campo adicional para solicitar nueva área -->
+                <div id="newAreaField" class="mb-3" style="display: none;">
+                  <label for="new_area" class="form-label">Escribe el nombre de la nueva área</label>
+                  <input type="text" class="form-control @error('new_area') is-invalid @enderror" id="new_area" name="new_area" value="{{ old('new_area') }}">
+                  @error('new_area')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                  <div class="mt-2">
+                    <a href="mailto:admin@sustemia.com?subject=Solicitud de Nueva Área&body=Solicitud para crear el área: {{ old('new_area') }}" class="btn btn-primary btn-sm">Enviar solicitud al administrador</a>
+                  </div>
+                </div>
+
+                <!-- Botón de Crear Tarea -->
+                <div class="d-flex justify-content-start mt-4">
+                  <button type="submit" class="btn btn-success btn-sm">Crear tarea</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
 
     <!-- Modal de Confirmación de Eliminación de Tarea -->
     <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -207,7 +219,7 @@
                             @elseif ($task->status == 'Pendiente') <!-- Tarea pendiente -->
                                 <i class="bi bi-hourglass-split text-warning" title="Tarea Pendiente"></i>
                             @elseif ($task->status == 'Completada') <!-- Tarea completada dentro del plazo -->
-                                <i class="bi bi-check-circle text-success" title="Tarea Completada"></i>
+                                <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i>
                             @endif
                         </div>
 
@@ -279,16 +291,31 @@
         @endforeach
     </div>
 
-  <script>
-    // Mantener el modal abierto si hay errores
-    @if ($errors->any())
+<script>
+  // Mantener el modal abierto si hay errores de validación
+  @if ($errors->any())
+    // Espera a que el modal de Bootstrap esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function () {
       var myModal = new bootstrap.Modal(document.getElementById('createTaskModal'));
-      myModal.show();
-    @endif
+      myModal.show();  // Muestra el modal si hay errores
+    });
+  @endif
 
-    // Establecer la URL del formulario de eliminación
-    function setDeleteTaskUrl(url) {
-      document.getElementById('deleteTaskForm').action = url;
-    }
-  </script>
+  // Establecer la URL del formulario de eliminación
+  function setDeleteTaskUrl(url) {
+    document.getElementById('deleteTaskForm').action = url;
+  }
+
+          // Función para mostrar/ocultar el campo de "Solicitar Nueva Área"
+          function toggleNewAreaField() {
+            const newAreaField = document.getElementById('newAreaField');
+            if (newAreaField.style.display === "none") {
+                newAreaField.style.display = "block";  // Muestra el campo para solicitar nueva área
+            } else {
+                newAreaField.style.display = "none";  // Oculta el campo si ya está visible
+            }
+        }
+
+</script>
+
 @endsection

@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Validación de datos
+        // Validación de datos con mensajes personalizados
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'nullable|string|max:255',
@@ -41,6 +41,28 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'roles' => 'required|exists:roles,name', // Validación para un solo rol
             'permissions' => 'nullable|array|exists:permissions,name', // Permisos opcionales
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no puede tener más de 255 caracteres.',
+
+            'surname.string' => 'El apellido debe ser una cadena de texto.',
+            'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.max' => 'El correo electrónico no puede tener más de 255 caracteres.',
+            'email.unique' => 'Ya existe un usuario registrado con ese correo electrónico.',
+
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+
+            'roles.required' => 'El rol es obligatorio.',
+            'roles.exists' => 'El rol seleccionado no es válido.',
+
+            'permissions.array' => 'Los permisos deben ser un arreglo de valores.',
+            'permissions.exists' => 'Uno o más de los permisos seleccionados no son válidos.',
         ]);
 
         // Crear el usuario
@@ -56,7 +78,6 @@ class UserController extends Controller
 
         // Obtener el rol seleccionado
         $role = Role::with('permissions')->where('name', $request->roles)->first();
-
 
         // Verificar si el rol existe y tiene permisos asociados
         if ($role) {
@@ -80,10 +101,10 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('error', 'Rol no encontrado.');
         }
 
-
         // Redirigir después de la creación
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
+
 
 
 

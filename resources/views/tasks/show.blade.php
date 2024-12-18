@@ -8,7 +8,7 @@
 
     <div class="p-4 rounded shadow">
       <div class="border-bottom text-start">
-        <h3 class="py-2">{{ $task->title }}</h3>
+        <h2 class="py-2">{{ $task->title }}</h2>
       </div>
 
 

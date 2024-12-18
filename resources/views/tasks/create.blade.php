@@ -27,7 +27,7 @@
         <div class="mb-3">
             <label for="area_id" class="form-label">Área</label>
             <select name="area_id" id="area_id" class="form-select" required>
-                <option value="">Selecciona un área</option>
+                <option value="0" {{ old('area_id') == '0' ? 'selected' : '' }}>Selecciona un área</option>
                 @foreach ($areas as $area)
                     <option value="{{ $area->id }}" {{ old('area_id') == $area->id ? 'selected' : '' }}>
                         {{ $area->name }}
@@ -39,6 +39,7 @@
             @enderror
         </div>
 
+
         <div class="mb-3">
             <label for="due_date" class="form-label">Fecha de Vencimiento</label>
             <input type="date" name="due_date" id="due_date" class="form-control" value="{{ old('due_date') }}" required>
@@ -47,6 +48,12 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Crear tarea</button>
+      <!-- Botones de acción -->
+      <div class="d-flex justify-content-between border-top py-2">
+        <button type="submit" class="btn btn-success">Crear tarea</button>
+        <a href="{{ route('tasks.index') }}" class="btn btn-secondary"> <i class="bi-arrow-return-left"></i> </a>
+        </div>
     </form>
-  </div>@endsection
+  </div>
+
+@endsection

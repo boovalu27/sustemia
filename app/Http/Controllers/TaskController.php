@@ -100,6 +100,9 @@ private function checkTaskCompletion(Task $task)
     // Método para mostrar el formulario de edición de tarea
     public function edit(Task $task)
     {
+        // Guardamos la URL anterior en la sesión
+        session()->put('previous_url', url()->previous());
+
         $user = auth()->user();
 
         // Comprobar que el usuario tiene el permiso y el rol adecuado
@@ -153,9 +156,11 @@ private function checkTaskCompletion(Task $task)
             "La tarea <strong>{$task->title}</strong> fue actualizada, pero la <i>fecha de vencimiento</i> ya expiró." :
             "Tarea <strong>{$task->title}</strong> actualizada con éxito.";
 
-        // Redirigir a la página correspondiente
-        return redirect(url()->previous())->with('success', $message);
+        // Redirigir a la URL guardada previamente en la sesión
+        $previousUrl = session()->get('previous_url', route('tasks.index'));  // Si no existe, redirigir al índice
+        return redirect($previousUrl)->with('success', $message);
     }
+
 
 
     // Método para eliminar tarea
