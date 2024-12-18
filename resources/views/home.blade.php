@@ -20,7 +20,7 @@
           <div class="carousel-caption d-flex justify-content-center align-items-center text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; padding: 20px; border-radius: 10px; width: 90%;">
             <div>
               <h2 class="text-white display-5">Transforma tu gestión de seguridad laboral</h2>
-              <p class="text-white lead">Optimiza la seguridad en el lugar de trabajo con nuestra plataforma.</p>
+              <p class="text-white lead">Optimiza la seguridad en tu lugar de trabajo con nuestra plataforma.</p>
             </div>
           </div>
         </div>
@@ -74,87 +74,83 @@
     <h2 class="text-start mb-4">Tu socio estratégico en seguridad e higiene laboral</h2>
     <p class="text-start mb-5">Con SUSTEMIA, tú y tu equipo pueden contribuir a un ambiente laboral más seguro y eficiente. Nuestra plataforma digital optimiza la gestión de la seguridad laboral, facilita el cumplimiento normativo y permite el seguimiento de tareas, todo en un sistema intuitivo y fácil de usar.</p>
 
-    <!-- Sección de planes de suscripción -->
-    <section class="my-5">
-        <h2 class="text-start mb-4">Elige el plan que mejor se adapte a tus necesidades</h2>
+<!-- Sección de planes de suscripción -->
+<section class="my-5">
+    <h2 class="text-start mb-4">Elige el plan que mejor se adapte a tus necesidades</h2>
 
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-4 g-4"> <!-- Añadido 4 columnas -->
-            <div class="col">
-                <div class="card h-100 shadow-lg border-light rounded-4 p-2">
-                    <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-success"> Básico</h3>
-                        <p class="card-title fs-4 fw-bold">US$ 500</p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Reportes básicos
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> <strong> Soporte limitado:</strong> Acceso a soporte por correo electrónico o chat con tiempos de respuesta estándar
-                        </p>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-4 g-4">
+        <div class="col">
+            <div class="card h-100 shadow-lg border-light rounded-4 p-2">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="card-title text-success">Básico</h3>
+                        <p class="fs-5 fw-bold mb-0 p-2 rounded-3 bg-warning">US$ 500</p>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-lg border-light rounded-4 p-2">
-                    <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-success"> Intermedio</h3>
-                        <p class="card-title fs-4 fw-bold">US$ 1000</p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Reportes personalizados a pedido
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Capacitaciones en línea (Acceso limitado)
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> <strong> Soporte prioritario:</strong> Respuesta rápida y dedicada a consultas, con tiempos de espera reducidos
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-lg border-light rounded-4 p-2">
-                    <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-success"> Premium </h3>
-                        <p class="card-title fs-4 fw-bold">US$ 1500</p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Registro de tareas
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Reportes personalizados a pedido
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> Acceso exclusivo a capacitaciones
-                        </p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i> <strong> Soporte Premium:</strong> Soporte 24/7 por teléfono, correo electrónico y chat en vivo
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-lg border-light rounded-4 p-2">
-                    <div class="card-body d-flex flex-column">
-                        <h3 class="card-title text-secondary"> Freemium </h3>
-                        <p class="card-title fs-4 fw-bold">US$ 0</p>
-                        <p class="card-text mb-0 text-start">
-                            <i class="bi bi-check-circle-fill text-black"></i>  Demo para atraer a nuevos clientes que luego puedan actualizar a un plan de pago.
-                        </p>
-
-                    </div>
+                    <p class="card-text text-start pb-2">Ideal si necesitas un control básico y eficiente de las tareas de seguridad.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Registro de tareas</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Reportes básicos</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> <strong>Soporte limitado:</strong> Acceso a soporte por correo electrónico o chat con tiempos de respuesta estándar</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="col">
+            <div class="card h-100 shadow-lg border-light rounded-4 p-2">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="card-title text-success">Intermedio</h3>
+                        <p class="fs-5 fw-bold mb-0 p-2 rounded-3 bg-warning">US$ 1000</p>
+                    </div>
+                    <p class="card-text text-start pb-2">Perfecto si tu equipo requiere reportes personalizados y soporte ágil.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Registro de tareas</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Reportes personalizados a pedido</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Capacitaciones en línea (Acceso limitado)</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> <strong>Soporte prioritario:</strong> Respuesta rápida y dedicada a consultas, con tiempos de espera reducidos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-lg border-light rounded-4 p-2">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="card-title text-success">Premium</h3>
+                        <p class="fs-5 fw-bold mb-0 p-2 rounded-3 bg-warning">US$ 1500</p>
+                    </div>
+                    <p class="card-text text-start pb-2">El plan más completo con soporte 24/7 y capacitaciones exclusivas.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Registro de tareas</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Reportes personalizados a pedido</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> Acceso exclusivo a capacitaciones</li>
+                        <li><i class="bi bi-check-circle-fill text-black"></i> <strong>Soporte Premium:</strong> Soporte 24/7 por teléfono, correo electrónico y chat en vivo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-lg border-light rounded-4 p-2">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="card-title text-secondary">Freemium</h3>
+                        <p class="fs-5 fw-bold mb-0 p-2 rounded-3 bg-warning">US$ 0</p>
+                    </div>
+                    <p class="card-text text-start pb-2">Accede a una demostración limitada para conocer nuestra plataforma y descubre cómo optimizar la seguridad laboral en tu empresa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 </div>
 <section class="my-5">
     <div class="container">
         <h2 class="text-start mb-4">Contáctanos</h2>
-        <p class="text-start mb-4">¿Tienes preguntas o deseas más información sobre nuestros servicios? <a href="mailto:info@sustemia.com">Contáctanos aquí</a> para obtener más detalles y comenzar a trabajar juntos.</p>
+        <p class="text-start mb-4">¿Tienes preguntas o deseas más información sobre nuestros servicios? <a href="mailto:info@sustemia.com">Contáctanos ahora</a> para obtener más detalles y comenzar a trabajar juntos.</p>
 
         <div class="row">
             <div class="col-12 col-md-6 mb-4">

@@ -23,7 +23,7 @@
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Rol</th>
-                        <th>Permisos</th> <!-- Nueva columna para mostrar permisos -->
+                        <th>Permisos</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -55,14 +55,36 @@
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm rounded-3" aria-label="Editar Usuario">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
+
                                     <!-- Botón Eliminar -->
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm rounded-3" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');" aria-label="Eliminar Usuario">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}" aria-label="Eliminar Usuario">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+
+                                    <!-- Modal de Confirmación de Eliminación -->
+                                    <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estás seguro de que deseas eliminar al usuario <strong>{{ $user->name }}</strong>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <!-- Formulario de Eliminación -->
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Botón Ver Detalles -->
                                     <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm rounded-3" aria-label="Ver Detalles de Usuario">
                                         <i class="bi bi-info-circle-fill"></i>

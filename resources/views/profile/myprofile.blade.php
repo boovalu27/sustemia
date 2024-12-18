@@ -9,11 +9,11 @@
     <!-- Tarjeta de Información del Usuario -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="card shadow-sm rounded-3 border-0">
+        <div class="card shadow rounded border-bottom text-start mb-4">
           <div class="card-body">
             <!-- Título dentro de la tarjeta (Perfil de usuario) -->
             <div class="text-center mb-4">
-              <h2 class="card-title mb-2">Perfil de {{ Auth::user()->name }}</h2>
+              <h1 class="card-title mb-4 text-success">Perfil de {{ Auth::user()->name }}</h1>
             </div>
 
             <!-- Avatar e Información de Usuario -->
@@ -30,7 +30,7 @@
 
             <!-- Botón Editar Perfil -->
             <div class="d-flex justify-content-center mt-4">
-              <a href="{{ route('profile.edit') }}" class="btn btn-warning btn-lg px-4" aria-label="Editar Perfil">
+              <a href="{{ route('profile.edit') }}" class="btn btn-warning" aria-label="Editar Perfil">
                 <i class="bi bi-pencil"></i> Editar
               </a>
             </div>

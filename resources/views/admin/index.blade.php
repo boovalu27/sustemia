@@ -1,19 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container my-3">
-    <h1 class="text-start text-success py-2">Bienvenido a la plataforma de seguridad e higiene laboral</h1>
-    <p class="text-start">Gestioná y monitoreá las tareas del plan anual de cumplimiento de seguridad e higiene laboral.</p>
+<div class="container my-5">
+    <!-- Título Principal -->
+    <h1 class="text-start text-success py-3">Bienvenido a la plataforma de seguridad e higiene laboral</h1>
+    <p class="text-start mb-5">Gestiona y monitorea el plan anual de seguridad e higiene laboral desde aquí.</p>
 
-    <div class="row g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         <!-- Sección para Gestión de Usuarios -->
-        <div class="col-12 col-md-4">
-            <div class="card shadow rounded h-100 border-0">
-                <div class="card-header text-start text-secondary  d-flex align-items-center justify-content-center">
-                    <h4 class="mb-0 text-truncate">Gestión de usuarios</h4> <!-- Título con recorte de texto -->
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-header text-center bg-light">
+                    <h2 class="mb-0">Gestión de usuarios</h2>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <p>Administrá los usuarios de la plataforma.</p>
+                    <p class="text-muted">Administra los usuarios que tienen acceso a la plataforma y gestiona sus permisos.</p>
                     <!-- Botón para ir a la gestión de usuarios -->
                     <a href="{{ route('users.index') }}" class="btn btn-success mt-auto" aria-label="Ver Usuarios">
                         <i class="bi bi-person-fill"></i> Ver usuarios
@@ -23,13 +24,13 @@
         </div>
 
         <!-- Sección para Gestión de Tareas -->
-        <div class="col-12 col-md-4">
-            <div class="card shadow rounded h-100 border-0">
-                <div class="card-header text-start text-secondary d-flex align-items-center justify-content-center">
-                    <h4 class="mb-0 text-truncate">Gestión de tareas</h4> <!-- Título con recorte de texto -->
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-header text-center bg-light">
+                    <h2 class="mb-0">Gestión de tareas</h2>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <p>Administrá las tareas creadas.</p>
+                    <p class="text-muted">Gestiona y monitorea todas las tareas relacionadas con el plan de seguridad e higiene.</p>
                     <!-- Botón para ir a la gestión de tareas -->
                     <a href="{{ route('tasks.index') }}" class="btn btn-success mt-auto" aria-label="Ver Tareas">
                         <i class="bi bi-check-circle-fill"></i> Ver tareas
@@ -39,15 +40,15 @@
         </div>
 
         <!-- Sección para Gestión de Áreas -->
-        <div class="col-12 col-md-4">
-            <div class="card shadow rounded h-100 border-0">
-                <div class="card-header text-start text-secondary d-flex align-items-center justify-content-center">
-                    <h4 class="mb-0 text-truncate">Gestión de áreas</h4> <!-- Título con recorte de texto -->
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-header text-center bg-light">
+                    <h2 class="mb-0">Gestión de áreas</h2>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <p>Administrá las áreas relacionadas con las tareas.</p>
+                    <p class="text-muted">Organiza y gestiona las áreas involucradas en el plan de seguridad e higiene.</p>
                     <!-- Botón para ir a la gestión de áreas -->
-                    <a href="{{ route('areas.index') }}" class="btn btn-success" aria-label="Ver Áreas">
+                    <a href="{{ route('areas.index') }}" class="btn btn-success mt-auto" aria-label="Ver Áreas">
                         <i class="bi bi-grid-fill"></i> Ver áreas
                     </a>
                 </div>

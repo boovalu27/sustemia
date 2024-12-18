@@ -42,7 +42,7 @@
 
                 <!-- Fecha de Vencimiento -->
                 <div class="mb-3">
-                  <label for="due_date" class="form-label">Fecha de Vencimiento</label>
+                  <label for="due_date" class="form-label">Fecha de vencimiento</label>
                   <input type="date" class="form-control @error('due_date') is-invalid @enderror" id="due_date" name="due_date" value="{{ old('due_date') }}" required>
                   @error('due_date')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -92,11 +92,11 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="deleteTaskModalLabel">Confirmación de Eliminación</h5>
+            <h3 class="modal-title" id="deleteTaskModalLabel">Confirmación de Eliminación</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
-            <p class="text-start">¿Estás seguro de que deseas eliminar esta tarea?</p>
+            <p class="text-start">¿Estás seguro de que deseas eliminar la tarea <strong id="taskName"></strong>?</p>
             <p class="text-start">Esta acción no se puede deshacer.</p>
           </div>
           <div class="modal-footer">
@@ -161,7 +161,7 @@
                     <label for="year" class="form-label">Año</label>
                     <select id="year" name="year" class="form-select" onchange="this.form.submit()">
                         <option value="">Seleccionar año</option>
-                        @for ($year = now()->year; $year >= 2000; $year--)
+                        @for ($year = now()->year + 1; $year >= 2020; $year--)
                             <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>{{ $year }}</option>
                         @endfor
                     </select>
@@ -251,7 +251,7 @@
                                 @can('delete_tasks')
                                 <li>
                                     <!-- Botón para eliminar tarea -->
-                                    <a class="dropdown-item" href="#" onclick="setDeleteTaskUrl('{{ route('tasks.destroy', $task->id) }}')" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
+                                    <a class="dropdown-item" href="#" onclick="setDeleteTaskUrl('{{ route('tasks.destroy', $task->id) }}', '{{ $task->title }}')"  data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
                                         <i class="bi bi-trash"></i> Eliminar
                                     </a>
                                 </li>
@@ -268,7 +268,10 @@
                     @endif
                     <p class="card-text text-start"><strong>Área:</strong> {{ $task->area->name ?? 'Sin área' }}</p>
                     <p class="card-text text-start"><strong>Fecha de vencimiento:</strong> {{ $task->due_date ? $task->due_date->format('d/m/Y') : 'Sin fecha' }}</p>
-                    <p class="card-text text-start"><strong>Fecha de cierre:</strong> {{ $task->completed_at ? $task->completed_at->format('d/m/Y') : '' }}</p>
+<!-- Mostrar Fecha de Cierre solo si no está vacía -->
+@if ($task->completed_at)
+    <p class="card-text text-start"><strong>Fecha de cierre:</strong> {{ $task->completed_at->format('d/m/Y') }}</p>
+@endif
 
                     <!-- Estado Badge -->
                     <p class="card-text text-start">
@@ -301,10 +304,11 @@
     });
   @endif
 
-  // Establecer la URL del formulario de eliminación
-  function setDeleteTaskUrl(url) {
-    document.getElementById('deleteTaskForm').action = url;
-  }
+// Función para establecer la URL del formulario de eliminación y el nombre de la tarea en el modal
+function setDeleteTaskUrl(url, taskTitle) {
+    document.getElementById('deleteTaskForm').action = url;  // Asigna la URL al formulario de eliminación
+    document.getElementById('taskName').textContent = taskTitle;  // Asigna el título de la tarea al modal
+}
 
           // Función para mostrar/ocultar el campo de "Solicitar Nueva Área"
           function toggleNewAreaField() {

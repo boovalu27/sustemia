@@ -7,30 +7,15 @@
     <!-- Tarjeta de edición de perfil -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="card shadow-sm rounded-3 border-0">
+        <div class="card shadow-sm rounded-3 border-0 text-start">
           <div class="card-body">
             <!-- Título dentro de la tarjeta (Editar perfil de usuario) -->
-            <div class="text-center mb-4">
-              <h2 class="card-title mb-2">Editar Perfil de {{ Auth::user()->name }}</h2>
+            <div class="mb-4">
+              <h1 class="mb-4 text-start text-success">Editar perfil de {{ Auth::user()->name }}</h1>
             </div>
 
-            <!-- Mensajes de éxito o error -->
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <!-- Formulario de edición -->
-            <form action="{{ route('profile.update') }}" method="POST">
+            <form action="{{ route('profile.update') }}" method="POST" class="border-bottom text-start mb-4">
                 @csrf
                 @method('POST')
 
@@ -48,25 +33,25 @@
 
                 <!-- Campo de correo electrónico -->
                 <div class="mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
                 </div>
 
                 <!-- Cambiar contraseña -->
                 <div class="mb-3">
-                    <label for="new_password" class="form-label">Nueva Contraseña</label>
+                    <label for="new_password" class="form-label">Nueva contraseña</label>
                     <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Ingrese una nueva contraseña">
                 </div>
 
                 <div class="mb-3">
-                    <label for="new_password_confirmation" class="form-label">Confirmar Nueva Contraseña</label>
+                    <label for="new_password_confirmation" class="form-label">Confirmar nueva contraseña</label>
                     <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" placeholder="Confirme su nueva contraseña">
                 </div>
 
                 <!-- Botones de acción -->
-                <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg px-4">Actualizar Perfil</button>
-                    <a href="{{ route('profile.view') }}" class="btn btn-secondary btn-lg px-4">Cancelar</a>
+                <div class="d-flex justify-content-between border-top py-2">
+                    <button type="submit" class="btn btn-warning"><i class="bi-pencil-fill"></i> Actualizar</button>
+                    <a href="{{ route('profile.view') }}" class="btn btn-secondary"><i class="bi-arrow-return-left"></i></a>
                 </div>
             </form>
           </div>

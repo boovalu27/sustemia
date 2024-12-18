@@ -88,12 +88,15 @@ private function checkTaskCompletion(Task $task)
 
         // Verificar si el usuario tiene el permiso 'edit_tasks'
         if (!$user->can('edit_tasks')) {
-            // Redirigir a la página anterior (por ejemplo, la vista de detalles de la tarea)
+            // Redirigir a la página anterior con un mensaje de error
             $previousUrl = url()->previous();
             $message = 'No tienes permisos suficientes para editar una tarea completada.';
             return redirect($previousUrl)->with('error', $message);
         }
     }
+
+    // Si la tarea no está completada o el usuario tiene permisos, no hacemos nada
+    return null;
 }
 
 
@@ -136,28 +139,47 @@ private function checkTaskCompletion(Task $task)
             'title' => 'required|string|max:255',
             'area_id' => 'required|exists:areas,id',
             'due_date' => 'required|date',
-            'status' => 'required|in:Pendiente,Completada',
-            'description' => 'required|string',
+            'status' => 'required|in:Pendiente,Completada' // Aseguramos que los estados posibles sean estos
         ]);
 
+        // Depuración: Verificar las fechas
+        \Log::info('Fecha de Vencimiento: ' . $task->due_date);
+        \Log::info('Fecha Actual: ' . Carbon::now());
+
+        // Lógica para actualizar el estado de la tarea
         if ($request->status === 'Completada') {
+            // Convertir la fecha de vencimiento a un objeto Carbon para asegurarnos de que estamos comparando correctamente
+            $dueDate = Carbon::parse($task->due_date);
+
+            // Comprobar si la fecha de vencimiento ha pasado
+            if ($dueDate->isPast()) {
+                // Si la fecha de vencimiento ha pasado, marcar como "Completada con retraso"
+                $task->status = 'Completada con retraso';
+                \Log::info('Tarea marcada como Completada con retraso');
+            } else {
+                // Si la tarea está a tiempo
+                $task->status = 'Completada';
+                \Log::info('Tarea marcada como Completada');
+            }
+
+            // Marcar la fecha de completado
             $task->completed_at = Carbon::now();
-            $task->status = Carbon::parse($task->due_date)->isPast() ? 'Completada con retraso' : 'Completada';
         } else {
-            $task->completed_at = null;
+            // Si la tarea no está completada, mantenerla en "Pendiente"
             $task->status = 'Pendiente';
+            $task->completed_at = null; // No hay fecha de completado
         }
 
-        // Actualizar tarea
+        // Actualizar la tarea con los datos del formulario
         $task->update($request->only('title', 'description', 'area_id', 'due_date', 'status'));
 
-        // Redireccionar con mensaje de éxito
+        // Mensaje de éxito dependiendo si la tarea fue completada a tiempo o no
         $message = Carbon::parse($task->due_date)->isPast() ?
             "La tarea <strong>{$task->title}</strong> fue actualizada, pero la <i>fecha de vencimiento</i> ya expiró." :
             "Tarea <strong>{$task->title}</strong> actualizada con éxito.";
 
-        // Redirigir a la URL guardada previamente en la sesión
-        $previousUrl = session()->get('previous_url', route('tasks.index'));  // Si no existe, redirigir al índice
+        // Redirigir a la URL guardada previamente en la sesión o al índice
+        $previousUrl = session()->get('previous_url', route('dashboards.index'));
         return redirect($previousUrl)->with('success', $message);
     }
 

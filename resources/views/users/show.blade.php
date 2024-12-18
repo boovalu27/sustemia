@@ -10,7 +10,7 @@
 
       <!-- Información del Usuario -->
       <div class="border-bottom text-start mb-4">
-        <h3 class="py-2">{{ $user->name }}</h3>
+        <h2 class="py-2">{{ $user->name }}</h2>
       </div>
 
       <!-- ID del Usuario -->

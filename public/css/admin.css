@@ -99,6 +99,7 @@ nav.navbar.navbar-expand-lg.navbar-light {
     color: var(--color-primary); /* Azul en el hover */
     background-color: rgba(0, 123, 255, 0.1); /* Fondo azul claro al hacer hover */
     border-radius: 5px;
+    text-align: center;
 }
 
 
@@ -346,7 +347,7 @@ nav.navbar.navbar-expand-lg.navbar-light {
     }
 
     .nav-item {
-        margin-left: 0;
+      /*  margin-left: 0;*/
         margin-bottom: 10px;
     }
 

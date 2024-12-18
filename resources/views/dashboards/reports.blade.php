@@ -37,7 +37,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h2 class=" m-0">{{ $totalUsersCount }} +</h2>
-                            <p class="mb-0">Total de Usuarios</p>
+                            <p class="mb-0">Total de usuarios</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="bi bi-people-fill" title="Total de Usuarios"></i>
@@ -55,7 +55,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h2 class="m-0">{{ $totalTasksCount }} +</h2>
-                            <p class="mb-0">Total de tareas</p>
+                            <p class="mb-0">Tareas creadas</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="bi bi-clipboard-check-fill" title="Total tareas"></i>
@@ -73,8 +73,8 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h2 class="text-white m-0">{{ $totalTasksCount }} +</h2>
-                            <p class="mb-0 text-white">Total de tareas</p>
+                            <h2 class="text-white m-0">{{ $completedTasksCount }} +</h2>
+                            <p class="mb-0 text-white">Tareas completadas</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="bi bi-clipboard-check-fill text-white" title="Total tareas"></i>
@@ -101,9 +101,9 @@
                                 <span class="badge bg-black text-white rounded-pill">{{ $area->total }} tareas</span>
                             </div>
                             <div class="my-3">
-                                <p class="card-text"> <i class="bi bi-hourglass-split text-warning" title="Tarea Pendiente"></i> Pendientes: {{ $area->pending }} / {{ $area->total }}</p>
-                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i> Completadas: {{ $area->completed }} / {{ $area->total }}</p>
-                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea Completada"></i> <i class="bi bi-calendar-x-fill text-danger" title="Tarea Vencida"></i> Completadas con Retraso: {{ $area->completed_with_delay }} / {{ $area->total }}</p>
+                                <p class="card-text"> <i class="bi bi-hourglass-split text-warning" title="Tarea pendiente"></i> Pendientes: {{ $area->pending }} / {{ $area->total }}</p>
+                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea completada"></i> Completadas: {{ $area->completed }} / {{ $area->total }}</p>
+                                <p class="card-text"> <i class="bi bi-check-circle-fill text-success" title="Tarea completada con retraso"></i> <i class="bi bi-calendar-x-fill text-danger" title="Tarea Vencida"></i> Completadas con retraso: {{ $area->completed_with_delay }} / {{ $area->total }}</p>
                             </div>
                         </div>
                     </div>

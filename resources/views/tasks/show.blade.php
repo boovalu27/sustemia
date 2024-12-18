@@ -21,8 +21,12 @@
         <!-- Fecha de vencimiento -->
         <p> <strong>Fecha de vencimiento:</strong> {{ \Carbon\Carbon::parse($task->due_date)->format('d/m/Y') }}</p>
 
-        <!-- Fecha de cierre -->
-        <p> <strong>Fecha de cierre:</strong> {{ \Carbon\Carbon::parse($task->completed_at)->format('d/m/Y') }}</p>
+        <!-- Fecha de cierre: Solo mostrar si la tarea está completada -->
+        @if($task->completed_at)
+            <p> <strong>Fecha de cierre:</strong> {{ \Carbon\Carbon::parse($task->completed_at)->format('d/m/Y') }}</p>
+        @else
+            <p> <strong>Fecha de cierre:</strong> N/A</p> <!-- O puedes mostrar "Pendiente" -->
+        @endif
 
         <!-- Estado de la tarea -->
         <p>
