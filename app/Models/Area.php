@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ * Modelo que representa una "Area" en la base de datos.
+ *
+ * Este modelo está relacionado con el modelo "Task", donde una
+ * área puede tener muchas tareas asociadas.
  *
  * @property int $id
  * @property string $name
@@ -25,12 +28,24 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Area extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['name'];
+  /**
+   * Los atributos que se pueden asignar masivamente.
+   *
+   * @var array
+   */
+  protected $fillable = ['name'];
 
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-    }
+  /**
+   * Obtiene las tareas asociadas a esta área.
+   *
+   * Relación uno a muchos: una área puede tener muchas tareas.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function tasks()
+  {
+    return $this->hasMany(Task::class);
+  }
 }
