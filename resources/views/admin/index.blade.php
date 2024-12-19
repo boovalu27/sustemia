@@ -9,7 +9,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <!-- Sección para Gestión de Usuarios -->
         <div class="col">
-            <div class="card h-100 border-0 shadow-sm">
+            <div class="card h-100 border shadow-sm">
                 <div class="card-header text-center bg-light">
                     <h2 class="mb-0">Gestión de usuarios</h2>
                 </div>
@@ -25,7 +25,7 @@
 
         <!-- Sección para Gestión de Tareas -->
         <div class="col">
-            <div class="card h-100 border-0 shadow-sm">
+            <div class="card h-100 border shadow-sm">
                 <div class="card-header text-center bg-light">
                     <h2 class="mb-0">Gestión de tareas</h2>
                 </div>
@@ -41,7 +41,7 @@
 
         <!-- Sección para Gestión de Áreas -->
         <div class="col">
-            <div class="card h-100 border-0 shadow-sm">
+            <div class="card h-100 border shadow-sm">
                 <div class="card-header text-center bg-light">
                     <h2 class="mb-0">Gestión de áreas</h2>
                 </div>

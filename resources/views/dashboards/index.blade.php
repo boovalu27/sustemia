@@ -66,7 +66,7 @@
 
                 <!-- Campo adicional para solicitar nueva área -->
                 <div id="newAreaField" class="mb-3" style="display: none;">
-                  <label for="new_area" class="form-label">Escribe el nombre de la nueva área</label>
+                  <label for="new_area" class="form-label text-muted">Escribe el nombre de la nueva área</label>
                   <input type="text" class="form-control @error('new_area') is-invalid @enderror" id="new_area" name="new_area" value="{{ old('new_area') }}">
                   @error('new_area')
                     <div class="invalid-feedback">{{ $message }}</div>

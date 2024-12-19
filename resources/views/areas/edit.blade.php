@@ -10,10 +10,16 @@
             @csrf
             @method('PUT')
 
+            <!-- Campo Nombre del Área -->
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre del área</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $area->name) }}" required aria-describedby="nameHelp">
+                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $area->name) }}" required aria-describedby="nameHelp">
                 <div id="nameHelp" class="form-text">Actualiza el nombre del área.</div>
+
+                <!-- Mostrar el mensaje de error para el campo 'name' -->
+                @error('name')
+                    <div class="alert alert-danger mt-2 py-2">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Botones de acción (Actualizar y Cancelar) -->

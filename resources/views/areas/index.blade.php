@@ -5,7 +5,7 @@
     <h1 class="my-4 text-success">Lista de áreas</h1>
     <p class="text-start mb-4">Administra y visualiza las áreas en la plataforma.</p>
 
-    <a href="{{ route('areas.create') }}" class="btn btn-success mb-3">
+    <a href="{{ route('areas.create') }}" class="btn btn-success mb-4">
         <i class="bi bi-plus-circle"> </i> Agregar
     </a>
 

@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="container my-4">
+<div class="container mt-2">
     <h1 class="text-start text-success mb-4">Lista de tareas</h1>
     <p class="text-start mb-4">Administra y visualiza las tareas registradas en la plataforma.</p>
 
     <div class="d-flex justify-content-between mb-4">
-        <a href="{{ route('tasks.create') }}" class="btn btn-success mb-3" aria-label="Agregar nueva tarea">
+        <a href="{{ route('tasks.create') }}" class="btn btn-success mb-4" aria-label="Agregar nueva tarea">
             <i class="bi bi-person-plus-fill"></i> Agregar
         </a>
     </div>

@@ -100,33 +100,32 @@
         <!-- Contenido principal -->
         <main class="content py-4">
             <div class="content" role="main">
-                <section class="row">
-                <!-- Mensajes de alerta -->
-                @if(Session::has('success') || Session::has('warning') || Session::has('error'))
-                    <div class="d-flex justify-content-center m-4">
-                        <div class="col-10">
-                            @if(Session::has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <i class="bi-check-circle"></i> {!! Session::get('success') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                                </div>
-                            @elseif(Session::has('warning'))
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <i class="bi-exclamation-circle"></i> {!! Session::get('warning') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                                </div>
-                            @elseif(Session::has('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <i class="bi-exclamation-circle"></i> {!! Session::get('error') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                                </div>
-                            @endif
+                <section class="col-md-12">
+                    <!-- Mensajes de alerta -->
+                    @if(Session::has('success') || Session::has('warning') || Session::has('error'))
+                        <div class="d-flex justify-content-center m-4">
+                            <div class="col-10">
+                                @if(Session::has('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <i class="bi-check-circle"></i> {!! Session::get('success') !!}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
+                                @elseif(Session::has('warning'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <i class="bi-exclamation-circle"></i> {!! Session::get('warning') !!}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
+                                @elseif(Session::has('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="bi-exclamation-circle"></i> {!! Session::get('error') !!}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                @endif
-                    <div class="col-12">
-                        @yield('content')
-                    </div>
+                    @endif
+
+                    @yield('content')
                 </section>
             </div>
         </main>

@@ -138,6 +138,9 @@ nav.navbar.navbar-expand-lg.navbar-light {
     margin-right: 10px;
 }
 
+ul.dropdown-menu.dropdown-menu-end.show {
+    background-color: #FFFDE7;
+}
 
 /* Efecto hover en el icono de perfil */
 .profile-icon:hover {

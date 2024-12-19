@@ -3,7 +3,7 @@
     : 'layouts.main')
 
 @section('content')
-  <div class="container mt-5">
+  <div class="container mt-2">
     <h1 class="mb-4 text-start text-success">Crear nueva tarea</h1>
     <form action="{{ route('tasks.store') }}" method="POST" class="bg-light p-4 rounded shadow">
         @csrf

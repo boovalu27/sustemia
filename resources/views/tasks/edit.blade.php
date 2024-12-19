@@ -3,7 +3,7 @@
     : 'layouts.main')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-2">
     <h1 class="text-start text-success px-4">Editar tarea</h1>
 
     <div class="bg-light p-4 rounded shadow">
@@ -73,7 +73,7 @@
             <div class="d-flex flex-column flex-md-row align-items-start justify-content-between border-top pt-3">
                 <!-- Botón para actualizar -->
                 <button type="submit" class="btn btn-warning btn-sm mb-2 mb-md-0" {{ $isCompleted ? 'disabled' : '' }}>
-                    <i class="bi-pencil-fill"></i> Actualizar tarea
+                    <i class="bi-pencil-fill"></i> Actualizar
                 </button>
 
                 <!-- Botón para cancelar -->

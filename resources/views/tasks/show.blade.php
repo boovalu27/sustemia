@@ -3,7 +3,7 @@
     : 'layouts.main')
 
 @section('content')
-  <div class="container mt-5">
+  <div class="container mt-2">
     <h1 class="mb-4 text-start text-success">Detalles de la tarea</h1>
 
     <div class="p-4 rounded shadow">
