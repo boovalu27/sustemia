@@ -151,104 +151,104 @@
   <script>
     // Datos para los gráficos
     const completedPercentage = @json($completedPercentage);
-    const pendingPercentage = @json($pendingPercentage);
-    const overduePercentage = @json($overduePercentage);
+const pendingPercentage = @json($pendingPercentage);
+const overduePercentage = @json($overduePercentage);
 
-    const tasksByAreaData = @json($tasksByArea).map(area => area.total);
-    const tasksByAreaLabels = @json($tasksByArea).map(area => area.area_name);
+const tasksByAreaData = @json($tasksByArea).map(area => area.total);
+const tasksByAreaLabels = @json($tasksByArea).map(area => area.area_name);
 
-    // Gráfico de Estado de Tareas
-    const tasksStatusChart = new Chart(document.getElementById('tasksStatusChart').getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: ['Estado de las tareas'],
-        datasets: [
-          {
-            label: 'Completadas',
-            data: [completedPercentage],
-            backgroundColor: '#28a745',
-            borderColor: '#1e7e34'
-          },
-          {
-            label: 'Pendientes',
-            data: [pendingPercentage],
-            backgroundColor: '#ffc107',
-            borderColor: '#d39e00'
-          },
-          {
-            label: 'Vencidas',
-            data: [overduePercentage],
-            backgroundColor: '#dc3545',
-            borderColor: '#c82333'
-          }
-        ]
+const tasksStatusChart = new Chart(document.getElementById('tasksStatusChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Estado de las tareas'],
+    datasets: [
+      {
+        label: 'Completadas',
+        data: [completedPercentage],
+        backgroundColor: '#28a745',
+        borderColor: '#1e7e34'
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            ticks: {
-              stepSize: 10
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              usePointStyle: true,
-              pointStyle: 'circle',
-              radius: 7,
-              padding: 10,
-              font: {
-                size: 12
-              }
-            }
+      {
+        label: 'Pendientes',
+        data: [pendingPercentage],
+        backgroundColor: '#ffc107',
+        borderColor: '#d39e00'
+      },
+      {
+        label: 'Vencidas',
+        data: [overduePercentage],
+        backgroundColor: '#dc3545',
+        borderColor: '#c82333'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          stepSize: 10
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+          radius: 7,
+          padding: 10,
+          font: {
+            size: 12
           }
         }
       }
-    });
+    }
+  }
+});
 
-    // Gráfico de Tareas por Área
-    const tasksByAreaChart = new Chart(document.getElementById('tasksByAreaChart').getContext('2d'), {
-      type: 'pie',
-      data: {
-        labels: tasksByAreaLabels,
-        datasets: [{
-          label: 'Tareas por Área',
-          data: tasksByAreaData,
-          backgroundColor: ['#3c4239', '#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6f42c1'],
-          borderColor: '#fff'
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              usePointStyle: true,
-              pointStyle: 'circle',
-              radius: 7,
-              padding: 10,
-              font: {
-                size: 12
-              }
-            }
+// Gráfico de Tareas por Área
+const tasksByAreaChart = new Chart(document.getElementById('tasksByAreaChart').getContext('2d'), {
+  type: 'pie',
+  data: {
+    labels: tasksByAreaLabels,
+    datasets: [{
+      label: 'Tareas por Área',
+      data: tasksByAreaData,
+      backgroundColor: ['#3c4239', '#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6f42c1'],
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+          radius: 7,
+          padding: 10,
+          font: {
+            size: 12
           }
         }
       }
-    });
+    }
+  }
+});
+
   </script>
 
   <!-- Tareas Vencidas -->
   <div class="col-lg-12 col-md-12 mb-4">
     <h2 class="text-danger my-4">Tareas vencidas</h2>
     @if($overdueTasks->isEmpty())
-      <p class="text-center p-3 shadow-sm mb-3">No hay tareas vencidas.</p>
+      <p class="text-start p-3 shadow-sm mb-3">No hay tareas vencidas.</p>
     @else
       <div class="row">
         @foreach ($overdueTasks as $task)
@@ -275,7 +275,7 @@
   <div class="col-lg-12 col-md-12 mb-4">
     <h2 class="text-warning my-4">Tareas próximas a vencer este mes</h2>
     @if($upcomingTasks->isEmpty())
-      <p class="text-center p-3 shadow-sm mb-3">No hay tareas próximas a vencer este mes</p>
+      <p class="text-start p-3 shadow-sm mb-3">No hay tareas próximas a vencer este mes</p>
     @else
       <div class="row">
         @foreach ($upcomingTasks as $task)
