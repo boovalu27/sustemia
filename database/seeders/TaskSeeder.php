@@ -20,101 +20,46 @@ class TaskSeeder extends Seeder
             return;
         }
 
-        // Crear tareas de ejemplo
-        Task::create([
-            'user_id' => $users->first()->id,
-            'area_id' => 1,
-            'title' => 'Revisar políticas de seguridad',
-            'description' => 'Revisar y actualizar las políticas de seguridad de la empresa.',
-            'due_date' => now()->addDays(2),
-            'status' => 'Pendiente',
-        ]);
+        // Crear tareas de ejemplo solo si no existen previamente
+        $this->createTaskIfNotExists($users->first()->id, 1, 'Revisar políticas de seguridad', 'Revisar y actualizar las políticas de seguridad de la empresa.', now()->addDays(2), 'Pendiente');
 
         if ($users->count() > 1) {
-            Task::create([
-                'user_id' => $users->skip(1)->first()->id,
-                'area_id' => 2,
-                'title' => 'Desarrollar nuevo módulo',
-                'description' => 'Desarrollar un nuevo módulo para el sistema de gestión.',
-                'due_date' => now()->addDays(14),
-                'status' => 'Pendiente',
-            ]);
+            $this->createTaskIfNotExists($users->skip(1)->first()->id, 2, 'Desarrollar nuevo módulo', 'Desarrollar un nuevo módulo para el sistema de gestión.', now()->addDays(14), 'Pendiente');
         }
 
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 6,
-            'title' => 'Plan de marketing',
-            'description' => 'Crear un plan de marketing para el próximo trimestre.',
-            'due_date' => now()->addDays(30),
-            'completed_at' => now()->addDays(30),
-            'status' => 'Completada',
-        ]);
+        $this->createTaskIfNotExists($users->last()->id, 6, 'Plan de marketing', 'Crear un plan de marketing para el próximo trimestre.', now()->addDays(30), 'Completada', now()->addDays(30));
 
         // Nuevas tareas
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 4,
-            'title' => 'Comunicación de peligros y su prevención',
-            'description' => '',
-            'due_date' => now()->addDays(10),
-            'status' => 'Pendiente',
-        ]);
-
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 4,
-            'title' => 'Programa on boarding SHE',
-            'description' => '',
-            'due_date' => now()->addDays(15),
-            'status' => 'Pendiente',
-        ]);
-
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 4,
-            'title' => 'Actualización de matriz de entrenamiento por colaborador y puesto',
-            'description' => '',
-            'due_date' => now()->addDays(20),
-            'status' => 'Pendiente',
-        ]);
-
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 3,
-            'title' => 'Prevención del dengue',
-            'description' => '',
-            'due_date' => now()->addDays(25),
-            'status' => 'Pendiente',
-        ]);
-
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 5,
-            'title' => 'Día mundial del agua',
-            'description' => '',
-            'due_date' => now()->addDays(15),
-            'status' => 'Pendiente',
-        ]);
+        $this->createTaskIfNotExists($users->last()->id, 4, 'Comunicación de peligros y su prevención', '', now()->addDays(10), 'Pendiente');
+        $this->createTaskIfNotExists($users->last()->id, 4, 'Programa on boarding SHE', '', now()->addDays(15), 'Pendiente');
+        $this->createTaskIfNotExists($users->last()->id, 4, 'Actualización de matriz de entrenamiento por colaborador y puesto', '', now()->addDays(20), 'Pendiente');
+        $this->createTaskIfNotExists($users->last()->id, 3, 'Prevención del dengue', '', now()->addDays(25), 'Pendiente');
+        $this->createTaskIfNotExists($users->last()->id, 5, 'Día mundial del agua', '', now()->addDays(15), 'Pendiente');
 
         // Tarea vencida
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 4,
-            'title' => 'Comunicación de peligros y su prevención',
-            'description' => 'Comunicación de peligros y su prevención.',
-            'due_date' => now()->subDays(7),  // Fecha de vencimiento hace 7 días
-            'completed_at' => now()->subDays(2),  // Fecha de cierre hace 2 días
-            'status' => 'Completada con retraso',
-        ]);
+        $this->createTaskIfNotExists($users->last()->id, 4, 'Comunicación de peligros y su prevención', 'Comunicación de peligros y su prevención.', now()->subDays(7), 'Completada con retraso', now()->subDays(2));
 
-        Task::create([
-            'user_id' => $users->last()->id,
-            'area_id' => 6,
-            'title' => 'Plan para el cumplimiento de acciones surgidas de accidentes',
-            'description' => 'Medidas y procedimientos necesarios para dar respuesta eficaz a los accidentes ocurridos en el entorno laboral.',
-            'due_date' => now()->addDays(30),
-            'status' => 'Pendiente',
+        $this->createTaskIfNotExists($users->last()->id, 6, 'Plan para el cumplimiento de acciones surgidas de accidentes', 'Medidas y procedimientos necesarios para dar respuesta eficaz a los accidentes ocurridos en el entorno laboral.', now()->addDays(30), 'Pendiente');
+    }
+
+    // Función para crear tareas si no existen
+    private function createTaskIfNotExists($userId, $areaId, $title, $description, $dueDate, $status, $completedAt = null)
+    {
+        // Validar que la fecha de cierre no sea mayor a la fecha actual
+        if ($completedAt && $completedAt > now()) {
+            $completedAt = now();
+        }
+
+        // Usamos firstOrCreate para evitar duplicados
+        Task::firstOrCreate([
+            'user_id' => $userId,
+            'area_id' => $areaId,
+            'title' => $title,
+            'due_date' => $dueDate,
+        ], [
+            'description' => $description,
+            'status' => $status,
+            'completed_at' => $completedAt,
         ]);
     }
 }

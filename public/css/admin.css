@@ -76,10 +76,11 @@ h4, h5, h6 {
     flex-direction: row; /* Alinea los items horizontalmente */
     align-items: center; /* Centra verticalmente */
 }
-
+/*
 nav.navbar.navbar-expand-lg.navbar-light {
     background-color: #FFFDE7;
-}
+}*/
+
 /* Asegura que los items se alineen bien en el lado derecho */
 .navbar-nav.ms-auto {
     margin-left: auto;
@@ -93,6 +94,10 @@ nav.navbar.navbar-expand-lg.navbar-light {
 /* Efecto hover en los enlaces */
 .nav-link {
     transition: all 0.3s ease; /* Transición suave */
+}
+
+a.nav-link:hover{
+    padding:10px;
 }
 
 .nav-link:hover {
@@ -137,11 +142,11 @@ nav.navbar.navbar-expand-lg.navbar-light {
 .dropdown-item i {
     margin-right: 10px;
 }
-
+/*
 ul.dropdown-menu.dropdown-menu-end.show {
     background-color: #FFFDE7;
 }
-
+*/
 /* Efecto hover en el icono de perfil */
 .profile-icon:hover {
     background-color: var(--color-primary); /* Fondo azul en el hover */

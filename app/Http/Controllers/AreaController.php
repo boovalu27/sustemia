@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
-    public function __construct()
-    {
-        // Si el usuario no está autenticado, redirigirlo a la página de login
-        $this->middleware('auth');
-    }
+  public function __construct()
+  {
+    // Si el usuario no está autenticado, redirigirlo a la página de login
+    $this->middleware('auth');
+  }
+
   /**
    * Muestra una lista de todas las áreas.
    *
@@ -141,6 +142,12 @@ class AreaController extends Controller
       return redirect()->route('dashboards.index')->with('error', 'No tienes permisos para eliminar áreas.');
     }
 
+    // Verificar si la área tiene tareas asociadas
+    if ($area->tasks()->count() > 0) {
+      return redirect()->route('areas.index')->with('error', 'No puedes eliminar el área "' . $area->name . '" porque tiene tareas asociadas.');
+    }
+
+    // Eliminar la área si no tiene tareas asociadas
     $area->delete();
 
     return redirect()->route('areas.index')->with('success', 'Área "' . $area->name . '" eliminada con éxito.');

@@ -1,9 +1,10 @@
 @extends(auth()->check() && auth()->user()->hasRole('admin')
-    ? 'layouts.admin'
-    : 'layouts.main')
+  ? 'layouts.admin'
+  : 'layouts.main')
 
 @section('content')
   <div class="container mt-5">
+    <!-- Título principal de la página -->
     <h1 class="mb-4 text-start text-success">Detalles del usuario:</h1>
 
     <div class="p-4 rounded shadow">
@@ -25,8 +26,10 @@
       <!-- Permisos del Usuario -->
       <p><strong>Permisos:</strong></p>
       @if($user->permissions->isEmpty())
+        <!-- Si el usuario no tiene permisos asignados -->
         <span>No tiene permisos asignados.</span>
       @else
+        <!-- Si el usuario tiene permisos asignados, los mostramos en una lista -->
         <ul>
           @foreach($user->permissions as $permission)
             <li>{{ $permission->name }}</li>
@@ -37,7 +40,7 @@
       <!-- Botones de acción -->
       <div class="d-flex justify-content-between border-top py-2">
         <div>
-          <!-- Mostrar el botón de Editar solo para Admin o permisos de edición -->
+          <!-- Mostrar el botón de Editar solo si el usuario tiene el permiso adecuado -->
           @can('edit_users')
             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning me-2">
               <i class="bi-pencil-fill"></i>

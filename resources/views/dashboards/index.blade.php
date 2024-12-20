@@ -8,19 +8,18 @@
     <p class="text-start my-2">Bienvenido a tu espacio de gestión.</p>
     <p class="text-start py-2">Aquí podrás gestionar las tareas relacionadas con la seguridad y la higiene laboral de manera eficiente y sencilla.</p>
 
-      <!-- Modal para Crear Nueva Tarea -->
-      <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h2>
+    <!-- Modal para Crear Nueva Tarea -->
+    <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title text-start" id="createTaskModalLabel">Crear tarea</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-              <!-- Formulario de Creación de Tarea -->
-              <form id="createTaskForm" method="POST" action="{{ route('tasks.store') }}" novalidate>
-                @csrf
-
+          </div>
+          <div class="modal-body">
+          <!-- Formulario de Creación de Tarea -->
+          <form id="createTaskForm" method="POST" action="{{ route('tasks.store') }}" novalidate>
+            @csrf
                 <!-- Título -->
                 <div class="mb-3">
                   <label for="title" class="form-label">Título</label>
@@ -72,7 +71,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                   <div class="mt-2">
-                    <a href="mailto:admin@sustemia.com?subject=Solicitud de Nueva Área&body=Solicitud para crear el área: {{ old('new_area') }}" class="btn btn-primary btn-sm">Enviar solicitud al administrador</a>
+                    <a href="mailto:admin@sustemia.com?subject=Solicitud de Nueva área&body=Solicitud para crear el área: {{ old('new_area') }}" class="btn btn-primary btn-sm">Enviar solicitud al administrador</a>
                   </div>
                 </div>
 
@@ -294,32 +293,36 @@
         @endforeach
     </div>
 
-<script>
-  // Mantener el modal abierto si hay errores de validación
-  @if ($errors->any())
-    // Espera a que el modal de Bootstrap esté completamente cargado
-    document.addEventListener('DOMContentLoaded', function () {
-      var myModal = new bootstrap.Modal(document.getElementById('createTaskModal'));
-      myModal.show();  // Muestra el modal si hay errores
-    });
-  @endif
+    <script>
+        // Esperar a que el contenido del DOM esté completamente cargado antes de ejecutar el código
+        document.addEventListener('DOMContentLoaded', function () {
+          // Verificar si hay errores de validación en el formulario
+          @if ($errors->any())
+            // Inicializar y mostrar el modal si hay errores de validación
+            var myModal = new bootstrap.Modal(document.getElementById('createTaskModal'));
+            myModal.show();  // Muestra el modal de crear tarea si hay errores
+          @endif
+        });
 
-// Función para establecer la URL del formulario de eliminación y el nombre de la tarea en el modal
-function setDeleteTaskUrl(url, taskTitle) {
-    document.getElementById('deleteTaskForm').action = url;  // Asigna la URL al formulario de eliminación
-    document.getElementById('taskName').textContent = taskTitle;  // Asigna el título de la tarea al modal
-}
+        // Función para establecer la URL del formulario de eliminación y el nombre de la tarea en el modal
+        function setDeleteTaskUrl(url, taskTitle) {
+          const deleteForm = document.getElementById('deleteTaskForm');
+          const taskName = document.getElementById('taskName');
 
-          // Función para mostrar/ocultar el campo de "Solicitar Nueva Área"
-          function toggleNewAreaField() {
-            const newAreaField = document.getElementById('newAreaField');
-            if (newAreaField.style.display === "none") {
-                newAreaField.style.display = "block";  // Muestra el campo para solicitar nueva área
-            } else {
-                newAreaField.style.display = "none";  // Oculta el campo si ya está visible
-            }
+          // Asigna la URL al formulario de eliminación
+          deleteForm.action = url;
+
+          // Asigna el título de la tarea al modal
+          taskName.textContent = taskTitle;
         }
 
-</script>
+        // Función para mostrar/ocultar el campo de "Solicitar Nueva Área"
+        function toggleNewAreaField() {
+          const newAreaField = document.getElementById('newAreaField');
+
+          // Alternar la visibilidad del campo de nueva área
+          newAreaField.style.display = newAreaField.style.display === "none" ? "block" : "none";
+        }
+      </script>
 
 @endsection

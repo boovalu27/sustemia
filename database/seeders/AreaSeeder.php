@@ -14,7 +14,7 @@ class AreaSeeder extends Seeder
         Area::firstOrCreate(['name' => 'Higiene']);
         Area::firstOrCreate(['name' => 'Salud']);
         Area::firstOrCreate(['name' => 'Capacitación']);
-        Area::firstOrCreate(['name' => 'Medio Ambiente']);
+        Area::firstOrCreate(['name' => 'Medio ambiente']);
         Area::firstOrCreate(['name' => 'Innovación']);
     }
 }

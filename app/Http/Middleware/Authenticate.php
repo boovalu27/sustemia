@@ -1,5 +1,6 @@
 <?php
 
+// app/Http/Middleware/Authenticate.php
 
 namespace App\Http\Middleware;
 
@@ -10,20 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class Authenticate
 {
     /**
-     * Maneja la autenticación de una solicitud entrante.
+     * Redirigir al usuario a la página de login si no está autenticado.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
-     * @return mixed
+     * @return string|null
      */
-    public function handle(Request $request, Closure $next, $guard = null)
+    public function redirectTo(Request $request)
     {
-        if (Auth::guard($guard)->check()) {
-            return $next($request);
+        // Si el usuario no está autenticado, redirigir a la página de login
+        if (!Auth::check()) {
+            return route('auth.login');  // Asegúrate de que sea la ruta 'auth.login'
         }
-
-        // Redirigir a una URL personalizada si no está autenticado
-        return redirect()->route('auth.login');  // Aquí puedes cambiar 'custom.login' a la ruta que desees
     }
 }

@@ -2,9 +2,9 @@
     ? 'layouts.admin'
     : 'layouts.main')
 
-
 @section('content')
 @section('title', 'Mi perfil')
+
   <div class="container py-5">
     <!-- Tarjeta de Información del Usuario -->
     <div class="row justify-content-center">
@@ -18,10 +18,12 @@
 
             <!-- Avatar e Información de Usuario -->
             <div class="d-flex flex-column align-items-center mb-4">
+              <!-- Avatar de Usuario -->
               <div class="rounded-circle bg-light d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
                 <i class="bi bi-person-fill" style="font-size: 2.5rem;"></i>
               </div>
 
+              <!-- Información de Usuario -->
               <div class="text-center mt-3">
                 <p class="card-title mb-1">{{ Auth::user()->name }} {{ Auth::user()->surname }}</p>
                 <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
@@ -39,4 +41,5 @@
       </div>
     </div>
   </div>
+
 @endsection
