@@ -28,7 +28,7 @@
 
       <!-- Campo de Correo Electrónico -->
       <div class="mb-3">
-        <label for="email" class="form-label" data-bs-toggle="tooltip" title="Ingresa un correo electrónico válido.">Correo Electrónico</label>
+        <label for="email" class="form-label" data-bs-toggle="tooltip" title="Ingresa un correo electrónico válido.">Correo electrónico</label>
         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
         @error('email')
           <div class="text-danger">{{ $message }}</div>

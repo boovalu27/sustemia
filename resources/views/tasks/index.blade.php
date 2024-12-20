@@ -28,8 +28,8 @@
               <th>Descripción</th>
               <th>Área</th>
               <th>Estado</th>
-              <th>Fecha de Vencimiento</th>
-              <th>Fecha de Cierre</th>
+              <th>Fecha de vencimiento</th>
+              <th>Fecha de cierre</th>
               <th>Acciones</th>
             </tr>
           </thead>

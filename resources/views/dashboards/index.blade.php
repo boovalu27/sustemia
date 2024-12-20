@@ -175,13 +175,13 @@
                 <!-- Tarea Vencida -->
                 <div class="d-flex align-items-center me-2 me-md-3">
                     <i class="bi bi-calendar-x-fill text-danger fs-5 mx-2" title="Tarea vencida"></i>
-                    <span>Tarea Vencida</span>
+                    <span>Tarea vencida</span>
                 <!-- Tarea Pendiente -->
                     <i class="bi bi-hourglass-split text-warning fs-5 mx-2" title="Tarea pendiente"></i>
-                    <span>Tarea Pendiente</span>
+                    <span>Tarea pendiente</span>
                 <!-- Tarea Completada -->
                     <i class="bi bi-check-circle-fill text-success fs-5 mx-2" title="Tarea completada"></i>
-                    <span>Tarea Completada</span>
+                    <span>Tarea completada</span>
                 <!-- Botón para abrir el modal de crear tarea -->
                 @can('create_tasks')
                 <div class="d-flex align-items-start ms-auto px-2">

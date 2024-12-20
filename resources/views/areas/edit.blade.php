@@ -26,7 +26,7 @@
             <div class="d-flex flex-column flex-md-row align-items-start justify-content-between border-top pt-3">
                 <!-- Botón para actualizar -->
                 <button type="submit" class="btn btn-warning btn-sm mb-2 mb-md-0">
-                    <i class="bi-pencil-fill"></i> Actualizar Área
+                    <i class="bi-pencil-fill"></i> Actualizar
                 </button>
 
                 <!-- Botón para cancelar -->
