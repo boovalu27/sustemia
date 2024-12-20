@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container mt-5">
-    <h1 class="mb-4 text-start text-success">Detalles del Área</h1>
+    <h1 class="mb-4 text-start text-success">Detalles del área</h1>
 
     <div class="p-4 rounded shadow">
       <div class="border-bottom text-start">

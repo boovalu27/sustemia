@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-start text-success px-4">Editar Área</h1>
+    <h1 class="text-start text-success px-4">Editar área</h1>
 
     <div class="bg-light p-4 rounded shadow">
         <!-- Formulario de actualización de área -->
