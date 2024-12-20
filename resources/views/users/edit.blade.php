@@ -3,7 +3,7 @@
 @section('content')
   <div class="container mt-5">
     <!-- Título de la página -->
-    <h1 class="text-start text-success px-4">Editar Usuario</h1>
+    <h1 class="text-start text-success px-4">Editar usuario</h1>
 
     <div class="bg-light p-4 rounded shadow">
       <!-- Mostrar errores de validación -->
