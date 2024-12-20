@@ -105,7 +105,7 @@
         <div class="d-flex flex-column flex-md-row align-items-start justify-content-between border-top pt-3">
           <!-- Botón para actualizar el usuario -->
           <button type="submit" class="btn btn-warning btn-sm mb-2 mb-md-0">
-            <i class="bi-pencil-fill"></i> Actualizar Usuario
+            <i class="bi-pencil-fill"></i> Actualizar
           </button>
           <!-- Botón para volver al listado de usuarios -->
           <a href="{{ route('users.index') }}" class="btn btn-secondary btn-sm mb-2 mb-md-0">
